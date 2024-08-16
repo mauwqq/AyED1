@@ -20,6 +20,8 @@ meses = {1: 31,
          12: 31
          }
 
+def pedir_
+
 
 def main():
     pass 

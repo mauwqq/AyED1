@@ -1,1 +1,7 @@
-*.pdf
+*.*
+!*.py
+!.gitignore
+!*.csv
+!*.json
+!README.md
+
