@@ -22,7 +22,7 @@ def numeros_input() -> list:
     return numeros
 
 
-def mayor(numeros) -> int:
+def mayor(numeros: list) -> int:
     mayor = numeros[0]
     rep = 0 
     for i in numeros:
@@ -34,7 +34,7 @@ def mayor(numeros) -> int:
     return mayor if rep == 0 else -1
 
 
-def imprimir_resultados(resultado) -> None:
+def imprimir_resultados(resultado: int) -> None:
     if resultado != -1:
         print(f"El numero mayor ingresado es: {resultado}.")
     else:
