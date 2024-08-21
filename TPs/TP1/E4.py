@@ -58,26 +58,28 @@ def calcular_cambio(total: int, recibido: int) -> tuple[int, int, int, int, int,
 
 
 def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int, b_5000: int, b_1000: int, b_500: int, b_200: int, b_100: int, b_50: int, b_10: int) -> None:
-    print(f"La compra fue de: ${compra}")
-    print(f"El monto recibido fue de: ${recibido}")
-    
-    if vuelto == 0:
-        print("No hay vuelto.")
-    else:
-        print(f"El vuelto es de: ${vuelto}")
-        print("-"*50)
-        billetes = [
-            ("Billetes de 5000", b_5000),
-            ("Billetes de 1000", b_1000),
-            ("Billetes de 500", b_500),
-            ("Billetes de 200", b_200),
-            ("Billetes de 100", b_100),
-            ("Billetes de 50", b_50),
-            ("Billetes de 10", b_10)
+    billetes = [
+        ("Billetes de 5000", b_5000),
+        ("Billetes de 1000", b_1000),
+        ("Billetes de 500", b_500),
+        ("Billetes de 200", b_200),
+        ("Billetes de 100", b_100),
+        ("Billetes de 50", b_50),
+        ("Billetes de 10", b_10)
         ]
-        for texto, valor in billetes:
-            if valor > 0:
-                print(f"{texto}: {valor}")
+    if resto != 0:
+        print("el cambio no puede entregarse debido a falta de billetes con denominaciones adecuadas.")
+    else:
+        print(f"La compra fue de: ${compra}")
+        print(f"El monto recibido fue de: ${recibido}")
+        if vuelto == 0:
+            print("No hay vuelto.")
+        else:
+            print(f"El vuelto es de: ${vuelto}")
+            print("-"*50)
+            for texto, valor in billetes:
+                if valor > 0:
+                    print(f"{texto}: {valor}")
 
 
 def main() -> None:
