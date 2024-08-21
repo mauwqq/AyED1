@@ -12,6 +12,17 @@ billete de $200, 1 billete de $100 y 3 billetes de $10.
 """
 
 
+billetes = {
+    "billetes 5000": 0,
+    "billetes 1000": 0,
+    "billetes 500": 0,
+    "billetes 200": 0,
+    "billetes 100": 0,
+    "billetes 50": 0,
+    "billetes 10": 0
+}
+
+
 def solicitar_valor(msj: str) -> int:
     while True:
         try:
@@ -34,39 +45,30 @@ def recibir_valores() -> tuple[int, int]:
             print("El dinero recibido no es suficiente.")
 
 
-def calcular_cambio(total: int, recibido: int) -> tuple[int, int, int, int, int, int, int, int, int]:
+def calcular_cambio(total: int, recibido: int) -> tuple[int, int]:
     if recibido == total:
         # No hay cambio
-        return 0, 0, 0, 0, 0, 0, 0, 0, 0
+        return 0, 0
 
     vuelto = recibido - total
-    b_5000 = vuelto // 5000
+    billetes.update({"billetes 5000": vuelto // 5000})
     resto = vuelto % 5000
-    b_1000 = resto // 1000
+    billetes.update({"billetes 1000": resto // 1000})
     resto = resto % 1000
-    b_500 = resto // 500
+    billetes.update({"billetes 500": resto // 500})
     resto = resto % 500
-    b_200 = resto // 200
+    billetes.update({"billetes 200": resto // 200})
     resto = resto % 200
-    b_100 = resto // 100
+    billetes.update({"billetes 100": resto // 100})
     resto = resto % 100
-    b_50 = resto // 50
+    billetes.update({"billetes 50": resto // 50})
     resto = resto % 50
-    b_10 = resto // 10
+    billetes.update({"billetes 10": resto // 10})
     resto = resto % 10
-    return vuelto, resto, b_5000, b_1000, b_500, b_200, b_100, b_50, b_10
+    return vuelto, resto
 
 
-def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int, b_5000: int, b_1000: int, b_500: int, b_200: int, b_100: int, b_50: int, b_10: int) -> None:
-    billetes = [
-        ("Billetes de 5000", b_5000),
-        ("Billetes de 1000", b_1000),
-        ("Billetes de 500", b_500),
-        ("Billetes de 200", b_200),
-        ("Billetes de 100", b_100),
-        ("Billetes de 50", b_50),
-        ("Billetes de 10", b_10)
-        ]
+def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> None:
     if resto != 0:
         print("el cambio no puede entregarse debido a falta de billetes con denominaciones adecuadas.")
     else:
@@ -77,15 +79,15 @@ def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int, b_50
         else:
             print(f"El vuelto es de: ${vuelto}")
             print("-"*50)
-            for texto, valor in billetes:
+            for texto, valor in billetes.items():
                 if valor > 0:
                     print(f"{texto}: {valor}")
 
 
 def main() -> None:
     total_compra, dinero_recibido = recibir_valores()
-    vuelto, resto, b_5000, b_1000, b_500, b_200, b_100, b_50, b_10 = calcular_cambio(total_compra, dinero_recibido)
-    imprimir_resultado(total_compra, dinero_recibido, vuelto, resto, b_5000, b_1000, b_500, b_200, b_100, b_50, b_10)
+    vuelto, resto = calcular_cambio(total_compra, dinero_recibido)
+    imprimir_resultado(total_compra, dinero_recibido, vuelto, resto)
 
 
 if __name__ == '__main__':
