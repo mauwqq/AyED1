@@ -11,7 +11,6 @@ abona con $5000, el vuelto debe contener 1 billete de $1000, 1 billete de $500, 
 billete de $200, 1 billete de $100 y 3 billetes de $10.
 """
 
-
 billetes = {
     "billetes 5000": 0,
     "billetes 1000": 0,
@@ -19,7 +18,7 @@ billetes = {
     "billetes 200": 0,
     "billetes 100": 0,
     "billetes 50": 0,
-    "billetes 10": 0
+    "billetes 10": 0,
 }
 
 
@@ -70,7 +69,9 @@ def calcular_cambio(total: int, recibido: int) -> tuple[int, int]:
 
 def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> None:
     if resto != 0:
-        print("el cambio no puede entregarse debido a falta de billetes con denominaciones adecuadas.")
+        print(
+            "el cambio no puede entregarse debido a falta de billetes con denominaciones adecuadas."
+        )
     else:
         print(f"La compra fue de: ${compra}")
         print(f"El monto recibido fue de: ${recibido}")
@@ -78,7 +79,7 @@ def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> N
             print("No hay vuelto.")
         else:
             print(f"El vuelto es de: ${vuelto}")
-            print("-"*50)
+            print("-" * 50)
             for texto, valor in billetes.items():
                 if valor > 0:
                     print(f"{texto}: {valor}")
@@ -90,5 +91,5 @@ def main() -> None:
     imprimir_resultado(total_compra, dinero_recibido, vuelto, resto)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

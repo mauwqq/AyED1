@@ -11,7 +11,7 @@ def pedir_numero(msj: str) -> int:
         try:
             n = int(input(msj))
             if n > 0:
-                    break
+                break
             else:
                 print("El numero ingresado tiene que ser positivo.")
         except ValueError:
@@ -19,7 +19,7 @@ def pedir_numero(msj: str) -> int:
     return n
 
 
-def concatenar_numeros(n1: int, n2:int) -> int:
+def concatenar_numeros(n1: int, n2: int) -> int:
     resultado = str(n1) + str(n2)
     return int(resultado)
 
@@ -31,5 +31,5 @@ def main() -> None:
     print(f"El numero concatenado es: {resultado}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
