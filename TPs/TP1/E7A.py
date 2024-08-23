@@ -37,7 +37,7 @@ def pedir_fecha() -> list[int]:
                             if es_bisiesto(num):
                                 meses.update({2: 29})
                         case 1:  # mes
-                            if comprobar_mes(num, fecha[0]):
+                            if comprobar_mes(num):
                                 fecha.append(num)
                             else:
                                 print("Mes invalido, reintentar.")
