@@ -24,7 +24,7 @@ def numeros_input() -> list:
 
 
 def mayor(numeros: list) -> int:
-    mayor = numeros[0]
+    mayor = 0
     rep = 0
     for i in numeros:
         if i > mayor:
