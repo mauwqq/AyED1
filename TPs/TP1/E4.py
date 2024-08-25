@@ -34,7 +34,7 @@ def solicitar_valor(msj: str) -> int:
             print("Valor inválido, reintentar.")
 
 
-def recibir_valores() -> tuple[int, int]:
+def recibir_valores() -> tuple[int]:
     while True:
         total_compra = solicitar_valor("Ingrese el monto total de la compra: ")
         dinero_recibido = solicitar_valor("Ingrese el dinero recibido: ")
@@ -44,7 +44,7 @@ def recibir_valores() -> tuple[int, int]:
             print("El dinero recibido no es suficiente.")
 
 
-def calcular_cambio(total: int, recibido: int) -> tuple[int, int]:
+def calcular_cambio(total: int, recibido: int) -> tuple[int]:
     if recibido == total:
         # No hay cambio
         return 0, 0
