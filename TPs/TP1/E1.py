@@ -7,8 +7,12 @@ el máximo hallado, o un mensaje informativo si éste no existe.
 """
 
 
-def numeros_input() -> list:
-    numeros = list()
+def numeros_input() -> list[int]:
+    """
+    Pide y guarda 3 numeros positivos.
+    post -> devuelve una lista con los tres numeros.
+    """
+    numeros = []
     i = 1
     while len(numeros) < 3:
         try:
@@ -23,7 +27,13 @@ def numeros_input() -> list:
     return numeros
 
 
-def mayor(numeros: list) -> int:
+def mayor(numeros: list[int]) -> int:
+    """
+    Busca el mayor estricto de los 3 y devuelve
+    el numero mayor o -1 si no es el mayor estricto
+    pre -> recibe una lista de enteros con los 3 numeros mayores a 0
+    post -> devuelve el mayor estricto si existe, sino devuelve -1
+    """
     mayor = 0
     rep = 0
     for i in numeros:
@@ -36,6 +46,11 @@ def mayor(numeros: list) -> int:
 
 
 def imprimir_resultados(resultado: int) -> None:
+    """
+    Imprime los resultados obtenidos de los procesos anteriores
+    pre -> recibe el resultado de mayor()
+    post -> si el resultado es distinto a -1 imprime el mayor estricto
+    """
     if resultado != -1:
         print(f"El numero mayor ingresado es: {resultado}.")
     else:

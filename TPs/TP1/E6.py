@@ -12,14 +12,18 @@ def pedir_numero(msj: str) -> int:
             n = int(input(msj))
             if n > 0:
                 break
-            else:
-                print("El numero ingresado tiene que ser positivo.")
+            print("El numero ingresado tiene que ser positivo.")
         except ValueError:
             print("Caracter invalido, reintentar.")
     return n
 
 
 def concatenar_numeros(n1: int, n2: int) -> int:
+    """Concatena dos numeros enteros positivos y lo devuelve.
+    Pre -> recibe dos numeros enteros positivos
+    Post -> concatena los numeros casteandolos a string, uniendolos
+            y devolviendo la union de estos en un entero.
+    """
     resultado = str(n1) + str(n2)
     return int(resultado)
 

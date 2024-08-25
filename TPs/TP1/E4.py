@@ -23,6 +23,10 @@ billetes = {
 
 
 def solicitar_valor(msj: str) -> int:
+    """Pide al usuario un numero entero positivo y lo devuelve.
+    Pre -> recibe como parametro un string.
+    Post -> devuelve el valor ingresado, un numero entero positivo.
+    """
     while True:
         try:
             valor = int(input(msj))
@@ -38,17 +42,24 @@ def recibir_valores() -> tuple[int]:
     while True:
         total_compra = solicitar_valor("Ingrese el monto total de la compra: ")
         dinero_recibido = solicitar_valor("Ingrese el dinero recibido: ")
-        if dinero_recibido >= total_compra:
+        if dinero_suficiente(total_compra, dinero_recibido):
             return total_compra, dinero_recibido
         else:
             print("El dinero recibido no es suficiente.")
 
 
+def dinero_suficiente(total_compra: int, dinero_recibido: int) -> bool:
+    return dinero_recibido >= total_compra
+
+
 def calcular_cambio(total: int, recibido: int) -> tuple[int]:
+    """Calcula cuantos billetes de cada denominacion necesita darle al usuario.
+    Pre -> recibe dos numeros enteros.
+    Post -> realiza las cuentas necesarias y devuelve una tupla de enteros.
+    """
     if recibido == total:
         # No hay cambio
         return 0, 0
-
     vuelto = recibido - total
     billetes.update({"billetes 5000": vuelto // 5000})
     resto = vuelto % 5000

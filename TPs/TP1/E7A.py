@@ -23,7 +23,7 @@ meses = {
 
 
 def pedir_fecha() -> list[int]:
-    fecha = list()
+    fecha = []
     texto = ["Año", "Mes", "Dia"]
     print("Ingrese la fecha")
     for i in range(3):
@@ -49,8 +49,7 @@ def pedir_fecha() -> list[int]:
                                 print("Dia invalido, reintentar.")
                                 continue
                     break
-                else:
-                    print("El numero ingresado debe ser positivo.")
+                print("El numero ingresado debe ser positivo.")
             except ValueError:
                 print("Debe ingresar un numero, reintentar.")
     return fecha
@@ -74,8 +73,7 @@ def pedir_cuanto_adelantar() -> int:
             num = int(input("cuantos dias quiere sumar a la fecha: "))
             if num > 0:
                 break
-            else:
-                print("El numero ingresado debe ser positivo.")
+            print("El numero ingresado debe ser positivo.")
         except ValueError:
             print("Debe ingresar un numero, reintentar.")
     return num
