@@ -8,7 +8,7 @@ el máximo hallado, o un mensaje informativo si éste no existe.
 
 
 def numeros_input() -> list:
-    numeros = []
+    numeros = list()
     i = 1
     while len(numeros) < 3:
         try:
