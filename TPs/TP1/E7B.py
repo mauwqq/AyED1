@@ -23,7 +23,7 @@ meses = {
 
 
 def pedir_fecha(msj: str) -> list[int]:
-    fecha = []
+    fecha = list()
     texto = ["Año", "Mes", "Dia"]
     print(msj)
     for i in range(3):
@@ -95,7 +95,7 @@ def diferencia_dias(fecha: list[int], fecha2: list[int]) -> int:
 
 
 def nueva_fecha(fecha: list[int], dif_fecha: list[int]) -> list[int]:
-    nueva_fecha = []
+    nueva_fecha = list()
     for i in fecha:
         nueva_fecha.append(fecha[i] + dif_fecha[i])
     if not comprobar_mes(nueva_fecha[1]):
