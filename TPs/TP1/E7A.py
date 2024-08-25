@@ -23,7 +23,7 @@ meses = {
 
 
 def pedir_fecha() -> list[int]:
-    fecha = []
+    fecha = list()
     texto = ["Año", "Mes", "Dia"]
     print("Ingrese la fecha")
     for i in range(3):
@@ -95,7 +95,7 @@ def diasiguiente(dia: int, mes: int, anio: int) -> tuple[int]:
     return dia, mes, anio
 
 
-def calcular_fecha(adelanto, dia, mes, anio):
+def calcular_fecha(adelanto: int, dia: int, mes: int, anio: int) -> tuple[int]:
     i = 0
     while i < adelanto:
         dia, mes, anio = diasiguiente(dia, mes, anio)
