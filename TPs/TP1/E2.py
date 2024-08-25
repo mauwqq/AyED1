@@ -27,7 +27,7 @@ def es_positivo(numero: int) -> bool:
 
 
 def recibir_numeros() -> list[int]:
-    fecha = []  # dia, mes, año
+    fecha = list()  # dia, mes, año
     texto = ["Dia", "Mes", "Año"]
     print("Ingrese la fecha en el formato indicado.")
     for i in range(3):
