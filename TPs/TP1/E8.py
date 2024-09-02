@@ -40,6 +40,9 @@ def es_bisiesto(anio: int) -> bool:
 
 
 def pedir_fecha() -> tuple[int]:
+    """Pide la fecha al usuario, la valida y la devuelve.
+    Post -> devuelve una tupla con mes y año, valores enteros.
+    """
     fecha = []
     while not fecha[1:]:
         try:
@@ -48,13 +51,13 @@ def pedir_fecha() -> tuple[int]:
                 print("Ingrese un mes valido.")
             else:
                 fecha.append(mes)
-                anio = int(input("Ingrese el anio: "))
+                anio = int(input("Ingrese el año: "))
                 if es_bisiesto(anio):
                     meses[2] = 29
                 if anio > 0:
                     fecha.append(anio)
         except ValueError:
-            print("Debe ingresar un numero")
+            print("Debe ingresar un numero.")
     return fecha
 
 
@@ -75,11 +78,16 @@ def dia_de_la_semana(q: int, m: int, anio: int) -> int:
 
 
 def imprimir_calendario(mes: int, anio: int) -> None:
+    """Imprime el calendario del mes que el usuario inserto.
+    Pre -> Recibe el mes y el año en numeros enteros.
+    Post -> Imprime el calendario del mes y retorna None.
+    """
     for i in range(1,meses.get(mes)+1):
         dia = dia_de_la_semana(i, mes, anio)
         if dia == 0:
             print("-"*25)
         print(f"{i}: {dias.get(dia)}")
+    return None
 
 
 def main() -> None:
@@ -89,3 +97,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
