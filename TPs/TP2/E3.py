@@ -8,9 +8,11 @@ imprimir los últimos 10 valores de la lista.
 def pedir_numero() -> int:
     while True:
         try:
-            n = int(input(
-                "Ingrese un numero entero positivo: ",
-                ))
+            n = int(
+                input(
+                    "Ingrese un numero entero positivo: ",
+                )
+            )
             if n > 0:
                 break
             print("El numero debe ser mayor a 0.")
@@ -24,7 +26,7 @@ def crear_lista(longitud: int) -> list[int]:
     Pre -> Recibe la longitud de la lista a crear.
     Post -> Crea una lista por comprension con la longitud dada.
     """
-    return [x for x in range(1,longitud+1)]
+    return [x for x in range(1, longitud + 1)]
 
 
 def cuadrado_lista(lista: list[int]) -> list[int]:
@@ -53,5 +55,5 @@ def main() -> None:
     imprimir_lista(lista_cuadrado)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
