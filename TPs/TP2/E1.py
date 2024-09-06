@@ -36,7 +36,7 @@ def crear_lista(cantidad: int) -> list[int]:
 def producto_lista(lista: list[int]) -> int:
     """Retorna el producto de una lista usando lambda y reduce.
     Pre -> Recibe una lista de enteros.
-    Post -> Usando reduce aplico una funcion lambda que 
+    Post -> Usando reduce aplico una funcion lambda que
         multiplica los dos valores que agarra y los devuelve,
         reduce hace que se le aplique secuencialmente a cada
         elemento de la lista.
@@ -56,7 +56,12 @@ def pedir_numero() -> int:
     return n
 
 
-def eliminar_valor_lista(numero, lista) -> None:
+def eliminar_valor_lista(numero: int, lista: list[int]) -> list[int]:
+    """Elimina el numero que el usuario ingreso de la lista y la devuelve.
+    Pre -> Recibe el numero entero a eliminar y la lista en la que se va a
+        buscar.
+    Post -> Devuelve la lista sin el/los elementos eliminados.
+    """
     while True:
         try:
             lista.remove(numero)
@@ -64,6 +69,7 @@ def eliminar_valor_lista(numero, lista) -> None:
         except ValueError:
             print("No se encontro el numero en la lista.")
             break
+    return lista
 
 
 def es_capicua(lista: list[int]) -> bool:
@@ -81,10 +87,7 @@ def main() -> None:
     lista = crear_lista(cantidad)
     producto = producto_lista(lista)
     numero = pedir_numero()
-    #eliminar_valor_lista(numero, lista)
-    #print(es_capicua(crear_lista(10)))
-    #es_capicua(lista=[50, 17, 91, 17, 50])
+
 
 if __name__ == "__main__":
     main()
-
