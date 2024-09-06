@@ -1,14 +1,15 @@
 """
-Un comercio de electrodomésticos necesita para su línea de cajas un programa que
-le indique al cajero el cambio que debe entregarle al cliente. Para eso se ingresan
-dos números enteros, correspondientes al total de la compra y al dinero recibido.
-Informar cuántos billetes de cada denominación deben ser entregados como vuelto,
-de tal forma que se minimice la cantidad de billetes. Considerar que existen billetes
-de $5000, $1000, $500, $200, $100, $50 y $10. Emitir un mensaje de error si el
-dinero recibido fuera insuficiente o si el cambio no pudiera entregarse debido a falta
-de billetes con denominaciones adecuadas. Ejemplo: Si la compra es de $3170 y se
-abona con $5000, el vuelto debe contener 1 billete de $1000, 1 billete de $500, 1
-billete de $200, 1 billete de $100 y 3 billetes de $10.
+Un comercio de electrodomésticos necesita para su línea de cajas un programa
+que le indique al cajero el cambio que debe entregarle al cliente. Para eso
+se ingresan dos números enteros, correspondientes al total de la compra y al
+dinero recibido. Informar cuántos billetes de cada denominación deben ser
+entregados como vuelto, de tal forma que se minimice la cantidad de billetes.
+Considerar que existen billetes de $5000, $1000, $500, $200, $100, $50 y $10.
+Emitir un mensaje de error si el dinero recibido fuera insuficiente o si el
+cambio no pudiera entregarse debido a falta de billetes con denominaciones
+adecuadas. Ejemplo: Si la compra es de $3170 y se abona con $5000, el vuelto
+debe contener 1 billete de $1000, 1 billete de $500, 1 billete de $200,
+1 billete de $100 y 3 billetes de $10.
 """
 
 billetes = {
@@ -24,8 +25,8 @@ billetes = {
 
 def solicitar_valor(msj: str) -> int:
     """Pide al usuario un numero entero positivo y lo devuelve.
-    Pre -> recibe como parametro un string.
-    Post -> devuelve el valor ingresado, un numero entero positivo.
+    Pre -> Recibe como parametro un string.
+    Post -> Devuelve el valor ingresado, un numero entero positivo.
     """
     while True:
         try:
@@ -53,9 +54,10 @@ def dinero_suficiente(total_compra: int, dinero_recibido: int) -> bool:
 
 
 def calcular_cambio(total: int, recibido: int) -> tuple[int]:
-    """Calcula cuantos billetes de cada denominacion necesita darle al usuario.
-    Pre -> recibe dos numeros enteros.
-    Post -> realiza las cuentas necesarias y devuelve una tupla de enteros.
+    """Calcula cuantos billetes de cada denominacion necesita darle al
+    usuario.
+    Pre -> Recibe dos numeros enteros.
+    Post -> Realiza las cuentas necesarias y devuelve una tupla de enteros.
     """
     if recibido == total:
         # No hay cambio
@@ -81,7 +83,8 @@ def calcular_cambio(total: int, recibido: int) -> tuple[int]:
 def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> None:
     if resto != 0:
         print(
-            "el cambio no puede entregarse debido a falta de billetes con denominaciones adecuadas."
+            "el cambio no puede entregarse debido a falta de billetes con",
+            "denominaciones adecuadas.",
         )
     else:
         print(f"La compra fue de: ${compra}")

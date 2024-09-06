@@ -1,9 +1,10 @@
 """
-Desarrollar una función que reciba tres números enteros positivos correspondientes
-al día, mes, año de una fecha y verifique si corresponden a una fecha válida. Debe
-tenerse en cuenta la cantidad de días de cada mes, incluyendo los años bisiestos.
-Devolver True o False según la fecha sea correcta o no. Realizar también un
-programa para verificar el comportamiento de la función.
+Desarrollar una función que reciba tres números enteros positivos
+correspondientes al día, mes, año de una fecha y verifique si corresponden a
+una fecha válida. Debe tenerse en cuenta la cantidad de días de cada mes,
+incluyendo los años bisiestos. Devolver True o False según la fecha sea
+correcta o no. Realizar también un programa para verificar el comportamiento
+de la función.
 """
 
 meses = {
@@ -27,9 +28,10 @@ def es_positivo(numero: int) -> bool:
 
 
 def recibir_numeros() -> list[int]:
-    """Pide tres numeros enteros positivos, los guarda en una lista y devuelve la lista
-    post -> devuelve una lista de tres enteros que corresponden
-            a el dia, mes y año solicitado.
+    """Pide tres numeros enteros positivos, los guarda en una lista y
+    devuelve la lista.
+    Post -> Devuelve una lista de tres enteros que corresponden
+        a el dia, mes y año solicitado.
     """
     fecha = []  # dia, mes, año
     texto = ["Dia", "Mes", "Año"]
@@ -51,7 +53,7 @@ def es_bisiesto(anio: int) -> bool:
     """Comprueba si un año es bisiesto.
     Pre -> recibe un numero entero.
     Post -> si el entero es divisible por cuatro y no es divisible
-            por 100 o es divisible por 400 devuelve True, sino False.
+        por 100 o es divisible por 400 devuelve True, sino False.
     """
     return (anio % 4 == 0) and (anio % 100 != 0) or (anio % 400 == 0)
 

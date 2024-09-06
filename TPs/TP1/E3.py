@@ -1,17 +1,18 @@
 """
-Una persona desea llevar el control de los gastos realizados al viajar en el subte-
-rráneo dentro de un mes. Sabiendo que dicho medio de transporte utiliza un es-
-quema de tarifas decrecientes (detalladas en la tabla de abajo) se solicita desarro-
-llar una función que reciba como parámetro la cantidad de viajes realizados en un
-determinado mes y devuelva el total gastado en viajes. Realizar también un pro-
-grama para verificar el comportamiento de la función.
+Una persona desea llevar el control de los gastos realizados al viajar en el
+subterráneo dentro de un mes. Sabiendo que dicho medio de transporte utiliza
+un esquema de tarifas decrecientes (detalladas en la tabla de abajo) se
+solicita desarrollar una función que reciba como parámetro la cantidad de
+viajes realizados en un determinado mes y devuelva el total gastado en viajes.
+Realizar también un programa para verificar el comportamiento de la función.
 """
 
 
 def pedir_numero(msj: str) -> int:
-    """Recibe un mensaje, lo muestra, guarda y retorna un numero entero positivo
-    Pre -> recibe un string, el mensaje que va a mostrar el input para recibir
-           el numero.
+    """Recibe un mensaje, lo muestra, guarda y retorna un numero entero
+    positivo.
+    Pre -> Recibe un string, el mensaje que va a mostrar el input para
+        recibir el numero.
     Post -> Retorna el valor ingresado si es un numero entero positivo.
     """
     while True:
@@ -27,10 +28,10 @@ def pedir_numero(msj: str) -> int:
 
 def calcular_pasaje(viajes: int, importe: int) -> tuple[float]:
     """Calcula el descuento de los pasajes y los devuelve
-    Pre -> recibe la cantidad de viajes como entero positivo,
-           recibe el precio de esos viajes como entero positivo.
-    Post -> devuelve el importe con descuento y el descuento en,
-            una tupla de flotantes.
+    Pre -> Recibe la cantidad de viajes como entero positivo,
+        recibe el precio de esos viajes como entero positivo.
+    Post -> Devuelve el importe con descuento y el descuento en,
+        una tupla de flotantes.
     """
     importe_final = 0
     desc = 0.0

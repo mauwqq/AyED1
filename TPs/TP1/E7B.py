@@ -1,8 +1,8 @@
 """
 Escribir una función diasiguiente(dia, mes año) que reciba como parámetro una
-fecha cualquiera expresada por tres enteros y calcule y devuelva otros tres enteros
-correspondientes el día siguiente al dado. Utilizando esta función sin modificaciones
-ni agregados, desarrollar programas que permitan:
+fecha cualquiera expresada por tres enteros y calcule y devuelva otros tres
+enteros correspondientes el día siguiente al dado. Utilizando esta función
+sin modificaciones ni agregados, desarrollar programas que permitan:
 b. Calcular la cantidad de días existentes entre dos fechas cualesquiera.
 """
 
@@ -104,12 +104,13 @@ def nueva_fecha(fecha: list[int], dif_fecha: list[int]) -> list[int]:
     return nueva_fecha
 
 
-def main():
+def main() -> None:
     fecha = pedir_fecha("Ingrese la primera fecha: ")
     fecha2 = pedir_fecha("Ingrese la segunda fecha: ")
     dif = diferencia_dias(fecha, fecha2)
     print(
-        f"Los dias entre {fecha[0]}/{fecha[1]}/{fecha[2]} y {fecha2[0]}/{fecha2[1]}/{fecha2[2]} son {dif}."
+        f"Los dias entre {fecha[0]}/{fecha[1]}/{fecha[2]}",
+        f"y {fecha2[0]}/{fecha2[1]}/{fecha2[2]} son {dif}.",
     )
 
 

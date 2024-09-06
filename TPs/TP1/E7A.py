@@ -1,8 +1,8 @@
 """
 Escribir una función diasiguiente(dia, mes año) que reciba como parámetro una
-fecha cualquiera expresada por tres enteros y calcule y devuelva otros tres enteros
-correspondientes el día siguiente al dado. Utilizando esta función sin modificaciones
-ni agregados, desarrollar programas que permitan:
+fecha cualquiera expresada por tres enteros y calcule y devuelva otros tres
+enteros correspondientes el día siguiente al dado. Utilizando esta función sin
+modificaciones ni agregados, desarrollar programas que permitan:
 a. Sumar N días a una fecha.
 """
 
@@ -101,7 +101,7 @@ def calcular_fecha(adelanto: int, dia: int, mes: int, anio: int) -> tuple[int]:
     return dia, mes, anio
 
 
-def main():
+def main() -> None:
     anio, mes, dia = pedir_fecha()
     print(f"La fecha es: {dia}/{mes}/{anio}")
     adelanto = pedir_cuanto_adelantar()

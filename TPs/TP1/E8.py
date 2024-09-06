@@ -1,12 +1,11 @@
 """
-La siguiente función permite averiguar el día de la semana para una fecha determi-
-nada. La fecha se suministra en forma de tres parámetros enteros y la función de-
-vuelve 0 para domingo, 1 para lunes, 2 para martes, etc. Escribir un programa para
-imprimir por pantalla el calendario de un mes completo, correspondiente a un mes
-y año cualquiera basándose en la función suministrada. Considerar que la semana
-comienza en domingo.
+La siguiente función permite averiguar el día de la semana para una fecha
+determinada. La fecha se suministra en forma de tres parámetros enteros y la
+función devuelve 0 para domingo, 1 para lunes, 2 para martes, etc. Escribir un
+programa para imprimir por pantalla el calendario de un mes completo,
+correspondiente a un mes y año cualquiera basándose en la función
+suministrada. Considerar que la semana comienza en domingo.
 """
-
 
 dias = {
     0: "Domingo",
@@ -15,7 +14,7 @@ dias = {
     3: "Miercoles",
     4: "Jueves",
     5: "Viernes",
-    6: "Sabado"
+    6: "Sabado",
 }
 
 
@@ -63,7 +62,7 @@ def pedir_fecha() -> tuple[int]:
 
 def dia_de_la_semana(q: int, m: int, anio: int) -> int:
     """Usando la congruencia de Zeller para el calendario Gregoriano
-       calcula el dia de la semana.
+    calcula el dia de la semana.
     Pre -> recibe el dia, mes y año en numeros enteros
     """
     if m < 3:
@@ -73,7 +72,7 @@ def dia_de_la_semana(q: int, m: int, anio: int) -> int:
         m -= 2
     j = anio // 100
     k = anio % 100
-    h = (((26*m-2)//10)+q+k+(k//4)+(j//4)-(2*j))%7
+    h = (((26 * m - 2) // 10) + q + k + (k // 4) + (j // 4) - (2 * j)) % 7
     return h
 
 
@@ -82,19 +81,18 @@ def imprimir_calendario(mes: int, anio: int) -> None:
     Pre -> Recibe el mes y el año en numeros enteros.
     Post -> Imprime el calendario del mes y retorna None.
     """
-    for i in range(1,meses.get(mes)+1):
+    for i in range(1, meses.get(mes) + 1):
         dia = dia_de_la_semana(i, mes, anio)
         if dia == 0:
-            print("-"*25)
+            print("-" * 25)
         print(f"{i}: {dias.get(dia)}")
     return None
 
 
 def main() -> None:
-    mes, anio = pedir_fecha()    
+    mes, anio = pedir_fecha()
     imprimir_calendario(mes, anio)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

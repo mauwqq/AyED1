@@ -1,16 +1,16 @@
 """
-Desarrollar una función que reciba tres números enteros positivos y devuelva el
-mayor de los tres, sólo si éste es único (es decir el mayor estricto). Devolver -1 en
-caso de no haber ninguno. No utilizar operadores lógicos (and, or, not). Desarrollar
-también un programa para ingresar los tres valores, invocar a la función y mostrar
-el máximo hallado, o un mensaje informativo si éste no existe.
+Desarrollar una función que reciba tres números enteros positivos y devuelva
+el mayor de los tres, sólo si éste es único (es decir el mayor estricto).
+Devolver -1 en caso de no haber ninguno. No utilizar operadores lógicos
+(and, or, not). Desarrollar también un programa para ingresar los tres
+valores, invocar a la función y mostrar el máximo hallado, o un mensaje
+informativo si éste no existe.
 """
 
 
 def numeros_input() -> list[int]:
-    """
-    Pide y guarda 3 numeros positivos.
-    post -> devuelve una lista con los tres numeros.
+    """Pide y guarda 3 numeros positivos.
+    Post -> Devuelve una lista con los tres numeros.
     """
     numeros = []
     i = 1
@@ -28,11 +28,10 @@ def numeros_input() -> list[int]:
 
 
 def mayor(numeros: list[int]) -> int:
-    """
-    Busca el mayor estricto de los 3 y devuelve
-    el numero mayor o -1 si no es el mayor estricto
-    pre -> recibe una lista de enteros con los 3 numeros mayores a 0
-    post -> devuelve el mayor estricto si existe, sino devuelve -1
+    """Busca el mayor estricto de los 3 y devuelve el numero mayor o -1
+    si no es el mayor estricto.
+    Pre -> Recibe una lista de enteros con los 3 numeros mayores a 0
+    Post -> Devuelve el mayor estricto si existe, sino devuelve -1
     """
     mayor = 0
     rep = 0
@@ -46,10 +45,9 @@ def mayor(numeros: list[int]) -> int:
 
 
 def imprimir_resultados(resultado: int) -> None:
-    """
-    Imprime los resultados obtenidos de los procesos anteriores
-    pre -> recibe el resultado de mayor()
-    post -> si el resultado es distinto a -1 imprime el mayor estricto
+    """Imprime los resultados obtenidos de los procesos anteriores.
+    Pre -> Recibe el resultado de mayor().
+    Post -> Si el resultado es distinto a -1 imprime el mayor estricto.
     """
     if resultado != -1:
         print(f"El numero mayor ingresado es: {resultado}.")

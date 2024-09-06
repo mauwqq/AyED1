@@ -1,17 +1,17 @@
 """
-Un productor frutihortícola desea contabilizar sus cajones de naranjas según el peso
-para poder cargar los camiones de reparto. La empresa cuenta con N camiones, y
-cada uno puede transportar hasta media tonelada (500 kilogramos). En un cajón
-caben 100 naranjas con un peso de entre 200 y 300 gramos cada una. Si el peso
-de alguna naranja se encuentra fuera del rango indicado se la clasifica para
-procesar como jugo. Desarrollar un programa para ingresar la cantidad de naranjas
-cosechadas e informar cuántos cajones se pueden llenar, cuántas naranjas son para
-jugo y si hay algún sobrante de naranjas que deba considerarse para el siguiente
-reparto. Simular el peso de cada unidad generando un número entero al azar entre
-150 y 350.
-Además, se desea saber cuántos camiones se necesitan para transportar la cosecha,
-considerando que la ocupación del camión no debe ser inferior al 80%; en
-caso contrario el camión no serán despachado por su alto costo.
+Un productor frutihortícola desea contabilizar sus cajones de naranjas según
+el peso para poder cargar los camiones de reparto. La empresa cuenta con N
+camiones, y cada uno puede transportar hasta media tonelada (500 kilogramos).
+En un cajón caben 100 naranjas con un peso de entre 200 y 300 gramos cada una.
+Si el peso de alguna naranja se encuentra fuera del rango indicado se la
+clasifica para procesar como jugo. Desarrollar un programa para ingresar la
+cantidad de naranjas cosechadas e informar cuántos cajones se pueden llenar,
+cuántas naranjas son para jugo y si hay algún sobrante de naranjas que deba
+considerarse para el siguiente reparto. Simular el peso de cada unidad
+generando un número entero al azar entre 150 y 350.
+Además, se desea saber cuántos camiones se necesitan para transportar la
+cosecha, considerando que la ocupación del camión no debe ser inferior al 80%;
+en caso contrario el camión no serán despachado por su alto costo.
 """
 
 import random as rn
@@ -32,13 +32,15 @@ def pedir_numero() -> int:
 def gen_peso_naranjas(naranjas: int) -> tuple[int]:
     """Hace una tupla con el pesos generado de cada naranja y los devuelve.
     Pre -> Recibe la cantidad de naranjas.
-    Post -> Devuelve una tupla con numeros entre el 150 al 350 para cada naranja.
+    Post -> Devuelve una tupla con numeros entre el 150 al 350 para cada
+        naranja.
     """
-    return (rn.randint(150, 350) for _ in range(naranjas))
+    return tuple(rn.randint(150, 350) for _ in range(naranjas))
 
 
 def calc_jugo(peso_naranjas: tuple) -> int:
-    """usa sum() para sumar 1 cada vez que encuentre un valor > 300 o < 200 en peso_naranjas.
+    """usa sum() para sumar 1 cada vez que encuentre un valor > 300 o < 200 en
+    peso_naranjas.
     Pre -> Recibe la tupla de los pesos de las naranjas.
     Post -> Retorna un entero.
     """
@@ -46,10 +48,11 @@ def calc_jugo(peso_naranjas: tuple) -> int:
 
 
 def calc_cajones(peso_naranjas: tuple) -> tuple[int, float]:
-    """Calcula la cantidad de cajones llenos y cuantas naranjas sobran si sobra  alguna.
+    """Calcula la cantidad de cajones llenos y cuantas naranjas sobran si
+    sobra  alguna.
     Pre -> Recibe una tupla de enteros con los pesos de cada naranja.
-    Post -> Devuelve una tupla con la cantidad de cajones y de cuantas naranjas quedaron
-    de resto, que no llegaron a llenar un cajon.
+    Post -> Devuelve una tupla con la cantidad de cajones y de cuantas
+        naranjas quedaron de resto, que no llegaron a llenar un cajon.
     """
     cajones = len(peso_naranjas) // 100
     resto = len(peso_naranjas) % 100
@@ -75,7 +78,7 @@ def calc_camiones(peso_cajones: tuple) -> tuple[int, float]:
     """Calcula cuantos camiones se van a necesitar y si se aprueba su viaje.
     Pre -> Recibe el peso de los cajones.
     Post -> Devuelve la cantidad de camiones que van a viajar y si hay,
-    la cantidad de gramos de naranjas para el proximo viaje.
+        la cantidad de gramos de naranjas para el proximo viaje.
     """
     camiones = 1
     acumulador = 0
@@ -96,7 +99,7 @@ def calc_camiones(peso_cajones: tuple) -> tuple[int, float]:
     return camiones, resto
 
 
-def imprimir_resultado(datos):
+def imprimir_resultado(datos) -> None:
     cajones, naranjas_jugo, resto_naranjas, camiones, resto_camiones = (
         datos  # desempaqueto
     )
@@ -107,15 +110,18 @@ def imprimir_resultado(datos):
         print(f"Se utilizaran {camiones} camiones.")
         if resto_camiones > 0:
             print(
-                f"Queda para el proximo viaje {resto_camiones:.2f} gramos de naranjas."
+                f"Queda para el proximo viaje {resto_camiones:.2f} gramos de",
+                " naranjas.",
             )
     else:
         print(
-            "No se llego al minimo del 80% de ocupacion por lo que no se despachara ningun camion."
+            "No se llego al minimo del 80% de ocupacion por lo que no se",
+            " despachara ningun camion.",
         )
+    return None
 
 
-def main():
+def main() -> None:
     naranjas_cosechadas = pedir_numero()
     peso_naranjas = gen_peso_naranjas(naranjas_cosechadas)
     naranjas_jugo = calc_jugo(peso_naranjas)
