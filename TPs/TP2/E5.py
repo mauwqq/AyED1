@@ -25,7 +25,10 @@ def main() -> None:
     lista = crear_lista(10)
     lista_ordenada = [1, 2, 3]
     lista_desordenada = ["b", "a"]
-    print(" ".join(str(e) for e in lista), f": {verif_lista_ordenada(lista)}")
+    print(
+        " ".join(str(e) for e in lista),
+        f": {verif_lista_ordenada(lista)}",
+    )
     print(
         " ".join(str(e) for e in lista_ordenada),
         f": {verif_lista_ordenada(lista_ordenada)}",
