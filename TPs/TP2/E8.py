@@ -5,7 +5,7 @@ los números impares comprendidos entre 100 y 200.
 
 
 def crear_lista() -> list[int]:
-    return [e for e in range(100,201) if e % 2 != 0]
+    return [e for e in range(100, 201) if e % 2 != 0]
 
 
 def imprimir_lista(lista: list[int]) -> None:
@@ -17,5 +17,5 @@ def main():
     imprimir_lista(lista)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
