@@ -16,20 +16,20 @@ que se ingrese -1 como número de afiliado.
 clinica = []
 
 
-def validar_afiliado(n):
+def validar_afiliado(n: int) -> bool:
     """Valida si el afiliado tiene 4 numeros y es positivo."""
-    return (n // 1000 != 0) and (n > 0)
+    return (len(str(n)) == 4) and (n > 0)
 
 
-def validar_menu(n):
+def validar_menu(n: int) -> bool:
     return n >= 0 and n <= 3
 
 
-def validar_urgencia(n):
+def validar_urgencia(n: int) -> bool:
     return n >= 0 and n < 2
 
 
-def urgencia(n):
+def urgencia(n: int) -> bool:
     return "Si" if n == 1 else "No"
 
 
