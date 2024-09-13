@@ -4,6 +4,7 @@ a. Informar si un número es oblongo. Se dice que un número es oblongo cuando
 se puede obtener multiplicando dos números naturales consecutivos. Por ejem
 plo 6 es oblongo porque resulta de multiplicar 2 * 3.
 """
+
 from functools import reduce
 
 
@@ -25,12 +26,12 @@ def main() -> None:
     True, devuelve True. Los numeros oblongos se comprueban con multiplicaciones
     consecutivas hasta la raiz del numero a comprobar.
     """
-    es_oblongo = lambda x: any(x == n * (n + 1) for n in range(1,int(x**0.5)+2))
+    es_oblongo = lambda x: any(x == n * (n + 1) for n in range(1, int(x**0.5) + 2))
     if es_oblongo(n):
         print("El numero ingresado es oblongo.")
     else:
         print("El numero ingresado no es oblongo.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
