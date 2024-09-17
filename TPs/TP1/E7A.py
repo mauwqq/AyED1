@@ -35,7 +35,7 @@ def pedir_fecha() -> list[int]:
     texto = ["Año", "Mes", "Dia"]
     print("Ingrese la fecha")
     for i in range(3):
-        while True:
+        while not fecha[2:]:
             try:
                 num = int(input(f"{texto[i]}: "))
                 if num > 0:
