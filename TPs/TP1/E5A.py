@@ -15,25 +15,25 @@ def pedir_num() -> int:
     """
     while True:
         try:
-            n = int(input("Ingrese el numero a comprobar: "))
+            n = int(input("Ingrese el número a comprobar: "))
             if n > 0:
                 return n
-            print("El numero debe ser positivo.")
+            print("El número debe ser positivo.")
         except ValueError:
-            print("Debe ingresar un numero.")
+            print("Debe ingresar un número.")
 
 
 def main() -> None:
     n = pedir_num()
     """
-    Si cualquier valor de n * n+1 (consecutivo) entre 1 y la raiz de x es
-    True, devuelve True. Los numeros oblongos se comprueban con multiplicaciones
-    consecutivas hasta la raiz del numero a comprobar.
+    Si cualquier valor de n * n+1 (consecutivo) entre 1 y la raíz de x es
+    True, devuelve True. Los números oblongos se comprueban con multiplicaciones
+    consecutivas hasta la raíz del número a comprobar.
     """
     if (lambda x: any(x == n * (n + 1) for n in range(1, int(x**0.5) + 2)))(n):
-        print("El numero ingresado es oblongo.")
+        print("El número ingresado es oblongo.")
     else:
-        print("El numero ingresado no es oblongo.")
+        print("El número ingresado no es oblongo.")
 
 
 if __name__ == "__main__":
