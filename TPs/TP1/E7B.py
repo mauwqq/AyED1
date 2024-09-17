@@ -85,7 +85,7 @@ def comprobar_mes(mes: int) -> bool:
           False.
 
     """
-    return mes <= len(meses.keys())
+    return mes in meses
 
 
 def comprobar_dia(dia: int, mes: int) -> bool:

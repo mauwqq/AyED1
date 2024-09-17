@@ -82,7 +82,7 @@ def validar_fecha(dia: int, mes: int, anio: int) -> bool:
     """
     if es_bisiesto(anio):
         meses.update({2: 29})
-    return (mes <= len(meses.keys())) and (dia <= meses.get(mes))
+    return (mes in meses) and (dia <= meses.get(mes))
 
 
 def main() -> None:
