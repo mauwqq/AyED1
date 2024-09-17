@@ -11,10 +11,10 @@ dias = {
     0: "Domingo",
     1: "Lunes",
     2: "Martes",
-    3: "Miercoles",
+    3: "Miércoles",
     4: "Jueves",
     5: "Viernes",
-    6: "Sabado",
+    6: "Sábado",
 }
 
 
@@ -35,19 +35,29 @@ meses = {
 
 
 def es_bisiesto(anio: int) -> bool:
+    """Comprueba si un año es bisiesto.
+
+    Pre: Recibe el año como un número entero.
+
+    Post: Si el entero es divisible por cuatro y no es divisible
+          por 100, o es divisible por 400 es bisiesto y devuelve True, si no False.
+
+    """
     return (anio % 4 == 0) and (anio % 100 != 0) or (anio % 400 == 0)
 
 
 def pedir_fecha() -> tuple[int]:
-    """Pide la fecha al usuario, la valida y la devuelve.
-    Post -> devuelve una tupla con mes y año, valores enteros.
+    """Pide la fecha al usuario, la válida y la devuelve.
+
+    Post: Devuelve una tupla(mes,año), valores enteros.
+
     """
     fecha = []
     while not fecha[1:]:
         try:
             mes = int(input("Ingrese el mes: "))
             if (mes <= 0) or (mes > 12):
-                print("Ingrese un mes valido.")
+                print("Ingrese un mes válido.")
             else:
                 fecha.append(mes)
                 anio = int(input("Ingrese el año: "))
@@ -56,20 +66,24 @@ def pedir_fecha() -> tuple[int]:
                 if anio > 0:
                     fecha.append(anio)
         except ValueError:
-            print("Debe ingresar un numero.")
+            print("Debe ingresar un número.")
     return fecha
 
 
 def dia_de_la_semana(q: int, m: int, anio: int) -> int:
     """Usando la congruencia de Zeller para el calendario Gregoriano
-    calcula el dia de la semana.
-    Pre -> recibe el dia, mes y año en numeros enteros
+    calcula el día de la semana.
+
+    Pre: Recibe el día, mes y año en números enteros.
+
+    Post: Devuelve el día de la semana de la fecha brindada.
+
     """
-    if m < 3:
+    if m > 3:
+        m -= 2
+    else:
         m += 10
         anio -= 1
-    else:
-        m -= 2
     j = anio // 100
     k = anio % 100
     h = (((26 * m - 2) // 10) + q + k + (k // 4) + (j // 4) - (2 * j)) % 7
@@ -78,8 +92,13 @@ def dia_de_la_semana(q: int, m: int, anio: int) -> int:
 
 def imprimir_calendario(mes: int, anio: int) -> None:
     """Imprime el calendario del mes que el usuario inserto.
-    Pre -> Recibe el mes y el año en numeros enteros.
-    Post -> Imprime el calendario del mes y retorna None.
+    Ejecuta dia_de_la_semana las veces necesarias para imprimir el mes entero
+    de la fecha brindada.
+
+    Pre: Recibe el mes y el año en números enteros positivos.
+
+    Post: Imprime el calendario del mes y retorna None.
+
     """
     for i in range(1, meses.get(mes) + 1):
         dia = dia_de_la_semana(i, mes, anio)
