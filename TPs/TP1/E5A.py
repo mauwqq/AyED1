@@ -5,10 +5,14 @@ se puede obtener multiplicando dos números naturales consecutivos. Por ejem
 plo 6 es oblongo porque resulta de multiplicar 2 * 3.
 """
 
-from functools import reduce
-
 
 def pedir_num() -> int:
+    """Solicita un número entero positivo al usuario y lo retorna.
+
+    Post: Si el numero ingresado es un entero positivo devuelve el numero, de no
+          ser asi, se repite el bucle hasta que se cumpla la condicion.
+
+    """
     while True:
         try:
             n = int(input("Ingrese el numero a comprobar: "))
@@ -26,8 +30,7 @@ def main() -> None:
     True, devuelve True. Los numeros oblongos se comprueban con multiplicaciones
     consecutivas hasta la raiz del numero a comprobar.
     """
-    es_oblongo = lambda x: any(x == n * (n + 1) for n in range(1, int(x**0.5) + 2))
-    if es_oblongo(n):
+    if (lambda x: any(x == n * (n + 1) for n in range(1, int(x**0.5) + 2)))(n):
         print("El numero ingresado es oblongo.")
     else:
         print("El numero ingresado no es oblongo.")
