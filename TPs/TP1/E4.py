@@ -24,40 +24,66 @@ billetes = {
 
 
 def solicitar_valor(msj: str) -> int:
-    """Pide al usuario un numero entero positivo y lo devuelve.
-    Pre -> Recibe como parametro un string.
-    Post -> Devuelve el valor ingresado, un numero entero positivo.
+    """Solícita al usuario un número entero positivo y lo devuelve.
+
+    Pre: Recibe un string que se va a mostrar al usuario como mensaje para
+         ingresar el número.
+
+    Post: Devuelve el valor ingresado si es un número entero positivo.
+
     """
     while True:
         try:
             valor = int(input(msj))
-            if valor <= 0:
-                print("Ingrese un número positivo.")
-            else:
+            if valor > 0:
                 return valor
+            print("Ingrese un número positivo.")
         except ValueError:
             print("Valor inválido, reintentar.")
 
 
 def recibir_valores() -> tuple[int]:
+    """Solicita al usuario el monto total de una compra y el dinero recibido, y
+    válida que el dinero recibido sea suficiente.
+
+    Post: Devuelve una tupla (total_compra, dinero_recibido) si el dinero es
+          suficiente.
+
+    """
     while True:
         total_compra = solicitar_valor("Ingrese el monto total de la compra: ")
         dinero_recibido = solicitar_valor("Ingrese el dinero recibido: ")
         if dinero_suficiente(total_compra, dinero_recibido):
             return total_compra, dinero_recibido
-        else:
-            print("El dinero recibido no es suficiente.")
+        print("El dinero recibido no es suficiente.")
 
 
 def dinero_suficiente(total_compra: int, dinero_recibido: int) -> bool:
+    """Verifica que el dinero recibido no sea menor al total de la compra.
+
+    Pre: total_compra es un número entero positivo.
+         dinero_recibido es un número entero positivo.
+
+    Post: Devuelve True si el dinero recibido es mayor o igual al total de la
+          compra.
+          Devuelve False si el dinero recibido no es mayor o igual al total de
+          la compra.
+
+    """
     return dinero_recibido >= total_compra
 
 
 def calcular_cambio(total: int, recibido: int) -> tuple[int]:
     """Calcula cuantos billetes de cada denominacion necesita darle al
     usuario.
-    Pre -> Recibe dos numeros enteros.
-    Post -> Realiza las cuentas necesarias y devuelve una tupla de enteros.
+
+    Pre: total es un numero entero positivo.
+         recibido es un numero entero positivo.
+
+    Post: Realiza las cuentas necesarias y devuelve una tupla(vuelto, resto)
+          con el cambio y el resto si quedo dinero que no se puede dar por falta
+          de billetes.
+
     """
     if recibido == total:
         # No hay cambio
@@ -81,7 +107,19 @@ def calcular_cambio(total: int, recibido: int) -> tuple[int]:
 
 
 def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> None:
-    if resto != 0:
+    """Imprime el resultado de las cuentas anteriores, si hay cambio, si hay
+    billetes y si no alcanza.
+
+    Pre: compra es un entero positivo.
+         recibido es un entero positivo.
+         vuelto es un entero positivo.
+         resto es un entero positivo.
+
+    Post: Si no hay billetes con las denominaciones necesarias lo imprime.
+          Si no, imprime un resumen de la cuenta y si hay vuelto tambien.
+
+    """
+    if resto:
         print(
             "el cambio no puede entregarse debido a falta de billetes con",
             "denominaciones adecuadas.",
@@ -89,7 +127,7 @@ def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> N
     else:
         print(f"La compra fue de: ${compra}")
         print(f"El monto recibido fue de: ${recibido}")
-        if vuelto == 0:
+        if not vuelto:
             print("No hay vuelto.")
         else:
             print(f"El vuelto es de: ${vuelto}")
