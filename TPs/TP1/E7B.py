@@ -126,7 +126,7 @@ def diasiguiente(anio: int, mes: int, dia: int) -> list[int]:
 
 def diferencia_dias(fecha: list[int], fecha2: list[int]) -> int:
     """Cuenta cuantos días falta para llegar a la segunda fecha, primero
-    comprueba cuál fecha es la más antigua para hacer la cuenta de atrás a 
+    comprueba cuál fecha es la más antigua para hacer la cuenta de atrás a
     adelante, y suma el contador.
 
     Pre: fecha es una lista de tres números enteros positivos.
