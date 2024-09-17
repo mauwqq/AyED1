@@ -121,7 +121,7 @@ def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> N
     """
     if resto:
         print(
-            "el cambio no puede entregarse debido a falta de billetes con",
+            "El cambio no puede entregarse debido a falta de billetes con",
             "denominaciones adecuadas.",
         )
     else:
@@ -134,7 +134,7 @@ def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> N
             print("-" * 50)
             for texto, valor in billetes.items():
                 if valor > 0:
-                    print(f"{texto}: {valor}")
+                    print(f"Billetes de {texto.split(" ")[1]}: {valor}")
 
 
 def main() -> None:
