@@ -24,14 +24,23 @@ meses = {
 
 
 def es_positivo(numero: int) -> bool:
+    """Recibe un número entero y devuelve si es positivo o no.
+
+    Pre: Recibe número, un entero.
+
+    Post:  Devuelve True si el número es positivo y False si no lo es.
+
+    """
     return numero > 0
 
 
 def recibir_numeros() -> list[int]:
-    """Pide tres numeros enteros positivos, los guarda en una lista y
+    """Pide tres números enteros positivos, los guarda en una lista y
     devuelve la lista.
-    Post -> Devuelve una lista de tres enteros que corresponden
-        a el dia, mes y año solicitado.
+
+    Post: Devuelve una lista de tres enteros que corresponden
+          al día, mes y año solicitado.
+
     """
     fecha = []  # dia, mes, año
     texto = ["Dia", "Mes", "Año"]
@@ -51,17 +60,25 @@ def recibir_numeros() -> list[int]:
 
 def es_bisiesto(anio: int) -> bool:
     """Comprueba si un año es bisiesto.
-    Pre -> recibe un numero entero.
-    Post -> si el entero es divisible por cuatro y no es divisible
-        por 100 o es divisible por 400 devuelve True, sino False.
+
+    Pre: Recibe el año como un número entero.
+
+    Post: Si el entero es divisible por cuatro y no es divisible
+          por 100, o es divisible por 400 es bisiesto y devuelve True, si no False.
+
     """
     return (anio % 4 == 0) and (anio % 100 != 0) or (anio % 400 == 0)
 
 
 def validar_fecha(dia: int, mes: int, anio: int) -> bool:
-    """Recibe tres parametros enteros y devuelve True si la fecha es valida.
-    Pre -> recibe tres parametros enteros positivos.
-    Post -> devuelve True si la fecha es valida, false si no lo es.
+    """Válida si una fecha especificada por día, mes y año es correcta.
+
+    Pre: Recibe tres parámetros enteros positivos, que corresponden al día, mes
+         y año.
+
+    Post: Devuelve True si la fecha es válida.
+          Devuelve False si la fecha no es válida.
+
     """
     if es_bisiesto(anio):
         meses.update({2: 29})
@@ -69,7 +86,7 @@ def validar_fecha(dia: int, mes: int, anio: int) -> bool:
 
 
 def main() -> None:
-    dia, mes, anio = recibir_numeros()
+    dia, mes, anio = recibir_numeros()  # Desempaquetado.
     if validar_fecha(dia, mes, anio):
         print("La fecha es valida.")
     else:
