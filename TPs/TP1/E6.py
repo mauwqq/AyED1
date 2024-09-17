@@ -7,25 +7,35 @@ concatenar ambos parámetros. Por ejemplo, si recibe 1234 y 567 debe devolver
 
 
 def pedir_numero(msj: str) -> int:
+    """Solicita al usuario un número entero positivo y lo devuelve.
+
+    Pre: Recibe un string, el mensaje que va a mostrar el input para
+         recibir el número.
+
+    Post: Retorna el valor ingresado si es un número entero positivo.
+
+    """
     while True:
         try:
             n = int(input(msj))
             if n > 0:
                 break
-            print("El numero ingresado tiene que ser positivo.")
+            print("El número ingresado tiene que ser positivo.")
         except ValueError:
-            print("Caracter invalido, reintentar.")
+            print("Carácter inválido, reintentar.")
     return n
 
 
 def concatenar_numeros(n1: int, n2: int) -> int:
-    """Concatena dos numeros enteros positivos y lo devuelve.
-    Pre -> Recibe dos numeros enteros positivos
-    Post -> Concatena los numeros casteandolos a string, uniendolos
-        y devolviendo la union de estos en un entero.
+    """Concatena dos números enteros positivos y lo devuelve.
+
+    Pre: Recibe dos números enteros positivos.
+
+    Post: Concatena los números casteandolos a string, uniéndolos
+          y devolviendo la unión de estos en un entero.
+
     """
-    resultado = str(n1) + str(n2)
-    return int(resultado)
+    return int(str(n1) + str(n2))
 
 
 def main() -> None:

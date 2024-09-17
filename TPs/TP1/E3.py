@@ -33,10 +33,10 @@ def calcular_pasaje(viajes: int, importe: int) -> tuple[float]:
 
     Pre: Recibe la cantidad de viajes como entero positivo.
          Recibe el precio de esos viajes como entero positivo.
-    
+
     Post: Devuelve el importe con descuento y el descuento en una tupla de
           flotantes.
-    
+
     """
     importe_final = 0
     desc = 0.0
