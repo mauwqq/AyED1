@@ -23,6 +23,14 @@ meses = {
 
 
 def pedir_fecha(msj: str) -> list[int]:
+    """Solicita la fecha al usuario verificado cada valor ingresado. Primero
+    solicita el año, si es bisiesto actualiza la cantidad de dias de febrero en
+    meses. Despues solicita el mes que comprueba con comprobar_mes y por ultimo
+    solicita el dia.
+
+    Post: Devuelve una lista de tres enteros con la fecha en formato YY/MM/DD.
+
+    """
     fecha = []
     texto = ["Año", "Mes", "Dia"]
     print(msj)
@@ -56,19 +64,56 @@ def pedir_fecha(msj: str) -> list[int]:
 
 
 def es_bisiesto(anio: int) -> bool:
+    """Comprueba si un año es bisiesto.
+
+    Pre: Recibe el año como un número entero.
+
+    Post: Si el entero es divisible por cuatro y no es divisible
+          por 100, o es divisible por 400 es bisiesto y devuelve True, si no False.
+
+    """
     return (anio % 4 == 0) and (anio % 100 != 0) or (anio % 400 == 0)
 
 
 def comprobar_mes(mes: int) -> bool:
+    """Comprueba si el mes dado como parámetro es válido.
+
+    Pre: Recibe el mes como un número entero positivo.
+
+    Post: Si el número está en las claves del diccionario, meses devuelve True.
+          Si el número no está en las claves del diccionario, meses devuelve
+          False.
+
+    """
     return mes <= len(meses.keys())
 
 
 def comprobar_dia(dia: int, mes: int) -> bool:
+    """Comprueba que el día ingresado por el usuario sea válido verificando que
+    sea menor o igual al valor del mes en meses.
+
+    Pre: día es un número entero positivo.
+         mes es un número entero positivo.
+
+    Post: Devuelve True si día es menor o igual a la cantidad de días del mes.
+          Devuelve False si día es mayor a la cantidad de días del mes.
+
+    """
     return dia <= meses.get(mes)
 
 
 def diasiguiente(anio: int, mes: int, dia: int) -> list[int]:
-    if (dia + 1) > meses.get(mes):
+    """Suma un día a la fecha ingresada.
+
+    Pre: dia, mes y anio son números enteros positivos.
+
+    Post: Devuelve una tupla de tres enteros(dia, mes, año) con la fecha
+          modificada.
+
+    """
+    if (dia + 1) < meses.get(mes):
+        dia += 1
+    else:
         if mes != 12:
             mes += 1
             dia = 1
@@ -76,12 +121,21 @@ def diasiguiente(anio: int, mes: int, dia: int) -> list[int]:
             anio += 1
             mes = 1
             dia = 1
-    else:
-        dia += 1
     return [anio, mes, dia]
 
 
 def diferencia_dias(fecha: list[int], fecha2: list[int]) -> int:
+    """Cuenta cuantos días falta para llegar a la segunda fecha, primero
+    comprueba cuál fecha es la más antigua para hacer la cuenta de atrás a 
+    adelante, y suma el contador.
+
+    Pre: fecha es una lista de tres números enteros positivos.
+         fecha2 es una lista de tres números enteros positivos.
+
+    Post: Devuelve la cantidad de días que faltan para llegar a la segunda fecha
+          un número entero positivo.
+
+    """
     dif = 0
     si_fecha2_antigua = (fecha2[0] < fecha[0]) or (fecha2[1] < fecha[1])
     while fecha != fecha2:
@@ -93,23 +147,12 @@ def diferencia_dias(fecha: list[int], fecha2: list[int]) -> int:
     return dif
 
 
-def nueva_fecha(fecha: list[int], dif_fecha: list[int]) -> list[int]:
-    nueva_fecha = []
-    for i in fecha:
-        nueva_fecha.append(fecha[i] + dif_fecha[i])
-    if not comprobar_mes(nueva_fecha[1]):
-        nueva_fecha[1] -= 12
-    if not comprobar_dia(nueva_fecha[2], nueva_fecha[1]):
-        nueva_fecha[2] -= meses.get(nueva_fecha[1])
-    return nueva_fecha
-
-
 def main() -> None:
     fecha = pedir_fecha("Ingrese la primera fecha: ")
     fecha2 = pedir_fecha("Ingrese la segunda fecha: ")
     dif = diferencia_dias(fecha, fecha2)
     print(
-        f"Los dias entre {fecha[0]}/{fecha[1]}/{fecha[2]}",
+        f"Los días entre {fecha[0]}/{fecha[1]}/{fecha[2]}",
         f"y {fecha2[0]}/{fecha2[1]}/{fecha2[2]} son {dif}.",
     )
 
