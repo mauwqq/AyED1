@@ -13,47 +13,64 @@ import random as rn
 
 
 def pedir_numero() -> int:
-    print("Ingrese un numero entre el 1 y el 100")
+    """Solicita al usuario un número entero positivo y lo devuelve.
+
+    Pre: Recibe un string, el mensaje que va a mostrar el input para
+         recibir el número.
+
+    Post: Retorna el valor ingresado si es un número entero positivo.
+
+    """
+    print("Ingrese un número entre el 1 y el 100")
     while True:
         try:
             n = int(
                 input(
-                    "Inserte la cantidad de numeros aleatorios a generar: ",
+                    "Inserte la cantidad de números aleatorios a generar: ",
                 )
             )
             if n > 0 and n <= 100:
                 break
             print(
-                "El numero debe estar entre el 1 y el 100 inclusives.",
+                "El número debe estar entre el 1 y el 100 inclusive.",
             )
         except ValueError:
-            print("Debe ingresar un numero entero.")
+            print("Debe ingresar un número entero.")
     return n
 
 
 def generar_lista(numero: int) -> list[int]:
-    """Genera y retorna una lista de numeros entre 1-100 con la longitud
-    que el usuario ingreso.
-    Pre -> Recibe un numero entero que define la longitud de la lista.
-    Post -> Genera los numeros en la lista y la devuelve.
+    """Genera y retorna una lista de números aleatorios entre 1 y 100.
+
+    Pre: Recibe un número entero "numero" que define la longitud de la lista.
+
+    Post: Devuelve una lista de enteros aleatorios, con una longitud igual a "numero",
+          donde cada número está en el rango [1, 100].
+
     """
     return [rn.randint(1, 100) for _ in range(numero)]
 
 
 def comprobar_duplicado(numeros: list[int]) -> bool:
-    """Comprueba si hay numeros duplicados en la lista generada y retorna
-    un booleano.
-    Pre -> Recibe la lista de enteros generada.
-    Post -> Crea un conjunto para eliminar duplicados y comprueba la
-        longitud de el set(como lista) con la lista original."""
+    """Comprueba si hay números duplicados en la lista.
+
+    Pre: Recibe una lista de enteros positivos generada.
+
+    Post: Devuelve "True" si hay duplicados en la lista, si no devuelve "False".
+
+    """
     numeros_set = [(set(numeros))]
     return len(numeros) != len(numeros_set)
 
 
 def eliminar_duplicados(numeros: list[int]) -> list[int]:
-    """Elimina los duplicados si los hay y devuelve la lista sin ellos.
-    Pre -> Recibe la lista de enteros generada.
-    Post -> Devuelve una lista creada a partir de un set, sin duplicados.
+    """Elimina los duplicados de la lista y devuelve la lista sin ellos.
+
+    Pre: Recibe la lista de enteros generada.
+
+    Post: Devuelve una lista de enteros que contiene solo los valores únicos
+          de la lista original, eliminando los duplicados.
+
     """
     return [set(numeros)]
 

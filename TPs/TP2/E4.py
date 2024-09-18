@@ -9,16 +9,29 @@ import random as rn
 
 
 def crear_lista(elementos: int) -> list[int]:
-    """Crea y devuelve una lista de veinte numeros enteros positivos."""
-    # Expresion for item in iterable
+    """Crea y devuelve una lista de números enteros aleatorios positivos.
+
+    Pre: Recibe un número entero "elementos" que define la cantidad de números
+         en la lista.
+
+    Post: Devuelve una lista de enteros aleatorios, donde cada número está en
+          el rango [1, 100].
+
+    """
+    # Expresión: for item in iterable
     return [rn.randint(1, 100) for x in range(elementos)]
 
 
 def eliminar_valores(lista_org: list[int], lista_del: list[int]) -> list[int]:
-    """Recibe la lista original y la lista de valores a eliminar y los elimina
-    con una funcion lambda y una iteracion.
-    Pre -> Recibe las dos listas de enteros.
-    Post -> Devuelve la lista limpia.
+    """Elimina los valores especificados de la lista original.
+
+    Pre: Recibe dos listas de enteros: "lista_org" (la lista original)
+         y "lista_del" (la lista de valores a eliminar).
+
+    Post: Devuelve "lista_org" después de eliminar los valores que estaban en
+          "lista_del".
+          Los elementos que no estaban en "lista_org" son ignorados.
+
     """
     for num in lista_del:
         (lambda x, y: x.remove(y) if y in x else None)(lista_org, num)
@@ -26,6 +39,14 @@ def eliminar_valores(lista_org: list[int], lista_del: list[int]) -> list[int]:
 
 
 def imprimir_lista(lista: list[int], msj: str) -> None:
+    """Imprime la lista de números enteros.
+
+    Pre: Recibe una lista de enteros "lista" y un mensaje "msj" para mostrar.
+
+    Post: Imprime el mensaje seguido de los elementos de la lista, separados
+          por comas.
+
+    """
     print(msj)
     print(", ".join(map(str, lista)))
     return None

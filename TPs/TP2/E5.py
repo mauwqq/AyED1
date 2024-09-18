@@ -9,15 +9,25 @@ import random as rn
 
 
 def crear_lista(elementos: int) -> list[int]:
-    """Crea una lista usando listas por comprension, del rango que se le dio a
-    la funcion.
-    Pre -> Recibe un numero entero que indica la longitud de la lista.
-    Post -> Retorno la lista por comprension de la longitud dada.
+    """Crea una lista de números enteros aleatorios positivos.
+
+    Pre: Recibe un número entero "elementos" que indica la longitud de la lista.
+
+    Post: Devuelve una lista de enteros aleatorios, donde cada número está en
+          el rango [1, 111], con una longitud igual a "elementos".
+
     """
     return [rn.randint(1, 111) for _ in range(elementos)]
 
 
 def verif_lista_ordenada(lista: list[int]) -> bool:
+    """Verifica si la lista está ordenada en orden ascendente.
+
+    Pre: Recibe una lista de enteros.
+
+    Post: Devuelve "True" si la lista está ordenada, sino, devuelve "False".
+
+    """
     return lista == sorted(lista)
 
 

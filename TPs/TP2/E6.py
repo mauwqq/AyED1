@@ -10,24 +10,38 @@ import random as rn
 
 
 def crear_lista() -> list[int]:
-    """Creo una lista por comprension de 10 valores entre 1 y 10.
-    Uso "_" porque el valor de la variable declarada solo la voy a usar para
-    eso.
+    """Crea una lista de 10 valores aleatorios entre 1 y 10.
+    
+    Post: Devuelve una lista de 10 enteros aleatorios, donde cada número está
+          en el rango [1, 10].
+    
     """
     return [rn.randint(1,10) for _ in range(10)]
 
 
 def normalizar_lista(lista: list[int]) -> list[float]:
-    """Normaliza la lista brindada y la devuelve, para eso divide cada numero
-    por la suma total de todos los numeros de la lista.
-    Pre -> Recibe una lista de enteros.
-    Post -> Devuelve una lista de los elementos normalizados para 0 y 1.
+    """Normaliza la lista proporcionada.
+
+    Pre: Recibe una lista de enteros. La suma de los elementos debe ser 1.
+ 
+    Post: Devuelve una lista de números flotantes, donde cada elemento es el
+          resultado de dividir cada número de la lista original por la suma
+          total de todos los números.
+
     """
     total = sum(list(lista))
-    return list(map(lambda x: x / total ,lista))
+    return list(map(lambda x: x / total,lista))
 
 
 def imprimir_lista(lista: list[int], msj: str) -> None:
+    """Imprime los elementos de la lista con un mensaje dado.
+
+    Pre: Recibe una lista de números flotantes y un mensaje "msj".
+
+    Post: Imprime el mensaje seguido de los elementos de la lista,
+          formateados a dos decimales.
+
+    """
     print(msj)
     print(" ".join(f"{e:.2f}" for e in lista))
 

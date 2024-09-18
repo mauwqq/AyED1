@@ -6,44 +6,61 @@ imprimir los últimos 10 valores de la lista.
 
 
 def pedir_numero() -> int:
+    """Solicita al usuario un número entero positivo y lo devuelve.
+
+    Pre: Recibe un string, el mensaje que va a mostrar el input para
+         recibir el número.
+
+    Post: Retorna el valor ingresado si es un número entero positivo.
+
+    """
     while True:
         try:
             n = int(
                 input(
-                    "Ingrese un numero entero positivo: ",
+                    "Ingrese un número entero positivo: ",
                 )
             )
             if n > 0:
                 break
-            print("El numero debe ser mayor a 0.")
+            print("El número debe ser mayor a 0.")
         except ValueError:
-            print("Debe ingresar un numero entero.")
+            print("Debe ingresar un número entero.")
     return n
 
 
 def crear_lista(longitud: int) -> list[int]:
-    """Crea la lista con la longitud dada en un numero entero.
-    Pre -> Recibe la longitud de la lista a crear.
-    Post -> Crea una lista por comprension con la longitud dada.
+    """Crea una lista con la longitud dada.
+
+    Pre: Recibe un número entero "longitud" que define la longitud de la lista.
+
+    Post: Devuelve una lista de enteros desde 1 hasta "longitud", inclusive.
+
     """
     return [x for x in range(1, longitud + 1)]
 
 
 def cuadrado_lista(lista: list[int]) -> list[int]:
-    """Calcula el cuadrado de todos los numeros en la lista.
-    Pre -> Recibe la lista de enteros positivos.
-    Post -> Crea una lista con map y una funcion lambda que multiplica
-        cada valor de la lista por el mismo y lo guarda.
+    """Calcula el cuadrado de todos los números en la lista.
+
+    Pre: Recibe una lista de enteros positivos.
+
+    Post: Devuelve una nueva lista con el cuadrado de cada número en la lista original.
+
     """
     return list(map(lambda x: x * x, lista))
 
 
 def imprimir_lista(lista: list[int]) -> None:
-    """Imprime los ultimos 10 numeros cuadrados de la lista.
-    Pre -> Recibe la lista de numeros enteros.
-    Post -> Devuelve los ultimos 10 numeros de la lista formateados.
+    """Imprime los últimos 10 números cuadrados de la lista.
+
+    Pre: Recibe una lista de números enteros.
+
+    Post: Imprime los últimos 10 números de la lista formateados.
+          Si la lista tiene menos de 10 elementos, imprime todos.
+
     """
-    print("Ultimos 10 numeros cuadrados:")
+    print("Últimos 10 números cuadrados:")
     print("\n".join([f"{i+1}: {num}" for i, num in enumerate(lista[-10:])]))
     return None
 

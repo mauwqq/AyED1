@@ -8,20 +8,37 @@ import random as rn
 
 
 def crear_lista() -> list[int]:
+    """Crea una lista de números enteros aleatorios.
+
+    Post: Devuelve una lista de enteros aleatorios, donde la longitud de la
+          lista es un número aleatorio entre 1 y 100, y cada número está en el
+          rango [1, 100].
+
+    """
     return [rn.randint(1, 100) for _ in range(rn.randint(1, 100))]
 
 
 def filtrar_lista(lista: list[int]) -> list[int]:
-    """Recibe una lista y devuelve una lista que solo contiene los elementos
-    impares de la recibida. Usando filter con una funcion lambda que comprueba
-    si el elemento es par o impar, si es impar lo añade a la nueva lista.
-    Pre -> Recibe una lista de numeros enteros.
-    Post -> Devuelve una lista de numeros enteros impares.
+    """Filtra la lista para devolver solo los elementos impares.
+
+    Pre: Recibe una lista de números enteros.
+
+    Post: Devuelve una lista de números enteros que contiene solo los elementos
+          impares de la lista original.
+
     """
     return list(filter((lambda x: x % 2 != 0), lista))
 
 
 def imprimir_lista(lista: list[int], msj) -> None:
+    """Imprime los elementos de la lista con un mensaje dado.
+
+    Pre: Recibe una lista de enteros y un mensaje "msj".
+
+    Post: Imprime el mensaje seguido de los elementos de la lista, separados por
+          espacios.
+
+    """
     print(msj)
     print(" ".join(str(e) for e in lista))
 

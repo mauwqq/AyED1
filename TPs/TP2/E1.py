@@ -19,65 +19,86 @@ import random as rn
 
 
 def calc_cantidad_numeros() -> int:
-    """Devuelve un numero entero de dos digitos."""
+    """Devuelve un número entero de dos dígitos.
+
+    Post: Devuelve un número entero aleatorio entre 10 y 99 (ambos inclusive).
+
+    """
     return rn.randint(10, 99)
 
 
 def crear_lista(cantidad: int) -> list[int]:
-    """Crea la lista y la devuelve.
-    Pre -> Recibe un numero entero indicando la cantidad de numeros
-      que va a tener la lista.
-    Post -> Devuelve la lista creada con numeros enteros aleatorios.
+    """Crea y devuelve una lista de números enteros aleatorios.
+
+    Pre: Recibe un número entero "cantidad" que indica la cantidad de números
+         que tendrá la lista. "cantidad" debe ser positivo.
+
+    Post: Devuelve una lista de enteros aleatorios de 4 dígitos (entre 1000 y 9999),
+          con una longitud igual a "cantidad".
+
     """
-    numeros = [rn.randint(1000, 9999) for _ in range(cantidad)]
-    return numeros
+    return [rn.randint(1000, 9999) for _ in range(cantidad)]
 
 
 def producto_lista(lista: list[int]) -> int:
-    """Retorna el producto de una lista usando lambda y reduce.
-    Pre -> Recibe una lista de enteros.
-    Post -> Usando reduce aplico una funcion lambda que
-        multiplica los dos valores que agarra y los devuelve,
-        reduce hace que se le aplique secuencialmente a cada
-        elemento de la lista.
+    """Retorna el producto de los elementos de una lista.
+
+    Pre: Recibe una lista de enteros no vacía.
+
+    Post: Devuelve el resultado de multiplicar todos los elementos de la lista.
+
     """
     return reduce(lambda a, b: a * b, lista)
 
 
 def pedir_numero() -> int:
+    """Solicita al usuario un número entero positivo y lo devuelve.
+
+    Pre: Recibe un string, el mensaje que va a mostrar el input para
+         recibir el número.
+
+    Post: Retorna el valor ingresado si es un número entero positivo.
+
+    """
     while True:
         try:
-            n = int(input("Ingrese el numero que desee sacar de la lista: "))
+            n = int(input("Ingrese el número que desee sacar de la lista: "))
             if n > 0:
                 break
-            print("El numero debe ser positivo.")
+            print("El número debe ser positivo.")
         except ValueError:
-            print("Se debe ingresar un numero.")
+            print("Se debe ingresar un número.")
     return n
 
 
 def eliminar_valor_lista(numero: int, lista: list[int]) -> list[int]:
-    """Elimina el numero que el usuario ingreso de la lista y la devuelve.
-    Pre -> Recibe el numero entero a eliminar y la lista en la que se va a
-        buscar.
-    Post -> Devuelve la lista sin el/los elementos eliminados.
+    """Elimina todas las ocurrencias del número especificado de la lista.
+
+    Pre: Recibe un número entero "numero" y una lista de enteros "lista".
+
+    Post: Devuelve la lista con todas las ocurrencias de "numero" eliminadas.
+          Si el número no está en la lista, la lista permanece sin cambios.
+
     """
     while True:
         try:
             lista.remove(numero)
-            print("Numero eliminado...")
+            print("Número eliminado...")
         except ValueError:
-            print("No se encontro el numero en la lista.")
+            print("No se encontró el número en la lista.")
             break
     return lista
 
 
 def es_capicua(lista: list[int]) -> bool:
-    """Recibe una lista y comprueba si es capicua o no.
-    Pre -> Recibe una lista de enteros.
-    Post -> Recordando que lista[start:stop:step], cuando indicamos [::-1],
-        el :: no marca start ni stop por lo que abarca toda la lista. Mientras
-        que el -1 indica que debe hacerse el slicing en sentido contrario.
+    """Verifica si la lista es capicua (palíndromo).
+
+    Pre: Recibe una lista de enteros no vacía.
+
+    Post: Devuelve "True" si la lista es capicua (es decir, si se lee igual
+          de izquierda a derecha que de derecha a izquierda); si no,  devuelve
+          "False".
+
     """
     return lista[::-1] == lista
 
