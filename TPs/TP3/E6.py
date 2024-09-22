@@ -27,7 +27,7 @@ PISOS = 10
 HABITACIONES_POR_PISO = 6
 
 
-def registrar_huespedes(huespedes, habitaciones_ocupadas) -> None:
+def registrar_huespedes(huespedes: dict, habitaciones_ocupadas: set) -> None:
     """Registra el ingreso de huespedes al hotel.
 
     Pre: huespedes es un diccionario donde se almacenan los datos de los
@@ -39,7 +39,7 @@ def registrar_huespedes(huespedes, habitaciones_ocupadas) -> None:
 
     """
     while True:
-        dni = int(input("Ingrese el DNI del huesped (o -1 para finalizar): "))
+        dni = int(input("Ingrese el DNI del huesped (-1 para finalizar): "))
         if dni == -1:
             break
         if dni in huespedes:
@@ -84,7 +84,8 @@ def validar_fechas(fecha_ingreso: str, fecha_egreso: str) -> bool:
 def asignar_habitacion(habitaciones_ocupadas: set) -> tuple[int, int]:
     """Asigna un piso y habitación disponibles al huesped.
 
-    Pre: habitaciones_ocupadas es un conjunto que contiene las habitaciones ocupadas.
+    Pre: habitaciones_ocupadas es un conjunto que contiene las habitaciones
+         ocupadas.
 
     Post: Retorna el piso y habitación disponibles, o (None, None) si no hay.
 

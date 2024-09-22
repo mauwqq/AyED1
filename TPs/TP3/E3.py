@@ -4,7 +4,7 @@ azar comprendidos en el intervalo [0,N 2), de tal forma que ningún número se
 repita. Imprimir la matriz por pantalla.
 """
 
-import random
+import random as rn
 
 
 def generar_matriz(n: int) -> list[list[int]]:
@@ -16,7 +16,7 @@ def generar_matriz(n: int) -> list[list[int]]:
     Post: Retorna una matriz de tamaño N x N llena de números únicos aleatorios.
 
     """
-    numeros = random.sample(range(n * n), n * n)
+    numeros = rn.sample(range(n * n), n * n)
     matriz = []
     for i in range(n):
         fila = numeros[i * n : (i + 1) * n]

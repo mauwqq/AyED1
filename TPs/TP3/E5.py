@@ -21,7 +21,7 @@ butacas_contiguas: Buscará la secuencia más larga de butacas libres contiguas 
 una misma fila y devolverá las coordenadas de inicio de la misma.
 """
 
-import random
+import random as rn
 
 
 def mostrar_butacas(sala: list[list[int]]) -> None:
@@ -30,7 +30,7 @@ def mostrar_butacas(sala: list[list[int]]) -> None:
     Pre: sala es una matriz que representa la sala de cine.
 
     Post: Imprime el estado de las butacas, donde 0 es libre y 1 es reservado.
-    
+
     """
     print("Estado de las butacas (0: libre, 1: reservado):")
     for i, fila in enumerate(sala):
@@ -65,7 +65,7 @@ def cargar_sala(sala: list[list[int]], porcentaje_reservas: int) -> None:
     """
     total_butacas = len(sala) * len(sala[0])
     cantidad_reservas = (total_butacas * porcentaje_reservas) // 100
-    reservas = random.sample(range(total_butacas), cantidad_reservas)
+    reservas = rn.sample(range(total_butacas), cantidad_reservas)
     for reserva in reservas:
         fila = reserva // len(sala[0])
         columna = reserva % len(sala[0])

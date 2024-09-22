@@ -68,7 +68,7 @@ def ordenar_filas(matriz: list[list[int]]) -> None:
     Pre: matriz es una lista de listas que representa una matriz.
 
     Post: Las filas de la matriz están ordenadas en forma ascendente.
-    
+
     """
     for fila in matriz:
         fila.sort()
@@ -200,14 +200,14 @@ def main() -> None:
     imprimir_matriz(matriz)
     f1, f2 = map(
         int,
-        input("Ingrese dos números de fila para intercambiar (0-indexed): ").split(),
+        input("Ingrese dos números de fila para intercambiar: ").split(),
     )
     intercambiar_filas(matriz, f1, f2)
     print("Matriz después de intercambiar filas:")
     imprimir_matriz(matriz)
     c1, c2 = map(
         int,
-        input("Ingrese dos números de columna para intercambiar (0-indexed): ").split(),
+        input("Ingrese dos números de columna para intercambiar: ").split(),
     )
     intercambiar_columnas(matriz, c1, c2)
     print("Matriz después de intercambiar columnas:")
@@ -215,15 +215,11 @@ def main() -> None:
     trasponer_matriz(matriz)
     print("Matriz traspuesta:")
     imprimir_matriz(matriz)
-    fila_promedio = int(
-        input("Ingrese el número de fila para calcular su promedio (0-indexed): ")
-    )
+    fila_promedio = int(input("Ingrese el número de fila para calcular su promedio: "))
     promedio = promedio_fila(matriz, fila_promedio)
     print(f"El promedio de la fila {fila_promedio} es: {promedio}")
     columna_impares = int(
-        input(
-            "Ingrese el número de columna para calcular el porcentaje de impares (0-indexed): "
-        )
+        input("Ingrese el número de columna para calcular el porcentaje de impares: ")
     )
     porcentaje = porcentaje_impares_columna(matriz, columna_impares)
     print(

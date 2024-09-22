@@ -4,10 +4,10 @@ sin utilizar cadenas auxiliares ni rebanadas. Escribir además un programa que
 permita verificar su funcionamiento.
 """
 
-def es_capicua(cadena):
+def es_capicua(cadena: str):
     """Determina si la cadena dada es capicúa.
 
-    Pre: La cadena es un objeto de tipo str.
+    Pre: La cadena es de tipo str.
 
     Post: Retorna True si la cadena es capicúa; de lo contrario, retorna False.
     """
@@ -21,9 +21,9 @@ def es_capicua(cadena):
     return True
 
 
-def main():
+def main() -> None:
     while True:
-        cadena = input("Introduce una cadena de caracteres (o 0 para salir): ")
+        cadena = input("Introduce una cadena de caracteres (0 para salir): ")
         if cadena == '0':
             break
         if es_capicua(cadena):
