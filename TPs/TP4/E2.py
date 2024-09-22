@@ -4,21 +4,20 @@ misma tiene 80 columnas.
 """
 
 
-def centrar_cadena(cadena: str) -> None:
+def centrar_cadena(cadena: str) -> str:
     """Imprime la cadena centrada en 80 columnas.
 
     Pre: La cadena es un objeto de tipo str.
 
-    Post: La cadena se imprime en el centro de una línea de 80 columnas.
+    Post: La cadena se devuelve centrada.
+    
     """
-    ancho = 80
-    cadena_centrada = cadena.center(ancho)
-    print(cadena_centrada)
+    return cadena.center(80) 
 
 
 def main() -> None:
     cadena = input("Introduce una cadena de caracteres: ")
-    centrar_cadena(cadena)
+    print(centrar_cadena(cadena))
 
 
 if __name__ == "__main__":
