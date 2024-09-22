@@ -10,9 +10,9 @@ def centrar_cadena(cadena: str) -> str:
     Pre: La cadena es un objeto de tipo str.
 
     Post: La cadena se devuelve centrada.
-    
+
     """
-    return cadena.center(80) 
+    return cadena.center(80)
 
 
 def main() -> None:

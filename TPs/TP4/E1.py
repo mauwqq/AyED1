@@ -4,6 +4,7 @@ sin utilizar cadenas auxiliares ni rebanadas. Escribir además un programa que
 permita verificar su funcionamiento.
 """
 
+
 def es_capicua(cadena: str):
     """Determina si la cadena dada es capicúa.
 
@@ -24,7 +25,7 @@ def es_capicua(cadena: str):
 def main() -> None:
     while True:
         cadena = input("Introduce una cadena de caracteres (0 para salir): ")
-        if cadena == '0':
+        if cadena == "0":
             break
         if es_capicua(cadena):
             print(f"La cadena '{cadena}' es capicúa.")

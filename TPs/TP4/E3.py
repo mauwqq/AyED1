@@ -7,6 +7,7 @@ dígitos ubicados en posiciones pares. Los dígitos se numeran desde la izquierd
 Ejemplo: Si clave maestra fuera 18293, la clave 1 sería 123 y la clave 2 sería
 89.
 """
+
 import random as rn
 
 
@@ -17,7 +18,7 @@ def generar_numero() -> int:
 
     Post: Retorna un entero que representa un número aleatorio en el rango
           especificado.
-    
+
     """
     return rn.randint(100, 999999)
 
@@ -29,7 +30,7 @@ def impares(n: int) -> list[int]:
 
     Post: Retorna una lista de enteros que representan los dígitos en posiciones
           impares del número dado.
-    
+
     """
     return [valor for i, valor in enumerate(str(n)) if i % 2 != 0]
 
@@ -41,7 +42,7 @@ def pares(n: int) -> list[int]:
 
     Post: Retorna una lista de enteros que representan los dígitos en posiciones
           pares del número dado.
-    
+
     """
     return [valor for i, valor in enumerate(str(n)) if i % 2 == 0]
 
@@ -51,9 +52,9 @@ def main() -> None:
     print(f"El numero generado es: {n}")
     passwd_impares = impares(n)
     passwd_pares = pares(n)
-    print(f"la contraseña par es:", "".join(passwd_pares))
-    print(f"la contraseña impar es:", "".join(passwd_impares))
+    print("la contraseña par es:", "".join(passwd_pares))
+    print("la contraseña impar es:", "".join(passwd_impares))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
