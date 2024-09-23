@@ -8,7 +8,7 @@ def pedir_string() -> str:
     """Solicita al usuario que ingrese un texto y lo devuelve.
 
     Post: Retorna la cadena de texto ingresada por el usuario.
-    
+
     """
     return input("Ingrese el texto: ")
 
@@ -17,7 +17,7 @@ def pedir_num() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
 
     Post: Retorna el valor ingresado si es un número entero positivo.
-    
+
     """
     while True:
         try:
@@ -38,11 +38,11 @@ def ultimos_n_caracteres(cadena: str, n: int) -> str:
 
     Post: Retorna una subcadena que contiene los últimos N caracteres de la
           cadena.
-    
+
     """
     if n > len(cadena):
         n = len(cadena)
-    return ''.join([cadena[i] for i in range(len(cadena) - n, len(cadena))])
+    return "".join([cadena[i] for i in range(len(cadena) - n, len(cadena))])
 
 
 def main() -> None:
@@ -51,5 +51,5 @@ def main() -> None:
     print(ultimos_n_caracteres(cadena, n))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

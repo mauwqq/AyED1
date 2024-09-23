@@ -13,7 +13,7 @@ def pedir_string() -> str:
     """Solicita al usuario que ingrese un texto y lo devuelve.
 
     Post: Retorna la cadena de texto ingresada por el usuario.
-    
+
     """
     return input("Ingrese el texto: ")
 
@@ -23,11 +23,15 @@ def pedir_pos_inicial() -> int:
 
     Post: Retorna un número entero positivo que representa la posición inicial.
     Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
-    
+
     """
     while True:
         try:
-            n = int(input("Ingrese la posicion inicial desde donde se extraera la subcadena: "))
+            n = int(
+                input(
+                    "Ingrese la posicion inicial desde donde se extraera la subcadena: "
+                )
+            )
             if n > 0:
                 break
             print("El número tiene que ser positivo.")
@@ -41,7 +45,7 @@ def pedir_cant_caracteres() -> int:
 
     Post: Retorna un número entero positivo que representa la cantidad de caracteres.
     Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
-    
+
     """
     while True:
         try:
@@ -63,9 +67,9 @@ def eliminar_slicing(cadena: str, pos_inicial: int, cant_caracteres: int) -> str
 
     Post: Retorna una nueva cadena que consiste en la parte de la cadena original
           antes de pos_inicial y la parte después de la subcadena eliminada.
-    
+
     """
-    return cadena[:pos_inicial] + cadena[pos_inicial + cant_caracteres:]
+    return cadena[:pos_inicial] + cadena[pos_inicial + cant_caracteres :]
 
 
 def eliminar_sin_slicing(cadena: str, pos_inicial: int, cant_caracteres: int) -> str:
@@ -76,9 +80,9 @@ def eliminar_sin_slicing(cadena: str, pos_inicial: int, cant_caracteres: int) ->
          cant_caracteres es la cantidad de caracteres que se eliminarán.
 
     Post: Retorna una nueva cadena construida sin la subcadena especificada.
-          Esta cadena se genera mediante la concatenación de los caracteres 
+          Esta cadena se genera mediante la concatenación de los caracteres
           que no se encuentran en el rango de eliminación.
-    
+
     """
     resultado = ""
     for i in range(len(cadena)):
@@ -95,5 +99,5 @@ def main() -> None:
     print(f"Sin slicing: {eliminar_sin_slicing(cadena, pos_inicial, cant_caracteres)}")
 
 
-if __name__== '__main__':
+if __name__ == "__main__":
     main()
