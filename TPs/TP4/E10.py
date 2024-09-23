@@ -25,7 +25,7 @@ def reemplazar_palabra(cadena: str, reemplazar: str, nueva: str) -> tuple[str, i
 
     Post: Retorna una tupla con la cadena resultante y el número de reemplazos
           realizados.
-    
+
     """
     palabras = cadena.split()
     palabras_reemplazadas = [
