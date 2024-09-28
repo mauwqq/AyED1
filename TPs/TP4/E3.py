@@ -9,6 +9,7 @@ Ejemplo: Si clave maestra fuera 18293, la clave 1 sería 123 y la clave 2 sería
 """
 
 import random as rn
+from typing import List
 
 
 def generar_numero() -> int:
@@ -23,7 +24,7 @@ def generar_numero() -> int:
     return rn.randint(100, 999999)
 
 
-def impares(n: int) -> list[int]:
+def impares(n: int) -> List[int]:
     """Devuelve una lista de los dígitos en posiciones impares de un número.
 
     Pre: n es un entero del cual se extraen los dígitos.
@@ -35,7 +36,7 @@ def impares(n: int) -> list[int]:
     return [valor for i, valor in enumerate(str(n)) if i % 2 != 0]
 
 
-def pares(n: int) -> list[int]:
+def pares(n: int) -> List[int]:
     """Devuelve una lista de los dígitos en posiciones pares de un número.
 
     Pre: n es un entero del cual se extraen los dígitos.
@@ -48,12 +49,14 @@ def pares(n: int) -> list[int]:
 
 
 def main() -> None:
+    """Función principal del programa."""
     n = generar_numero()
     print(f"El numero generado es: {n}")
     passwd_impares = impares(n)
     passwd_pares = pares(n)
     print("la contraseña par es:", "".join(passwd_pares))
     print("la contraseña impar es:", "".join(passwd_impares))
+    return None
 
 
 if __name__ == "__main__":

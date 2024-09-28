@@ -6,21 +6,25 @@ palabras completas, y no fragmentos de palabras. Escribir también un programa
 para verificar el comportamiento de la función.
 """
 
+from typing import Tuple
+
 
 def pedir_string(msj: str) -> str:
     """Solicita al usuario que ingrese un texto y lo devuelve.
 
-    Post: Retorna la cadena de texto ingresada por el usuario.
+    Pre: Recibe msj, un string.
+
+    Post: Retorna la cadena de texto ingresada por el usuario. Un string.
 
     """
     return input(msj)
 
 
-def reemplazar_palabra(cadena: str, reemplazar: str, nueva: str) -> tuple[str, int]:
+def reemplazar_palabra(cadena: str, reemplazar: str, nueva: str) -> Tuple[str, int]:
     """Reemplaza todas las apariciones de una palabra por otra en una cadena.
 
     Pre: cadena es la cadena de texto donde se realizará el reemplazo.
-         palabra_a_reemplazar es la palabra que se desea reemplazar.
+         reemplazar es la palabra que se desea reemplazar.
          nueva_palabra es la nueva palabra que reemplazará a la anterior.
 
     Post: Retorna una tupla con la cadena resultante y el número de reemplazos
@@ -37,12 +41,14 @@ def reemplazar_palabra(cadena: str, reemplazar: str, nueva: str) -> tuple[str, i
 
 
 def main() -> None:
+    """Función principal del programa."""
     cadena = pedir_string("Ingrese el texto: ")
     reemplazar = pedir_string("Ingrese la palabra a reemplazar: ")
     nueva = pedir_string("Ingrese la nueva palabra: ")
     resultado, cantidad_reemplazos = reemplazar_palabra(cadena, reemplazar, nueva)
     print("Cadena resultante:", resultado)
     print("Cantidad de reemplazos:", cantidad_reemplazos)
+    return None
 
 
 if __name__ == "__main__":

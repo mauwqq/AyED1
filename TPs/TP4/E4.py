@@ -27,6 +27,8 @@ romanos = [
 def pedir_numero() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
 
+    Pre: No recibe nada.
+
     Post: Retorna el valor ingresado si es un número entero positivo.
 
     """
@@ -50,20 +52,22 @@ def int_a_romano(numero: int) -> str:
     Post: Devuelve una string equivalente al número romano.
 
     """
-    resultado = []
-    for valor, romano in romanos:
-        while numero >= valor:
-            resultado.append(romano)
-            numero -= valor
-    return "".join(resultado)
+    return "".join(
+        romano
+        for valor, romano in romanos
+        for _ in range(numero // valor)
+        if (numero := numero - valor) >= 0
+    )
 
 
 def main() -> None:
+    """Función principal del programa."""
     convertir = int(
         input("Ingrese el número que desea convertir a número romano (maximo 3999): ")
     )
     num_romano = int_a_romano(convertir)
     print(num_romano)
+    return None
 
 
 if __name__ == "__main__":

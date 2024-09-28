@@ -9,6 +9,7 @@ una cadena vacía. Al finalizar mostrar un listado de todos los dominios, sin
 repetirlos y ordenados alfabéticamente, recordando que las direcciones de mail
 no distinguen mayúsculas ni minúsculas.
 """
+
 import re
 
 
@@ -19,29 +20,33 @@ def es_email_valido(email: str) -> bool:
     finaliza en .com o .com.ar.
 
     Pre: email es una cadena de caracteres.
-    
+
     Post: Devuelve True si el correo es válido, de lo contrario False.
-    
+
     """
-    patron = r'^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.(com|com\.ar)$'
+    patron = r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.(com|com\.ar)$"
     return re.match(patron, email) is not None
 
 
 def main() -> None:
+    """Función principal del programa."""
     correos = []
     while True:
-        email = input("Ingrese una dirección de correo electrónico (o presione Enter para finalizar): ")
+        email = input(
+            "Ingrese una dirección de correo electrónico (o presione Enter para finalizar): "
+        )
         if email == "":
             break
         if es_email_valido(email):
             correos.append(email.lower())
         else:
             print("Dirección de correo inválida. Intente nuevamente.")
-    dominios = sorted(set(email.split('@')[1] for email in correos))
+    dominios = sorted(set(email.split("@")[1] for email in correos))
     print("\nDominios válidos (sin repetir):")
     for dominio in dominios:
         print(dominio)
+    return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

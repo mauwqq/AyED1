@@ -16,8 +16,10 @@ def centrar_cadena(cadena: str) -> str:
 
 
 def main() -> None:
+    """Función principal del programa."""
     cadena = input("Introduce una cadena de caracteres: ")
     print(centrar_cadena(cadena))
+    return None
 
 
 if __name__ == "__main__":

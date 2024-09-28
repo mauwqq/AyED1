@@ -66,13 +66,15 @@ centenas = [
 def pedir_numero() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
 
+    Pre: No recibe nada.
+
     Post: Retorna el valor ingresado si es un número entero positivo.
 
     """
     while True:
         try:
             n = int(input("Ingrese un número positivo: "))
-            if n >= 0:  # Cambiado a >= 0 para permitir cero.
+            if n >= 0:
                 break
             print("El número tiene que ser positivo o cero.")
         except ValueError:
@@ -131,12 +133,14 @@ def convertir_a_letras(numero: int) -> str:
 
 
 def main() -> None:
+    """Función principal del programa."""
     numero = int(input("Ingrese un número entre 0 y 1 billón: "))
     if 0 <= numero <= 1000000000000:
         letras = convertir_a_letras(numero)
         print(f"El número {numero} se escribe como: {letras}.")
     else:
         print("El número debe estar en el rango de 0 a 1 billón.")
+    return None
 
 
 if __name__ == "__main__":

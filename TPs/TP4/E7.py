@@ -12,6 +12,8 @@ b. Sin utilizar rebanadas
 def pedir_string() -> str:
     """Solicita al usuario que ingrese un texto y lo devuelve.
 
+    Pre: No recibe nada.
+
     Post: Retorna la cadena de texto ingresada por el usuario.
 
     """
@@ -21,8 +23,10 @@ def pedir_string() -> str:
 def pedir_pos_inicial() -> int:
     """Solicita al usuario una posición inicial para extraer una subcadena.
 
+    Pre: No recibe nada.
+
     Post: Retorna un número entero positivo que representa la posición inicial.
-    Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
+          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
 
     """
     while True:
@@ -43,8 +47,10 @@ def pedir_pos_inicial() -> int:
 def pedir_cant_caracteres() -> int:
     """Solicita al usuario la cantidad de caracteres que se desean extraer.
 
+    Pre: No recibe nada.
+
     Post: Retorna un número entero positivo que representa la cantidad de caracteres.
-    Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
+          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
 
     """
     while True:
@@ -92,11 +98,13 @@ def eliminar_sin_slicing(cadena: str, pos_inicial: int, cant_caracteres: int) ->
 
 
 def main() -> None:
+    """Función principal del programa."""
     cadena = pedir_string()
     pos_inicial = pedir_pos_inicial()
     cant_caracteres = pedir_cant_caracteres()
     print(f"Con slicing: {eliminar_slicing(cadena, pos_inicial, cant_caracteres)}")
     print(f"Sin slicing: {eliminar_sin_slicing(cadena, pos_inicial, cant_caracteres)}")
+    return None
 
 
 if __name__ == "__main__":

@@ -10,8 +10,10 @@ longitud de las palabras, pero deberán conservarse en la cadena final.
 def pedir_string() -> str:
     """Solicita al usuario que ingrese un texto y lo devuelve.
 
+    Pre: Recibe msj, un string.
+
     Post: Retorna la cadena de texto ingresada por el usuario.
-    
+
     """
     return input("Ingrese el texto: ")
 
@@ -20,22 +22,24 @@ def ordenar(cadena: str) -> str:
     """Ordena las palabras de una cadena según su longitud, conservando la puntuación.
 
     Pre: cadena es una cadena de texto con palabras separadas por espacios.
-    
+
     Post: Retorna una nueva cadena con las palabras ordenadas por longitud.
-    
+
     """
     palabras = cadena.split()
     palabras_con_puntuacion = [
-        (palabra, ''.join([x for x in palabra if x.isalnum()])) for palabra in palabras
+        (palabra, "".join([x for x in palabra if x.isalnum()])) for palabra in palabras
     ]
     palabras_ordenadas = sorted(palabras_con_puntuacion, key=lambda x: len(x[1]))
-    return ' '.join(palabra[0] for palabra in palabras_ordenadas)
+    return " ".join(palabra[0] for palabra in palabras_ordenadas)
 
 
 def main() -> None:
+    """Función principal del programa."""
     cadena = pedir_string()
     print(ordenar(cadena))
+    return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -13,6 +13,8 @@ c. Utilizando la función filter
 def pedir_string() -> str:
     """Solicita al usuario que ingrese una oración.
 
+    Pre: No recibe nada.
+
     Post: Retorna la cadena de texto ingresada por el usuario.
 
     """
@@ -21,6 +23,8 @@ def pedir_string() -> str:
 
 def pedir_numero() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
+
+    Pre: No recibe nada.
 
     Post: Retorna el valor ingresado si es un número entero positivo.
 
@@ -77,11 +81,13 @@ def filtrar_palabras_ciclos(cadena: str, n: int) -> str:
 
 
 def main() -> None:
+    """Función principal del programa."""
     cadena = pedir_string()
     num = pedir_numero()
     print(f"Por comprensión: {filtrar_palabras_comprension(cadena, num)}")
     print(f"Con filter(): {filtrar_palabras_filter(cadena, num)}")
     print(f"Por ciclos normales: {filtrar_palabras_ciclos(cadena, num)}")
+    return None
 
 
 if __name__ == "__main__":
