@@ -10,11 +10,15 @@ ingresos. Mostrar los registros de entrada al club antes y después de
 eliminarlo. Informar cuántos ingresos se eliminaron.
 """
 
+from typing import Tuple
+
 socios = {}
 
 
 def pedir_n_socio() -> int:
     """Solicita al usuario ingresar un número de socio.
+
+    Pre: No recibe nada.
 
     Post: Devuelve un número entero que representa el número de socio.
           Debe ser un número entero positivo de cinco dígitos. Si se ingresa
@@ -35,6 +39,8 @@ def pedir_n_socio() -> int:
 def add_socios() -> None:
     """Agrega o actualiza el número de socios en el registro.
 
+    Pre: No recibe nada.
+
     Post: Permite al usuario ingresar números de socios. Actualiza el registro
           de socios, incrementando el conteo de ingresos para cada número de
           socio ingresado. Termina cuando se ingresa 0.
@@ -51,10 +57,13 @@ def add_socios() -> None:
                 else socios.update({x: socios[x] + 1})
             )
         )(n_socio)
+    return None
 
 
-def eliminar_socio() -> tuple[int]:
+def eliminar_socio() -> Tuple[int, int]:
     """Elimina un socio del registro.
+
+    Pre: No recibe nada.
 
     Post: Solicita al usuario el número de socio a eliminar. Si el socio existe,
           lo elimina del registro y devuelve una tupla con el número de socio
@@ -78,6 +87,8 @@ def eliminar_socio() -> tuple[int]:
 def imprimir_socios() -> None:
     """Imprime la lista de socios y sus ingresos.
 
+    Pre: No recibe nada.
+
     Post: Muestra en pantalla los números de socios y sus correspondientes
           ingresos, formateados en una tabla.
 
@@ -85,9 +96,11 @@ def imprimir_socios() -> None:
     print("SOCIO\tINGRESOS")
     for n_socio, ingresos in socios.items():
         print(f"{n_socio}\t{ingresos}")
+    return None
 
 
 def main() -> None:
+    """Función principal del programa."""
     add_socios()
     imprimir_socios()
     socio_eliminado, ingresos_perdidos = eliminar_socio()
@@ -95,6 +108,7 @@ def main() -> None:
         print(f"El socio {socio_eliminado} fue eliminado.")
         print(f"Se eliminaron: {ingresos_perdidos} ingresos.")
     imprimir_socios()
+    return None
 
 
 if __name__ == "__main__":

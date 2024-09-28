@@ -6,9 +6,10 @@ una copia modificada.
 """
 
 import random as rn
+from typing import List
 
 
-def crear_lista(elementos: int) -> list[int]:
+def crear_lista(elementos: int) -> List[int]:
     """Crea y devuelve una lista de números enteros aleatorios positivos.
 
     Pre: Recibe un número entero "elementos" que define la cantidad de números
@@ -18,11 +19,10 @@ def crear_lista(elementos: int) -> list[int]:
           el rango [1, 100].
 
     """
-    # Expresión: for item in iterable
     return [rn.randint(1, 100) for x in range(elementos)]
 
 
-def eliminar_valores(lista_org: list[int], lista_del: list[int]) -> list[int]:
+def eliminar_valores(lista_org: List[int], lista_del: List[int]) -> List[int]:
     """Elimina los valores especificados de la lista original.
 
     Pre: Recibe dos listas de enteros: "lista_org" (la lista original)
@@ -38,7 +38,7 @@ def eliminar_valores(lista_org: list[int], lista_del: list[int]) -> list[int]:
     return lista_org
 
 
-def imprimir_lista(lista: list[int], msj: str) -> None:
+def imprimir_lista(lista: List[int], msj: str) -> None:
     """Imprime la lista de números enteros.
 
     Pre: Recibe una lista de enteros "lista" y un mensaje "msj" para mostrar.
@@ -53,12 +53,14 @@ def imprimir_lista(lista: list[int], msj: str) -> None:
 
 
 def main() -> None:
+    """Función principal del programa."""
     lista_original = crear_lista(20)
     lista_eliminar = crear_lista(20)
     imprimir_lista(lista_original, "Lista original:")
     imprimir_lista(lista_eliminar, "Lista de elementos a eliminar:")
     lista_original = eliminar_valores(lista_original, lista_eliminar)
     imprimir_lista(lista_original, "Lista sin duplicados:")
+    return None
 
 
 if __name__ == "__main__":

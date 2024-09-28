@@ -10,6 +10,8 @@ obtiene sumando 1+2+3+4.
 def pedir_num() -> int:
     """Solicita un número entero positivo al usuario y lo retorna.
 
+    Pre: No recibe nada.
+
     Post: Si el numero ingresado es un entero positivo devuelve el numero, de no
           ser asi, se repite el bucle hasta que se cumpla la condicion.
 
@@ -24,19 +26,32 @@ def pedir_num() -> int:
             print("Debe ingresar un número.")
 
 
-def main() -> None:
-    """Función principal que verifica si un número es triangular.
+def es_triangular(n: int) -> bool:
+    """Determina si un número es un número triangular.
+    Un número triangular es aquel que puede representarse
+    como la suma de los primeros n números naturales.
+    La fórmula para el n-ésimo número triangular es:
+    T = n * (n + 1) / 2.
 
-    Post: Solicita un número entero positivo al usuario y comprueba si es un
-          número triangular. Un número es triangular si existe un entero n
-          tal que n * (n + 1) / 2 es igual al número ingresado.
+    Pre: n es un entero no negativo.
+
+    Post: Retorna True si n es un número triangular,
+          y False en caso contrario.
 
     """
+    return (
+        lambda x: any(n * (n + 1) // 2 == x for n in range(1, int((2 * x) ** 0.5) + 1))
+    )(n)
+
+
+def main() -> None:
+    """Función principal del programa."""
     n = pedir_num()
-    if (lambda x: any(n * (n + 1) // 2 == x for n in range(1, int((2 * x)**0.5) + 1)))(n):
+    if es_triangular(n):
         print("El número ingresado es triangular.")
     else:
         print("El número ingresado no es triangular.")
+    return None
 
 
 if __name__ == "__main__":

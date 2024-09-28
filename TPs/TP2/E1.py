@@ -16,10 +16,13 @@ cada función:
 
 from functools import reduce
 import random as rn
+from typing import List, Tuple
 
 
 def calc_cantidad_numeros() -> int:
     """Devuelve un número entero de dos dígitos.
+
+    Pre: No recibe ningun valor.
 
     Post: Devuelve un número entero aleatorio entre 10 y 99 (ambos inclusive).
 
@@ -27,7 +30,7 @@ def calc_cantidad_numeros() -> int:
     return rn.randint(10, 99)
 
 
-def crear_lista(cantidad: int) -> list[int]:
+def crear_lista(cantidad: int) -> List[int]:
     """Crea y devuelve una lista de números enteros aleatorios.
 
     Pre: Recibe un número entero "cantidad" que indica la cantidad de números
@@ -40,7 +43,7 @@ def crear_lista(cantidad: int) -> list[int]:
     return [rn.randint(1000, 9999) for _ in range(cantidad)]
 
 
-def producto_lista(lista: list[int]) -> int:
+def producto_lista(lista: List[int]) -> int:
     """Retorna el producto de los elementos de una lista.
 
     Pre: Recibe una lista de enteros no vacía.
@@ -54,8 +57,7 @@ def producto_lista(lista: list[int]) -> int:
 def pedir_numero() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
 
-    Pre: Recibe un string, el mensaje que va a mostrar el input para
-         recibir el número.
+    Pre: No recibe ningun valor.
 
     Post: Retorna el valor ingresado si es un número entero positivo.
 
@@ -71,7 +73,7 @@ def pedir_numero() -> int:
     return n
 
 
-def eliminar_valor_lista(numero: int, lista: list[int]) -> list[int]:
+def eliminar_valor_lista(numero: int, lista: List[int]) -> Tuple[List, bool]:
     """Elimina todas las ocurrencias del número especificado de la lista.
 
     Pre: Recibe un número entero "numero" y una lista de enteros "lista".
@@ -83,14 +85,12 @@ def eliminar_valor_lista(numero: int, lista: list[int]) -> list[int]:
     while True:
         try:
             lista.remove(numero)
-            print("Número eliminado...")
+            return lista, True
         except ValueError:
-            print("No se encontró el número en la lista.")
-            break
-    return lista
+            return lista, False
 
 
-def es_capicua(lista: list[int]) -> bool:
+def es_capicua(lista: List[int]) -> bool:
     """Verifica si la lista es capicua (palíndromo).
 
     Pre: Recibe una lista de enteros no vacía.
@@ -104,10 +104,22 @@ def es_capicua(lista: list[int]) -> bool:
 
 
 def main() -> None:
+    """Función principal del programa."""
     cantidad = calc_cantidad_numeros()
     lista = crear_lista(cantidad)
     producto = producto_lista(lista)
     numero = pedir_numero()
+    lista_limpia, encontrado = eliminar_valor_lista(numero, lista)
+    print("Lista", " ".join(str(n) for n in lista))
+    print(f"Producto: {producto}.")
+    if encontrado:
+        print(
+            "Lista con el valor {numero} eliminado:",
+            " ".join(str(n) for n in lista_limpia),
+        )
+    else:
+        print("No se encontro el numero ingresado.")
+    return None
 
 
 if __name__ == "__main__":

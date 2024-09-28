@@ -22,6 +22,8 @@ una misma fila y devolverá las coordenadas de inicio de la misma.
 """
 
 import random as rn
+from typing import List, Tuple
+from tabulate import tabulate
 
 
 def mostrar_butacas(sala: list[list[int]]) -> None:
@@ -33,12 +35,11 @@ def mostrar_butacas(sala: list[list[int]]) -> None:
 
     """
     print("Estado de las butacas (0: libre, 1: reservado):")
-    for i, fila in enumerate(sala):
-        print(f"Fila {i + 1}: ", " ".join(map(str, fila)))
-    print()
+    print(tabulate(sala, tablefmt="grid"))
+    return None
 
 
-def reservar(sala: list[list[int]], fila: int, columna: int) -> bool:
+def reservar(sala: List[List[int]], fila: int, columna: int) -> bool:
     """Reserva una butaca en la sala de cine.
 
     Pre: sala es una matriz que representa la sala de cine.
@@ -53,7 +54,7 @@ def reservar(sala: list[list[int]], fila: int, columna: int) -> bool:
     return False
 
 
-def cargar_sala(sala: list[list[int]], porcentaje_reservas: int) -> None:
+def cargar_sala(sala: List[List[int]], porcentaje_reservas: int) -> None:
     """Carga la sala con butacas aleatorias reservadas.
 
     Pre: sala es una matriz que representa la sala de cine.
@@ -70,9 +71,10 @@ def cargar_sala(sala: list[list[int]], porcentaje_reservas: int) -> None:
         fila = reserva // len(sala[0])
         columna = reserva % len(sala[0])
         sala[fila][columna] = 1
+    return None
 
 
-def butacas_libres(sala: list[list[int]]) -> int:
+def butacas_libres(sala: List[List[int]]) -> int:
     """Retorna la cantidad de butacas libres en la sala.
 
     Pre: sala es una matriz que representa la sala de cine.
@@ -83,7 +85,7 @@ def butacas_libres(sala: list[list[int]]) -> int:
     return sum(fila.count(0) for fila in sala)
 
 
-def butacas_contiguas(sala: list[list[int]]) -> tuple[int, int]:
+def butacas_contiguas(sala: List[List[int]]) -> Tuple[int, int]:
     """Busca la secuencia más larga de butacas libres contiguas en una misma
     fila.
 
@@ -115,6 +117,7 @@ def butacas_contiguas(sala: list[list[int]]) -> tuple[int, int]:
 
 
 def main() -> None:
+    """Función principal del programa."""
     filas = int(input("Ingrese el número de filas en la sala: "))
     columnas = int(input("Ingrese el número de butacas por fila: "))
     sala = [[0 for _ in range(columnas)] for _ in range(filas)]
@@ -144,6 +147,7 @@ def main() -> None:
         )
     else:
         print("No hay butacas libres contiguas.")
+    return None
 
 
 if __name__ == "__main__":

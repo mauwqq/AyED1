@@ -3,8 +3,10 @@ Generar e imprimir una lista por comprensión entre A y B con los múltiplos de 
 que no sean múltiplos de 5. A y B se ingresar desde el teclado.
 """
 
+from typing import List
 
-def pedir_numeros() -> list[int]:
+
+def pedir_numeros() -> List[int]:
     """Solicita al usuario ingresar dos números enteros positivos.
 
     Post: Devuelve una lista de dos números enteros positivos ingresados por el
@@ -28,7 +30,7 @@ def pedir_numeros() -> list[int]:
     return numeros
 
 
-def crear_lista(a: int, b: int) -> list[int]:
+def crear_lista(a: int, b: int) -> List[int]:
     """Crea una lista de números entre A y B que son múltiplos de 7 y no múltiplos de 5.
 
     Pre: Recibe dos números enteros "a" y "b", que determinan el rango de
@@ -41,7 +43,7 @@ def crear_lista(a: int, b: int) -> list[int]:
     return [e for e in range(a, b) if e % 7 == 0 and e % 5 != 0]
 
 
-def imprimir_lista(lista: list[int]) -> None:
+def imprimir_lista(lista: List[int]) -> None:
     """Imprime los elementos de la lista.
 
     Pre: Recibe una lista de enteros.
@@ -53,12 +55,14 @@ def imprimir_lista(lista: list[int]) -> None:
 
 
 def main() -> None:
+    """Función principal del programa."""
     a, b = pedir_numeros()
     lista = crear_lista(a, b)
     print(
         f"Los números entre {a} y {b} múltiplos de 7 y no múltiplos de 5 son: ",
     )
     imprimir_lista(lista)
+    return None
 
 
 if __name__ == "__main__":

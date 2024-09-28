@@ -12,6 +12,9 @@ debe contener 1 billete de $1000, 1 billete de $500, 1 billete de $200,
 1 billete de $100 y 3 billetes de $10.
 """
 
+from typing import Tuple
+
+
 billetes = {
     "billetes 5000": 0,
     "billetes 1000": 0,
@@ -42,9 +45,11 @@ def solicitar_valor(msj: str) -> int:
             print("Valor inválido, reintentar.")
 
 
-def recibir_valores() -> tuple[int]:
+def recibir_valores() -> Tuple[int]:
     """Solicita al usuario el monto total de una compra y el dinero recibido, y
     válida que el dinero recibido sea suficiente.
+
+    Pre: No recibe nada.
 
     Post: Devuelve una tupla (total_compra, dinero_recibido) si el dinero es
           suficiente.
@@ -73,7 +78,7 @@ def dinero_suficiente(total_compra: int, dinero_recibido: int) -> bool:
     return dinero_recibido >= total_compra
 
 
-def calcular_cambio(total: int, recibido: int) -> tuple[int]:
+def calcular_cambio(total: int, recibido: int) -> Tuple[int]:
     """Calcula cuantos billetes de cada denominacion necesita darle al
     usuario.
 
@@ -135,12 +140,15 @@ def imprimir_resultado(compra: int, recibido: int, vuelto: int, resto: int) -> N
             for texto, valor in billetes.items():
                 if valor > 0:
                     print(f"Billetes de {texto.split(" ")[1]}: {valor}")
+    return None
 
 
 def main() -> None:
+    """Función principal del programa."""
     total_compra, dinero_recibido = recibir_valores()
     vuelto, resto = calcular_cambio(total_compra, dinero_recibido)
     imprimir_resultado(total_compra, dinero_recibido, vuelto, resto)
+    return None
 
 
 if __name__ == "__main__":

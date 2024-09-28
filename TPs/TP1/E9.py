@@ -15,13 +15,13 @@ en caso contrario el camión no serán despachado por su alto costo.
 """
 
 import random as rn
+from typing import List, Tuple
 
 
 def pedir_numero() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
 
-    Pre: Recibe un string, el mensaje que va a mostrar el input para
-         recibir el número.
+    Pre: No recibe nada.
 
     Post: Retorna el valor ingresado si es un número entero positivo.
 
@@ -37,7 +37,7 @@ def pedir_numero() -> int:
     return n
 
 
-def gen_peso_naranjas(naranjas: int) -> tuple[int]:
+def gen_peso_naranjas(naranjas: int) -> Tuple[int]:
     """Hace una tupla con los pesos generados de cada naranja y los devuelve.
 
     Pre: Recibe la cantidad de naranjas en un número entero positivo.
@@ -49,7 +49,7 @@ def gen_peso_naranjas(naranjas: int) -> tuple[int]:
     return tuple(rn.randint(150, 350) for _ in range(naranjas))
 
 
-def calc_jugo(peso_naranjas: tuple) -> int:
+def calc_jugo(peso_naranjas: Tuple) -> int:
     """usa sum() para sumar 1 cada vez que encuentre un valor > 300 o < 200 en
     peso_naranjas.
 
@@ -61,7 +61,7 @@ def calc_jugo(peso_naranjas: tuple) -> int:
     return sum(1 for peso in peso_naranjas if peso > 300 or peso < 200)
 
 
-def calc_cajones(peso_naranjas: tuple) -> tuple[int, float]:
+def calc_cajones(peso_naranjas: Tuple) -> Tuple[int, float]:
     """Calcula la cantidad de cajones llenos y cuantas naranjas sobran si
     sobra alguna.
 
@@ -76,7 +76,7 @@ def calc_cajones(peso_naranjas: tuple) -> tuple[int, float]:
     return cajones, resto
 
 
-def calc_peso_cajones(peso_naranjas: tuple) -> list[float]:
+def calc_peso_cajones(peso_naranjas: Tuple) -> List[float]:
     """Agrupa los pesos de las naranjas en cajones de 100 naranjas.
 
     Pre: Recibe una tupla de enteros con el peso de cada naranja.
@@ -95,7 +95,7 @@ def calc_peso_cajones(peso_naranjas: tuple) -> list[float]:
     return peso_cajones
 
 
-def calc_camiones(peso_cajones: tuple) -> tuple[int, float]:
+def calc_camiones(peso_cajones: Tuple) -> Tuple[int, float]:
     """Calcula cuantos camiones se van a necesitar y si se aprueba su viaje.
 
     Pre: Recibe el peso de los cajones en una tupla de números flotantes.
@@ -123,7 +123,7 @@ def calc_camiones(peso_cajones: tuple) -> tuple[int, float]:
     return camiones, resto
 
 
-def imprimir_resultado(datos: tuple) -> None:
+def imprimir_resultado(datos: Tuple) -> None:
     """Imprime los resultados de todos los cálculos.
 
     Pre: Recibe en una tupla todos los datos necesarios para imprimir.
@@ -153,6 +153,7 @@ def imprimir_resultado(datos: tuple) -> None:
 
 
 def main() -> None:
+    """Función principal del programa."""
     naranjas_cosechadas = pedir_numero()
     peso_naranjas = gen_peso_naranjas(naranjas_cosechadas)
     naranjas_jugo = calc_jugo(peso_naranjas)
@@ -161,6 +162,7 @@ def main() -> None:
     camiones, resto = calc_camiones(peso_cajones)
     datos = (cajones, naranjas_jugo, resto_cajones, camiones, resto)
     imprimir_resultado(datos)
+    return None
 
 
 if __name__ == "__main__":

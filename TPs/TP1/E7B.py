@@ -6,6 +6,9 @@ sin modificaciones ni agregados, desarrollar programas que permitan:
 b. Calcular la cantidad de días existentes entre dos fechas cualesquiera.
 """
 
+from typing import List
+
+
 meses = {
     1: 31,
     2: 28,
@@ -22,11 +25,13 @@ meses = {
 }
 
 
-def pedir_fecha(msj: str) -> list[int]:
+def pedir_fecha(msj: str) -> List[int]:
     """Solicita la fecha al usuario verificado cada valor ingresado. Primero
     solicita el año, si es bisiesto actualiza la cantidad de dias de febrero en
     meses. Despues solicita el mes que comprueba con comprobar_mes y por ultimo
     solicita el dia.
+
+    Pre: Recibe un string.
 
     Post: Devuelve una lista de tres enteros con la fecha en formato YY/MM/DD.
 
@@ -102,7 +107,7 @@ def comprobar_dia(dia: int, mes: int) -> bool:
     return dia <= meses.get(mes)
 
 
-def diasiguiente(anio: int, mes: int, dia: int) -> list[int]:
+def diasiguiente(anio: int, mes: int, dia: int) -> List[int]:
     """Suma un día a la fecha ingresada.
 
     Pre: dia, mes y anio son números enteros positivos.
@@ -148,6 +153,7 @@ def diferencia_dias(fecha: list[int], fecha2: list[int]) -> int:
 
 
 def main() -> None:
+    """Función principal del programa."""
     fecha = pedir_fecha("Ingrese la primera fecha: ")
     fecha2 = pedir_fecha("Ingrese la segunda fecha: ")
     dif = diferencia_dias(fecha, fecha2)
@@ -155,6 +161,7 @@ def main() -> None:
         f"Los días entre {fecha[0]}/{fecha[1]}/{fecha[2]}",
         f"y {fecha2[0]}/{fecha2[1]}/{fecha2[2]} son {dif}.",
     )
+    return None
 
 
 if __name__ == "__main__":

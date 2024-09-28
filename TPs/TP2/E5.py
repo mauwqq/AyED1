@@ -6,9 +6,10 @@ Desarrollar además un programa para verificar el comportamiento de la función.
 """
 
 import random as rn
+from typing import List
 
 
-def crear_lista(elementos: int) -> list[int]:
+def crear_lista(elementos: int) -> List[int]:
     """Crea una lista de números enteros aleatorios positivos.
 
     Pre: Recibe un número entero "elementos" que indica la longitud de la lista.
@@ -20,7 +21,7 @@ def crear_lista(elementos: int) -> list[int]:
     return [rn.randint(1, 111) for _ in range(elementos)]
 
 
-def verif_lista_ordenada(lista: list[int]) -> bool:
+def verif_lista_ordenada(lista: List[int]) -> bool:
     """Verifica si la lista está ordenada en orden ascendente.
 
     Pre: Recibe una lista de enteros.
@@ -32,6 +33,7 @@ def verif_lista_ordenada(lista: list[int]) -> bool:
 
 
 def main() -> None:
+    """Función principal del programa."""
     lista = crear_lista(10)
     lista_ordenada = [1, 2, 3]
     lista_desordenada = ["b", "a"]
@@ -47,6 +49,7 @@ def main() -> None:
         " ".join(str(e) for e in lista_desordenada),
         f": {verif_lista_ordenada(lista_desordenada)}",
     )
+    return None
 
 
 if __name__ == "__main__":

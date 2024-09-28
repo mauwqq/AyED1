@@ -39,10 +39,12 @@ def concatenar_numeros(n1: int, n2: int) -> int:
 
 
 def main() -> None:
+    """Función principal del programa."""
     n1 = pedir_numero("Ingrese el primer numero: ")
     n2 = pedir_numero("Ingrese el segundo numero: ")
     resultado = concatenar_numeros(n1, n2)
     print(f"El numero concatenado es: {resultado}")
+    return None
 
 
 if __name__ == "__main__":

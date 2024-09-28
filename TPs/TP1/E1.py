@@ -8,10 +8,13 @@ informativo si éste no existe.
 """
 
 from functools import reduce
+from typing import List
 
 
-def numeros_input() -> list[int]:
+def numeros_input() -> List[int]:
     """Pide y guarda 3 números positivos en una lista.
+
+    Pre: No recibe nada.
 
     Post: Devuelve una lista que contiene exactamente tres números enteros
           positivos.
@@ -30,7 +33,7 @@ def numeros_input() -> list[int]:
     return numeros
 
 
-def mayor(numeros: list[int]) -> int:
+def mayor(numeros: List[int]) -> int:
     """Busca el mayor estricto de los 3 y devuelve el número mayor o -1 si no es
     el mayor estricto.
 
@@ -56,12 +59,15 @@ def imprimir_resultados(resultado: int) -> None:
         print(f"El número mayor ingresado es: {resultado}.")
     else:
         print("No hubo ningún número mayor estricto.")
+    return None
 
 
 def main() -> None:
+    """Función principal del programa."""
     numeros = numeros_input()
     resultado = mayor(numeros)
     imprimir_resultados(resultado)
+    return None
 
 
 if __name__ == "__main__":

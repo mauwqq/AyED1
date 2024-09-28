@@ -7,6 +7,9 @@ correcta o no. Realizar también un programa para verificar el comportamiento
 de la función.
 """
 
+from typing import List
+
+
 meses = {
     1: 31,
     2: 28,
@@ -34,9 +37,11 @@ def es_positivo(numero: int) -> bool:
     return numero > 0
 
 
-def recibir_numeros() -> list[int]:
+def recibir_numeros() -> List[int]:
     """Pide tres números enteros positivos, los guarda en una lista y
     devuelve la lista.
+
+    Pre: No recibe nada.
 
     Post: Devuelve una lista de tres enteros que corresponden
           al día, mes y año solicitado.
@@ -86,11 +91,13 @@ def validar_fecha(dia: int, mes: int, anio: int) -> bool:
 
 
 def main() -> None:
+    """Función principal del programa."""
     dia, mes, anio = recibir_numeros()  # Desempaquetado.
     if validar_fecha(dia, mes, anio):
         print("La fecha es valida.")
     else:
         print("La fecha no es valida.")
+        return None
 
 
 if __name__ == "__main__":

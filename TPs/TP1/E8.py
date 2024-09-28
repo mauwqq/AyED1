@@ -7,6 +7,9 @@ correspondiente a un mes y año cualquiera basándose en la función
 suministrada. Considerar que la semana comienza en domingo.
 """
 
+from typing import Tuple
+
+
 dias = {
     0: "Domingo",
     1: "Lunes",
@@ -46,8 +49,10 @@ def es_bisiesto(anio: int) -> bool:
     return (anio % 4 == 0) and (anio % 100 != 0) or (anio % 400 == 0)
 
 
-def pedir_fecha() -> tuple[int]:
+def pedir_fecha() -> Tuple[int]:
     """Pide la fecha al usuario, la válida y la devuelve.
+
+    Pre: No recibe nada.
 
     Post: Devuelve una tupla(mes,año), valores enteros.
 
@@ -109,8 +114,10 @@ def imprimir_calendario(mes: int, anio: int) -> None:
 
 
 def main() -> None:
+    """Función principal del programa."""
     mes, anio = pedir_fecha()
     imprimir_calendario(mes, anio)
+    return None
 
 
 if __name__ == "__main__":

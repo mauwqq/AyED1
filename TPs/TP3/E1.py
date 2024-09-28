@@ -22,8 +22,11 @@ NOTA: El valor de N debe leerse por teclado. Las funciones deben servir
 cualquiera sea el valor ingresado.
 """
 
+from typing import List
+from tabulate import tabulate
 
-def cargar_matriz(n: int) -> list[list[int]]:
+
+def cargar_matriz(n: int) -> List[List[int]]:
     """Carga números enteros en una matriz de N x N desde el teclado.
 
     Pre: n es un número entero positivo que representa el tamaño de la matriz.
@@ -49,20 +52,19 @@ def cargar_matriz(n: int) -> list[list[int]]:
     return matriz
 
 
-def imprimir_matriz(matriz: list[list[int]]) -> None:
-    """Imprime la matriz en formato legible.
+def imprimir_matriz(matriz: List[List[int]]) -> None:
+    """Imprime la matriz que se le de con tabulate.
 
-    Pre: matriz es una lista de listas que representa una matriz.
+    Pre: matriz es una lista de listas con valores enteros, es decir, una matriz.
 
-    Post: Imprime la matriz en la consola.
+    Post: Imprime la matriz con tabulate y retorna None.
 
     """
-    for fila in matriz:
-        print(" ".join(map(str, fila)))
-    print()
+    print(tabulate(matriz, tablefmt="grid"))
+    return None
 
 
-def ordenar_filas(matriz: list[list[int]]) -> None:
+def ordenar_filas(matriz: List[List[int]]) -> None:
     """Ordena en forma ascendente cada una de las filas de la matriz.
 
     Pre: matriz es una lista de listas que representa una matriz.
@@ -72,9 +74,10 @@ def ordenar_filas(matriz: list[list[int]]) -> None:
     """
     for fila in matriz:
         fila.sort()
+    return None
 
 
-def intercambiar_filas(matriz: list[list[int]], f1: int, f2: int) -> None:
+def intercambiar_filas(matriz: List[List[int]], f1: int, f2: int) -> None:
     """Intercambia dos filas de la matriz.
 
     Pre: matriz es una lista de listas que representa una matriz.
@@ -84,9 +87,10 @@ def intercambiar_filas(matriz: list[list[int]], f1: int, f2: int) -> None:
 
     """
     matriz[f1], matriz[f2] = matriz[f2], matriz[f1]
+    return None
 
 
-def intercambiar_columnas(matriz: list[list[int]], c1: int, c2: int) -> None:
+def intercambiar_columnas(matriz: List[List[int]], c1: int, c2: int) -> None:
     """Intercambia dos columnas de la matriz.
 
     Pre: matriz es una lista de listas que representa una matriz.
@@ -97,9 +101,10 @@ def intercambiar_columnas(matriz: list[list[int]], c1: int, c2: int) -> None:
     """
     for fila in matriz:
         fila[c1], fila[c2] = fila[c2], fila[c1]
+    return None
 
 
-def trasponer_matriz(matriz: list[list[int]]) -> None:
+def trasponer_matriz(matriz: List[List[int]]) -> None:
     """Transpone la matriz sobre sí misma.
 
     Pre: matriz es una lista de listas que representa una matriz cuadrada.
@@ -111,9 +116,10 @@ def trasponer_matriz(matriz: list[list[int]]) -> None:
     for i in range(n):
         for j in range(i + 1, n):
             matriz[i][j], matriz[j][i] = matriz[j][i], matriz[i][j]
+    return None
 
 
-def promedio_fila(matriz: list[list[int]], fila: int) -> float:
+def promedio_fila(matriz: List[List[int]], fila: int) -> float:
     """Calcula el promedio de los elementos de una fila.
 
     Pre: matriz es una lista de listas que representa una matriz.
@@ -125,7 +131,7 @@ def promedio_fila(matriz: list[list[int]], fila: int) -> float:
     return sum(matriz[fila]) / len(matriz[fila])
 
 
-def porcentaje_impares_columna(matriz: list[list[int]], columna: int) -> float:
+def porcentaje_impares_columna(matriz: List[List[int]], columna: int) -> float:
     """Calcula el porcentaje de elementos impares en una columna.
 
     Pre: matriz es una lista de listas que representa una matriz.
@@ -139,7 +145,7 @@ def porcentaje_impares_columna(matriz: list[list[int]], columna: int) -> float:
     return (total_impares / total_elementos) * 100
 
 
-def es_simetrica_diagonal_principal(matriz: list[list[int]]) -> bool:
+def es_simetrica_diagonal_principal(matriz: List[List[int]]) -> bool:
     """Determina si la matriz es simétrica respecto a su diagonal principal.
 
     Pre: matriz es una lista de listas que representa una matriz cuadrada.
@@ -156,7 +162,7 @@ def es_simetrica_diagonal_principal(matriz: list[list[int]]) -> bool:
     return True
 
 
-def es_simetrica_diagonal_secundaria(matriz: list[list[int]]) -> bool:
+def es_simetrica_diagonal_secundaria(matriz: List[List[int]]) -> bool:
     """Determina si la matriz es simétrica respecto a su diagonal secundaria.
 
     Pre: matriz es una lista de listas que representa una matriz cuadrada.
@@ -173,7 +179,7 @@ def es_simetrica_diagonal_secundaria(matriz: list[list[int]]) -> bool:
     return True
 
 
-def columnas_palindromas(matriz: list[list[int]]) -> list[int]:
+def columnas_palindromas(matriz: List[List[int]]) -> List[int]:
     """Determina qué columnas de la matriz son palíndromos.
 
     Pre: matriz es una lista de listas que representa una matriz cuadrada.
@@ -191,6 +197,7 @@ def columnas_palindromas(matriz: list[list[int]]) -> list[int]:
 
 
 def main() -> None:
+    """Función principal del programa."""
     n = int(input("Ingrese el tamaño de la matriz (N): "))
     matriz = cargar_matriz(n)
     print("Matriz cargada:")
@@ -235,6 +242,7 @@ def main() -> None:
     )
     columnas_pal = columnas_palindromas(matriz)
     print(f"Las columnas palíndromas son: {columnas_pal}")
+    return None
 
 
 if __name__ == "__main__":

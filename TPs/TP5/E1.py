@@ -9,7 +9,7 @@ miento de la misma.
 """
 
 
-def pedir():
+def pedir() -> int:
     """Pide un string y lo pas a validar para verificar si se cumplen las
     condiciones que se piden. Si devuelve una excepcion la imprime.
 
@@ -26,7 +26,7 @@ def pedir():
             print(e)
         except KeyboardInterrupt:
             print("\nSaliendo...")
-            break
+            return 0
 
 
 def validar(valor: str) -> int:
@@ -51,6 +51,7 @@ def validar(valor: str) -> int:
 def main() -> None:
     """Función principal del programa."""
     pedir()
+    return None
 
 
 if __name__ == "__main__":

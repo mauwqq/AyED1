@@ -7,10 +7,13 @@ si lista1 = [8, 1, 3] y lista2 = [5, 9, 7], lista1 deberá quedar como
 """
 
 import random as rn
+from typing import List
 
 
-def crear_lista() -> list[int]:
+def crear_lista() -> List[int]:
     """Crea una lista de números aleatorios entre 1 y 10.
+
+    Pre: No recibe nada.
 
     Post: Devuelve una lista de enteros aleatorios,
           la longitud de la lista es un número aleatorio entre 5 y 10,
@@ -20,7 +23,7 @@ def crear_lista() -> list[int]:
     return [rn.randint(1, 10) for _ in range(rn.randint(5, 10))]
 
 
-def mezclar_listas(lista1: list[int], lista2: list[int]) -> None:
+def mezclar_listas(lista1: List[int], lista2: List[int]) -> None:
     """Mezcla las listas usando slicing, itera la longitud de la menor lista,
     usando min(). Cuando start:stop son iguales en el slicing, es como una
     posición de inserción. En realidad estoy insertado una lista adentro de
@@ -43,27 +46,31 @@ def mezclar_listas(lista1: list[int], lista2: list[int]) -> None:
         lista1[2 * i + 1 : 2 * i + 1] = [lista2[i]]
     if extend:
         lista1.extend(lista2[long:])
+    return None
 
 
-def imprimir_lista(lista: list[int], msj) -> None:
+def imprimir_lista(lista: List[int], msj: str) -> None:
     """Imprime los elementos de la lista con un mensaje dado.
 
-    Pre: Recibe una lista de enteros y un mensaje "msj".
+    Pre: Recibe una lista de enteros y un string msj.
 
     Post: Imprime el mensaje seguido de los elementos de la lista.
 
     """
     print(msj)
     print(" ".join(str(e) for e in lista))
+    return None
 
 
 def main():
+    """Función principal del programa."""
     lista1 = crear_lista()
     imprimir_lista(lista1, "Primera lista:")
     lista2 = crear_lista()
     imprimir_lista(lista2, "Segunda lista:")
     mezclar_listas(lista1, lista2)
     imprimir_lista(lista1, "Lista intercalada:")
+    return None
 
 
 if __name__ == "__main__":

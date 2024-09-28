@@ -67,6 +67,8 @@ def urgencia(n: int) -> str:
 def opciones() -> None:
     """Muestra las opciones del menú.
 
+    Pre: No recibe nada.
+
     Post: Imprime las opciones disponibles para el usuario.
 
     """
@@ -112,6 +114,8 @@ def pedir_numero(msj: str, long: int) -> int:
 def pedir_paciente() -> None:
     """Solicita la información de pacientes y la agrega a la clínica.
 
+    Pre: No recibe nada.
+
     Post: Agrega pacientes a la lista "clinica" según la información
           proporcionada por el usuario.
 
@@ -129,6 +133,8 @@ def pedir_paciente() -> None:
 def listado_pacientes() -> None:
     """Imprime la lista de pacientes registrados.
 
+    Pre: No recibe nada.
+
     Post: Imprime los pacientes y su nivel de urgencia si hay pacientes registrados.
           Sino, informa que no hay pacientes.
 
@@ -139,10 +145,13 @@ def listado_pacientes() -> None:
         print("Paciente\tUrgencia")
         for paciente in clinica:
             print(f"{paciente[0]}\t\t{urgencia(paciente[1])}")
+    return None
 
 
 def buscar_paciente() -> None:
     """Busca un paciente por su número de afiliado.
+
+    Pre: No recibe nada.
 
     Post: Imprime la cantidad de turnos y urgencias del paciente buscado.
           Si no se encuentra, informa al usuario.
@@ -170,10 +179,13 @@ def buscar_paciente() -> None:
                 f"Turno: {turno}\n",
                 f"Urgencia: {urgencia}",
             )
+    return None
 
 
 def menu() -> None:
     """Función principal que muestra el menú y maneja las opciones del usuario.
+
+    Pre: No recibe nada.
 
     Post: Permite al usuario interactuar con el sistema de gestión de pacientes
           hasta que decida salir.
@@ -196,7 +208,9 @@ def menu() -> None:
 
 
 def main() -> None:
+    """Función principal del programa."""
     menu()
+    return None
 
 
 if __name__ == "__main__":

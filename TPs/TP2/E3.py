@@ -4,6 +4,8 @@ Crear una lista con los cuadrados de los números entre 1 y N
 imprimir los últimos 10 valores de la lista.
 """
 
+from typing import List
+
 
 def pedir_numero() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
@@ -29,7 +31,7 @@ def pedir_numero() -> int:
     return n
 
 
-def crear_lista(longitud: int) -> list[int]:
+def crear_lista(longitud: int) -> List[int]:
     """Crea una lista con la longitud dada.
 
     Pre: Recibe un número entero "longitud" que define la longitud de la lista.
@@ -37,10 +39,10 @@ def crear_lista(longitud: int) -> list[int]:
     Post: Devuelve una lista de enteros desde 1 hasta "longitud", inclusive.
 
     """
-    return [x for x in range(1, longitud + 1)]
+    return list(range(1, longitud + 1))
 
 
-def cuadrado_lista(lista: list[int]) -> list[int]:
+def cuadrado_lista(lista: List[int]) -> List[int]:
     """Calcula el cuadrado de todos los números en la lista.
 
     Pre: Recibe una lista de enteros positivos.
@@ -51,7 +53,7 @@ def cuadrado_lista(lista: list[int]) -> list[int]:
     return list(map(lambda x: x * x, lista))
 
 
-def imprimir_lista(lista: list[int]) -> None:
+def imprimir_lista(lista: List[int]) -> None:
     """Imprime los últimos 10 números cuadrados de la lista.
 
     Pre: Recibe una lista de números enteros.
@@ -66,10 +68,12 @@ def imprimir_lista(lista: list[int]) -> None:
 
 
 def main() -> None:
+    """Función principal del programa."""
     longitud = pedir_numero()
     lista_gen = crear_lista(longitud)
     lista_cuadrado = cuadrado_lista(lista_gen)
     imprimir_lista(lista_cuadrado)
+    return None
 
 
 if __name__ == "__main__":

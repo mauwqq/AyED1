@@ -6,6 +6,9 @@ modificaciones ni agregados, desarrollar programas que permitan:
 a. Sumar N días a una fecha.
 """
 
+from typing import Tuple
+
+
 meses = {
     1: 31,
     2: 28,
@@ -27,6 +30,8 @@ def pedir_fecha() -> list[int]:
     solicita el año, si es bisiesto actualiza la cantidad de dias de febrero en
     meses. Despues solicita el mes que comprueba con comprobar_mes y por ultimo
     solicita el dia.
+
+    Pre: No recibe nada.
 
     Post: Devuelve una lista de tres enteros con la fecha en formato YY/MM/DD.
 
@@ -105,6 +110,8 @@ def comprobar_dia(dia: int, mes: int) -> bool:
 def pedir_cuanto_adelantar() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
 
+    Pre: No recibe nada.
+
     Post: Devuelve un número entero positivo.
 
     """
@@ -119,7 +126,7 @@ def pedir_cuanto_adelantar() -> int:
     return num
 
 
-def diasiguiente(dia: int, mes: int, anio: int) -> tuple[int]:
+def diasiguiente(dia: int, mes: int, anio: int) -> Tuple[int]:
     """Suma un dia a la fecha ingresada.
 
     Pre: dia, mes y anio son números enteros positivo.
@@ -141,7 +148,7 @@ def diasiguiente(dia: int, mes: int, anio: int) -> tuple[int]:
     return dia, mes, anio
 
 
-def calcular_fecha(adelanto: int, dia: int, mes: int, anio: int) -> tuple[int]:
+def calcular_fecha(adelanto: int, dia: int, mes: int, anio: int) -> Tuple[int]:
     """Bucle que ejecuta diasiguiente las veces que sea necesario para llegar
     a la fecha deseada.
 
@@ -158,11 +165,13 @@ def calcular_fecha(adelanto: int, dia: int, mes: int, anio: int) -> tuple[int]:
 
 
 def main() -> None:
+    """Función principal del programa."""
     anio, mes, dia = pedir_fecha()
     print(f"La fecha es: {dia}/{mes}/{anio}")
     adelanto = pedir_cuanto_adelantar()
     dia, mes, anio = calcular_fecha(adelanto, dia, mes, anio)
     print(f"{adelanto} días después: {dia}/{mes}/{anio}")
+    return None
 
 
 if __name__ == "__main__":

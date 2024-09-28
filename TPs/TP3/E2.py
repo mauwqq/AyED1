@@ -5,12 +5,14 @@ programa que las invoque e imprima por pantalla. El tamaño de las matrices debe
 establecerse como N x N, donde N se ingresa a través del teclado.
 """
 
-import copy
 from tabulate import tabulate
+from typing import List
 
 
 def pedir_numero() -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
+
+    Pre: No recibe nada.
 
     Post: Retorna el valor ingresado si es un número entero positivo.
 
@@ -26,7 +28,7 @@ def pedir_numero() -> int:
     return n
 
 
-def f_a(n: int) -> list[list[int]]:
+def f_a(n: int) -> List[List[int]]:
     """Genera una matriz de tamaño n x n donde los elementos de la diagonal son
     números impares.
 
@@ -39,7 +41,7 @@ def f_a(n: int) -> list[list[int]]:
     return [[i * 2 + 1 if i == j else 0 for j in range(n)] for i in range(n)]
 
 
-def f_b(n: int) -> list[list[int]]:
+def f_b(n: int) -> List[List[int]]:
     """Genera una matriz de tamaño n x n con un patrón específico basado entero
     potencias de 3.
 
@@ -53,7 +55,7 @@ def f_b(n: int) -> list[list[int]]:
     return [[27 // (3**i) if j == 3 - i else 0 for j in range(n)] for i in range(n)]
 
 
-def f_c(n: int) -> list[list[int]]:
+def f_c(n: int) -> List[List[int]]:
     """Genera una matriz de tamaño n x n con un patrón decreciente en cada fila.
 
     Pre: n es un entero que define el tamaño de la matriz.
@@ -65,7 +67,7 @@ def f_c(n: int) -> list[list[int]]:
     return [[4 - i if j <= i else 0 for j in range(n)] for i in range(n)]
 
 
-def f_d(n: int) -> list[list[int]]:
+def f_d(n: int) -> List[List[int]]:
     """Genera una matriz de tamaño n x n con potencias de 2 en cada fila.
 
     Pre: n es un entero que define el tamaño de la matriz.
@@ -78,7 +80,7 @@ def f_d(n: int) -> list[list[int]]:
     return [[2 ** (3 - i) for j in range(n)] for i in range(n)]
 
 
-def f_e(n: int) -> list[list[int]]:
+def f_e(n: int) -> List[List[int]]:
     """Genera una matriz de tamaño n x n con un patrón alternante de números.
     PD: valor := valor + 1 asigna el valor de (valor + 1) a valor y a su vez
     evalua la expresion. Se incrementa valor y a su vez se usa.
@@ -98,12 +100,14 @@ def f_e(n: int) -> list[list[int]]:
 
 
 def main() -> None:
+    """Función principal del programa."""
     n = pedir_numero()
     print(tabulate(f_a(n)))
     print(tabulate(f_b(n)))
     print(tabulate(f_c(n)))
     print(tabulate(f_d(n)))
     print(tabulate(f_e(n)))
+    return None
 
 
 if __name__ == "__main__":

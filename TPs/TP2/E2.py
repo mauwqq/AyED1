@@ -10,6 +10,7 @@ Combinar estas tres funciones en un mismo programa.
 """
 
 import random as rn
+from typing import List
 
 
 def pedir_numero() -> int:
@@ -39,7 +40,7 @@ def pedir_numero() -> int:
     return n
 
 
-def generar_lista(numero: int) -> list[int]:
+def generar_lista(numero: int) -> List[int]:
     """Genera y retorna una lista de números aleatorios entre 1 y 100.
 
     Pre: Recibe un número entero "numero" que define la longitud de la lista.
@@ -51,7 +52,7 @@ def generar_lista(numero: int) -> list[int]:
     return [rn.randint(1, 100) for _ in range(numero)]
 
 
-def comprobar_duplicado(numeros: list[int]) -> bool:
+def comprobar_duplicado(numeros: List[int]) -> bool:
     """Comprueba si hay números duplicados en la lista.
 
     Pre: Recibe una lista de enteros positivos generada.
@@ -63,7 +64,7 @@ def comprobar_duplicado(numeros: list[int]) -> bool:
     return len(numeros) != len(numeros_set)
 
 
-def eliminar_duplicados(numeros: list[int]) -> list[int]:
+def eliminar_duplicados(numeros: List[int]) -> List[int]:
     """Elimina los duplicados de la lista y devuelve la lista sin ellos.
 
     Pre: Recibe la lista de enteros generada.
@@ -72,14 +73,20 @@ def eliminar_duplicados(numeros: list[int]) -> list[int]:
           de la lista original, eliminando los duplicados.
 
     """
-    return [set(numeros)]
+    return list(set(numeros))
 
 
 def main() -> None:
+    """Función principal del programa."""
     cantidad = pedir_numero()
     numeros = generar_lista(cantidad)
-    duplicado = comprobar_duplicado(numeros)
-    lista_sin_duplicados = eliminar_duplicados(numeros)
+    if comprobar_duplicado(numeros):
+        lista_sin_duplicados = eliminar_duplicados(numeros)
+    else:
+        lista_sin_duplicados = numeros.copy()
+    print("Lista original:"," ".join(str(n) for n in numeros))
+    print("Lista sin duplicados:", " ".join(str(n) for n in lista_sin_duplicados))
+    return None
 
 
 if __name__ == "__main__":

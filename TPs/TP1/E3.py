@@ -7,6 +7,8 @@ viajes realizados en un determinado mes y devuelva el total gastado en viajes.
 Realizar también un programa para verificar el comportamiento de la función.
 """
 
+from typing import Tuple
+
 
 def pedir_numero(msj: str) -> int:
     """Solicita al usuario un número entero positivo y lo devuelve.
@@ -28,7 +30,7 @@ def pedir_numero(msj: str) -> int:
     return n
 
 
-def calcular_pasaje(viajes: int, importe: int) -> tuple[float]:
+def calcular_pasaje(viajes: int, importe: int) -> Tuple[float]:
     """Calcula el descuento de los pasajes y los devuelve.
 
     Pre: Recibe la cantidad de viajes como entero positivo.
@@ -76,13 +78,16 @@ def imprimir_resultado(viajes: int, importe_final: int, desc: float) -> None:
         )
     else:
         print("Averiguar en Internet el valor actualizado.")
+    return None
 
 
 def main() -> None:
+    """Función principal del programa."""
     viajes = pedir_numero("Ingrese la cantidad de viajes: ")
     importe = pedir_numero("Ingrese el importe total: ")
     importe_final, desc = calcular_pasaje(viajes, importe)
     imprimir_resultado(viajes, importe_final, desc)
+    return None
 
 
 if __name__ == "__main__":

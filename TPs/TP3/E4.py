@@ -17,12 +17,15 @@ Se solicita:
 """
 
 import random as rn
+from typing import List, Tuple
 
 dias = {0: "Lunes", 1: "Martes", 2: "Miercoles", 3: "Jueves", 4: "Viernes", 5: "Sabado"}
 
 
 def pedir_cantidad_fabricas() -> int:
     """Solicita al usuario la cantidad de fábricas.
+
+    Pre: No recibe nada.
 
     Post: Devuelve un número entero "n" que representa la cantidad
           de fábricas, asegurándose de que sea positivo.
@@ -41,6 +44,8 @@ def pedir_cantidad_fabricas() -> int:
 def gen_produccion() -> int:
     """Genera una cantidad aleatoria de producción.
 
+    Pre: No recibe nada.
+
     Post: Devuelve un número entero aleatorio entre 0 y 150,
           representando la producción diaria.
 
@@ -48,7 +53,7 @@ def gen_produccion() -> int:
     return rn.randint(0, 150)
 
 
-def gen_matriz(n: int) -> list[list[int]]:
+def gen_matriz(n: int) -> List[List[int]]:
     """Genera una matriz de producción para las fábricas.
 
     Pre: Recibe un entero "n" que representa la cantidad de fábricas.
@@ -60,7 +65,7 @@ def gen_matriz(n: int) -> list[list[int]]:
     return [[gen_produccion() for _ in range(len(dias))] for _ in range(n)]
 
 
-def total_fabricacion(matriz: list[list[int]]) -> list[int]:
+def total_fabricacion(matriz: List[List[int]]) -> List[int]:
     """Calcula el total de bicicletas fabricadas por cada fábrica.
 
     Pre: Recibe una matriz de producción.
@@ -72,7 +77,7 @@ def total_fabricacion(matriz: list[list[int]]) -> list[int]:
     return [sum(x) for x in matriz]
 
 
-def imprimir_resultados(matriz: list[list[int]], total: list[int]) -> None:
+def imprimir_resultados(matriz: List[List[int]], total: List[int]) -> None:
     """Imprime la producción de cada fábrica y sus totales.
 
     Pre: Recibe una matriz de producción y una lista de totales.
@@ -87,9 +92,10 @@ def imprimir_resultados(matriz: list[list[int]], total: list[int]) -> None:
             for i, produccion in enumerate(matriz)
         )
     )
+    return None
 
 
-def mayor_produccion_un_dia(matriz: list[list[int]]) -> tuple[int, int]:
+def mayor_produccion_un_dia(matriz: List[List[int]]) -> Tuple[int, int]:
     """Encuentra la fábrica y el día con mayor producción.
 
     Pre: Recibe una matriz de producción.
@@ -104,7 +110,7 @@ def mayor_produccion_un_dia(matriz: list[list[int]]) -> tuple[int, int]:
     return i_fabrica, i_dia
 
 
-def dia_mas_productivo(matriz: list[list[int]]) -> int:
+def dia_mas_productivo(matriz: List[List[int]]) -> int:
     """Determina el día más productivo entre todas las fábricas.
 
     Pre: Recibe una matriz de producción.
@@ -118,7 +124,7 @@ def dia_mas_productivo(matriz: list[list[int]]) -> int:
     return i_dia_max
 
 
-def menor_cant_fabrica(matriz: list[list[int]]) -> list[int]:
+def menor_cant_fabrica(matriz: List[List[int]]) -> List[int]:
     """Encuentra la menor cantidad fabricada por cada fábrica.
 
     Pre: Recibe una matriz de producción.
@@ -131,6 +137,7 @@ def menor_cant_fabrica(matriz: list[list[int]]) -> list[int]:
 
 
 def main() -> None:
+    """Función principal del programa."""
     n = pedir_cantidad_fabricas()
     matriz = gen_matriz(n)
     total = total_fabricacion(matriz)
@@ -139,6 +146,7 @@ def main() -> None:
     print(f"La fábrica {i_fabrica+1} fue la que más produjo, el día {dias.get(i_dia)}.")
     i_dia_max = dia_mas_productivo(matriz)
     print(f"El día más productivo fue el {dias.get(i_dia_max)}.")
+    return None
 
 
 if __name__ == "__main__":

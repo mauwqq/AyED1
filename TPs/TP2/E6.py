@@ -7,11 +7,14 @@ ejemplo, normalizar([1, 1, 2]) debe devolver [0.25, 0.25, 0.50].
 """
 
 import random as rn
+from typing import List
 
 
-def crear_lista() -> list[int]:
+def crear_lista() -> List[int]:
     """Crea una lista de 10 valores aleatorios entre 1 y 10.
-    
+
+    Pre: No recibe nada.
+
     Post: Devuelve una lista de 10 enteros aleatorios, donde cada número está
           en el rango [1, 10].
     
@@ -19,7 +22,7 @@ def crear_lista() -> list[int]:
     return [rn.randint(1,10) for _ in range(10)]
 
 
-def normalizar_lista(lista: list[int]) -> list[float]:
+def normalizar_lista(lista: List[int]) -> List[float]:
     """Normaliza la lista proporcionada.
 
     Pre: Recibe una lista de enteros. La suma de los elementos debe ser 1.
@@ -33,7 +36,7 @@ def normalizar_lista(lista: list[int]) -> list[float]:
     return list(map(lambda x: x / total,lista))
 
 
-def imprimir_lista(lista: list[int], msj: str) -> None:
+def imprimir_lista(lista: List[int], msj: str) -> None:
     """Imprime los elementos de la lista con un mensaje dado.
 
     Pre: Recibe una lista de números flotantes y un mensaje "msj".
@@ -44,9 +47,11 @@ def imprimir_lista(lista: list[int], msj: str) -> None:
     """
     print(msj)
     print(" ".join(f"{e:.2f}" for e in lista))
+    return None
 
 
 def main() -> None:
+    """Función principal del programa."""
     lista = crear_lista()
     lista_norm = normalizar_lista(lista)
     imprimir_lista(lista, f"{"-"*13}lista{"-"*13}")
@@ -56,6 +61,7 @@ def main() -> None:
           "El total de la lista normalizada es de:",
           sum(list(lista_norm)),
     )
+    return None
 
 
 if __name__ == '__main__':

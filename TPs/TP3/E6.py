@@ -23,6 +23,8 @@ ingresa por teclado. Mostrar todas las que correspondan.
 por apellido.
 """
 
+from typing import Dict, Set, Tuple
+
 PISOS = 10
 HABITACIONES_POR_PISO = 6
 
@@ -42,8 +44,10 @@ meses = {
 }
 
 
-def pedir_dni(huespedes: dict) -> int:
+def pedir_dni(huespedes: Dict) -> int:
     """Solicita el DNI del huésped y lo valida.
+
+    Pre: No recibe nada.
 
     Post: Retorna el DNI como un entero. Si se ingresa -1, finaliza la solicitud.
 
@@ -97,7 +101,7 @@ def pedir_num(msj: str) -> int:
             print("Debe ingresar un numero.")
 
 
-def registrar_huespedes(huespedes: dict, habitaciones_ocupadas: set) -> None:
+def registrar_huespedes(huespedes: Dict, habitaciones_ocupadas: Set) -> None:
     """Registra el ingreso de huespedes al hotel.
 
     Pre: huespedes es un diccionario donde se almacenan los datos de los
@@ -139,6 +143,7 @@ def registrar_huespedes(huespedes: dict, habitaciones_ocupadas: set) -> None:
         }
         habitaciones_ocupadas.add((piso, habitacion))
         print(f"Huesped registrado en Piso {piso + 1}, Habitación {habitacion + 1}.")
+    return None
 
 
 def es_bisiesto(anio: int) -> bool:
@@ -154,6 +159,14 @@ def es_bisiesto(anio: int) -> bool:
 
 
 def validar_fecha(fecha: str) -> bool:
+    """Valida si la fecha dada es correcta según el formato DDMMAAAA.
+
+    Pre: fecha debe ser un string en formato DDMMAAAA.
+
+    Post: Retorna True si la fecha es válida, y False en caso contrario,
+          considerando el número de días de cada mes y los años bisiestos.
+
+    """
     dia = int(fecha[:2])
     mes = int(fecha[2:4])
     anio = int(fecha[4:])
@@ -182,7 +195,7 @@ def validar_orden_fechas(fecha_ingreso: str, fecha_egreso: str) -> bool:
     return False
 
 
-def asignar_habitacion(habitaciones_ocupadas: set) -> tuple[int, int]:
+def asignar_habitacion(habitaciones_ocupadas: Set) -> Tuple[int, int]:
     """Asigna un piso y habitación disponibles al huesped.
 
     Pre: habitaciones_ocupadas es un conjunto que contiene las habitaciones
@@ -198,7 +211,7 @@ def asignar_habitacion(habitaciones_ocupadas: set) -> tuple[int, int]:
     return None, None
 
 
-def mostrar_piso_mayor_ocupacion(huespedes: dict) -> None:
+def mostrar_piso_mayor_ocupacion(huespedes: Dict) -> None:
     """Muestra el piso con mayor cantidad de habitaciones ocupadas.
 
     Pre: huespedes es un diccionario que contiene los datos de los huespedes.
@@ -211,9 +224,10 @@ def mostrar_piso_mayor_ocupacion(huespedes: dict) -> None:
         ocupacion[huesped["piso"]] += 1
     piso_maximo = ocupacion.index(max(ocupacion))
     print(f"Piso con mayor cantidad de habitaciones ocupadas: {piso_maximo + 1}")
+    return None
 
 
-def contar_habitaciones_vacias(huespedes: dict) -> int:
+def contar_habitaciones_vacias(huespedes: Dict) -> int:
     """Retorna cuántas habitaciones vacías hay en todo el hotel.
 
     Pre: huespedes es un diccionario que contiene los datos de los huespedes.
@@ -224,7 +238,7 @@ def contar_habitaciones_vacias(huespedes: dict) -> int:
     return (PISOS * HABITACIONES_POR_PISO) - (len(huespedes))
 
 
-def mostrar_piso_mayor_personas(huespedes: dict) -> None:
+def mostrar_piso_mayor_personas(huespedes: Dict) -> None:
     """Muestra el piso con mayor cantidad de personas.
 
     Pre: huespedes es un diccionario que contiene los datos de los huespedes.
@@ -237,9 +251,10 @@ def mostrar_piso_mayor_personas(huespedes: dict) -> None:
         personas_por_piso[huesped["piso"]] += huesped["ocupantes"]
     piso_maximo = personas_por_piso.index(max(personas_por_piso))
     print(f"Piso con mayor cantidad de personas: {piso_maximo + 1}")
+    return None
 
 
-def mostrar_proxima_habitacion_desocuparse(huespedes: dict, fecha_actual: int) -> None:
+def mostrar_proxima_habitacion_desocuparse(huespedes: Dict, fecha_actual: int) -> None:
     """Muestra cuál será la próxima habitación en desocuparse.
 
     Pre: huespedes es un diccionario que contiene los datos de los huespedes.
@@ -258,9 +273,10 @@ def mostrar_proxima_habitacion_desocuparse(huespedes: dict, fecha_actual: int) -
         print("Habitaciones que se desocuparán en la fecha actual:")
         for piso, habitacion in proxima_habitacion:
             print(f"Piso {piso}, Habitación {habitacion}")
+    return None
 
 
-def mostrar_huespedes(huespedes: dict) -> None:
+def mostrar_huespedes(huespedes: Dict) -> None:
     """Muestra un listado de todos los huespedes registrados, ordenado por
     apellido.
 
@@ -283,9 +299,11 @@ def mostrar_huespedes(huespedes: dict) -> None:
             f"Piso: {huesped['piso'] + 1}\n",
             f"Habitación: {huesped['habitacion'] + 1}\n",
         )
+    return None
 
 
 def main() -> None:
+    """Función principal del programa."""
     huespedes = {}
     registrar_huespedes(huespedes, set())
     mostrar_piso_mayor_ocupacion(huespedes)
@@ -295,6 +313,7 @@ def main() -> None:
     fecha_actual = pedir_fecha("Ingrese la fecha actual (DDMMAAAA): ")
     mostrar_proxima_habitacion_desocuparse(huespedes, fecha_actual)
     mostrar_huespedes(huespedes)
+    return None
 
 
 if __name__ == "__main__":

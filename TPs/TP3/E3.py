@@ -5,9 +5,11 @@ repita. Imprimir la matriz por pantalla.
 """
 
 import random as rn
+from typing import List
+from tabulate import tabulate
 
 
-def generar_matriz(n: int) -> list[list[int]]:
+def generar_matriz(n: int) -> List[List[int]]:
     """Genera una matriz de N x N con números enteros únicos aleatorios en el
     intervalo [0, N^2).
 
@@ -24,7 +26,7 @@ def generar_matriz(n: int) -> list[list[int]]:
     return matriz
 
 
-def imprimir_matriz(matriz: list[list[int]]) -> None:
+def imprimir_matriz(matriz: List[List[int]]) -> None:
     """Imprime la matriz en formato legible.
 
     Pre: matriz es una lista de listas que representa una matriz.
@@ -32,12 +34,12 @@ def imprimir_matriz(matriz: list[list[int]]) -> None:
     Post: Imprime la matriz en la consola.
 
     """
-    for fila in matriz:
-        print(" ".join(map(str, fila)))
-    print()
+    print(tabulate(matriz, tablefmt="grid"))
+    return None
 
 
 def main() -> None:
+    """Función principal del programa."""
     n = int(input("Ingrese el tamaño de la matriz (N): "))
     matriz = generar_matriz(n)
     print("Matriz generada:")
