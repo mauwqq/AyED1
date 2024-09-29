@@ -9,6 +9,26 @@ from typing import List
 from tabulate import tabulate
 
 
+def pedir_numero(msj: str) -> int:
+    """Solicita al usuario un número entero positivo y lo devuelve.
+
+    Pre: Recibe un string, el mensaje que va a mostrar el input para
+         recibir el número.
+
+    Post: Retorna el valor ingresado si es un número entero positivo.
+
+    """
+    while True:
+        try:
+            n = int(input(msj))
+            if n > 0:
+                break
+            raise ValueError()
+        except ValueError:
+            print("Debe ingresar un número entero positivo.")
+    return n
+
+
 def generar_matriz(n: int) -> List[List[int]]:
     """Genera una matriz de N x N con números enteros únicos aleatorios en el
     intervalo [0, N^2).
@@ -40,7 +60,7 @@ def imprimir_matriz(matriz: List[List[int]]) -> None:
 
 def main() -> None:
     """Función principal del programa."""
-    n = int(input("Ingrese el tamaño de la matriz (N): "))
+    n = pedir_numero("Ingrese el tamaño de la matriz (N): ")
     matriz = generar_matriz(n)
     print("Matriz generada:")
     imprimir_matriz(matriz)

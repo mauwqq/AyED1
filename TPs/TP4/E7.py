@@ -20,34 +20,10 @@ def pedir_string() -> str:
     return input("Ingrese el texto: ")
 
 
-def pedir_pos_inicial() -> int:
-    """Solicita al usuario una posición inicial para extraer una subcadena.
-
-    Pre: No recibe nada.
-
-    Post: Retorna un número entero positivo que representa la posición inicial.
-          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
-
-    """
-    while True:
-        try:
-            n = int(
-                input(
-                    "Ingrese la posicion inicial desde donde se extraera la subcadena: "
-                )
-            )
-            if n > 0:
-                break
-            print("El número tiene que ser positivo.")
-        except ValueError:
-            print("Debe ingresar un número.")
-    return n
-
-
-def pedir_cant_caracteres() -> int:
+def pedir_numero(msj: str) -> int:
     """Solicita al usuario la cantidad de caracteres que se desean extraer.
 
-    Pre: No recibe nada.
+    Pre: Recibe una cadena de caracteres de tipo string.
 
     Post: Retorna un número entero positivo que representa la cantidad de caracteres.
           Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
@@ -55,12 +31,12 @@ def pedir_cant_caracteres() -> int:
     """
     while True:
         try:
-            n = int(input("Ingrese la cantidad de caracteres que se extraeran: "))
+            n = int(input(msj))
             if n > 0:
                 break
-            print("El número tiene que ser positivo.")
+            raise ValueError("Debe ingresar un número entero positivo.")
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 
@@ -100,8 +76,12 @@ def eliminar_sin_slicing(cadena: str, pos_inicial: int, cant_caracteres: int) ->
 def main() -> None:
     """Función principal del programa."""
     cadena = pedir_string()
-    pos_inicial = pedir_pos_inicial()
-    cant_caracteres = pedir_cant_caracteres()
+    pos_inicial = pedir_numero(
+        "Ingrese la posicion inicial desde donde se extraera la subcadena: "
+    )
+    cant_caracteres = pedir_numero(
+        "Ingrese la cantidad de caracteres que se extraeran: "
+    )
     print(f"Con slicing: {eliminar_slicing(cadena, pos_inicial, cant_caracteres)}")
     print(f"Sin slicing: {eliminar_sin_slicing(cadena, pos_inicial, cant_caracteres)}")
     return None

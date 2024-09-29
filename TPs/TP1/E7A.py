@@ -62,9 +62,9 @@ def pedir_fecha() -> list[int]:
                                 print("Día inválido, reintentar.")
                                 continue
                     break
-                print("El número ingresado debe ser positivo.")
+                raise ValueError()
             except ValueError:
-                print("Debe ingresar un número, reintentar.")
+                print("Debe ingresar un número positivo, reintentar.")
     return fecha
 
 
@@ -107,23 +107,24 @@ def comprobar_dia(dia: int, mes: int) -> bool:
     return dia <= meses.get(mes)
 
 
-def pedir_cuanto_adelantar() -> int:
-    """Solicita al usuario un número entero positivo y lo devuelve.
+def pedir_cuanto_adelantar(msj: str) -> int:
+    """Solicita al usuario la cantidad de caracteres que se desean extraer.
 
-    Pre: No recibe nada.
+    Pre: Recibe una cadena de caracteres de tipo string.
 
-    Post: Devuelve un número entero positivo.
+    Post: Retorna un número entero positivo que representa la cantidad de caracteres.
+          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
 
     """
     while True:
         try:
-            num = int(input("Cuantos días quiere sumar a la fecha: "))
-            if num > 0:
+            n = int(input(msj))
+            if n > 0:
                 break
-            print("El número ingresado debe ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número, reintentar.")
-    return num
+            print("Debe ingresar un número entero positivo.")
+    return n
 
 
 def diasiguiente(dia: int, mes: int, anio: int) -> Tuple[int]:
@@ -168,7 +169,7 @@ def main() -> None:
     """Función principal del programa."""
     anio, mes, dia = pedir_fecha()
     print(f"La fecha es: {dia}/{mes}/{anio}")
-    adelanto = pedir_cuanto_adelantar()
+    adelanto = pedir_cuanto_adelantar("Cuantos dias desea adelantar: ")
     dia, mes, anio = calcular_fecha(adelanto, dia, mes, anio)
     print(f"{adelanto} días después: {dia}/{mes}/{anio}")
     return None

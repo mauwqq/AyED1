@@ -13,30 +13,23 @@ import random as rn
 from typing import List
 
 
-def pedir_numero() -> int:
-    """Solicita al usuario un número entero positivo y lo devuelve.
+def pedir_numero(msj: str) -> int:
+    """Solicita al usuario la cantidad de caracteres que se desean extraer.
 
-    Pre: Recibe un string, el mensaje que va a mostrar el input para
-         recibir el número.
+    Pre: Recibe una cadena de caracteres de tipo string.
 
-    Post: Retorna el valor ingresado si es un número entero positivo.
+    Post: Retorna un número entero positivo que representa la cantidad de caracteres.
+          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
 
     """
-    print("Ingrese un número entre el 1 y el 100")
     while True:
         try:
-            n = int(
-                input(
-                    "Inserte la cantidad de números aleatorios a generar: ",
-                )
-            )
-            if n > 0 and n <= 100:
+            n = int(input(msj))
+            if n > 0:
                 break
-            print(
-                "El número debe estar entre el 1 y el 100 inclusive.",
-            )
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número entero.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 
@@ -78,13 +71,13 @@ def eliminar_duplicados(numeros: List[int]) -> List[int]:
 
 def main() -> None:
     """Función principal del programa."""
-    cantidad = pedir_numero()
+    cantidad = pedir_numero("Ingrese la cantidad de numeros aleatorios a generar: ")
     numeros = generar_lista(cantidad)
     if comprobar_duplicado(numeros):
         lista_sin_duplicados = eliminar_duplicados(numeros)
     else:
         lista_sin_duplicados = numeros.copy()
-    print("Lista original:"," ".join(str(n) for n in numeros))
+    print("Lista original:", " ".join(str(n) for n in numeros))
     print("Lista sin duplicados:", " ".join(str(n) for n in lista_sin_duplicados))
     return None
 

@@ -27,7 +27,7 @@ def numeros_input() -> List[int]:
             if numero > 0:
                 numeros.append(numero)
             else:
-                print("El número tiene que ser positivo.")
+                raise ValueError()
         except ValueError:
             print("Valor inválido, reintentar.")
     return numeros

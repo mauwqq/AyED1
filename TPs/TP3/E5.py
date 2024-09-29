@@ -26,6 +26,30 @@ from typing import List, Tuple
 from tabulate import tabulate
 
 
+def pedir_numero(msj: str) -> int:
+    """Solicita al usuario un número entero positivo y lo devuelve.
+
+    Pre: Recibe un string, el mensaje que va a mostrar el input para
+         recibir el número.
+
+    Post: Retorna el valor ingresado si es un número entero positivo.
+
+    """
+    while True:
+        try:
+            n = int(input(msj))
+            if n >= 0:
+                break
+            raise ValueError()
+        except ValueError:
+            print("Debe ingresar un número entero positivo.")
+    return n
+
+
+def crear_sala(filas: int, columnas: int) -> List[List[int]]:
+    return [[0 for _ in range(columnas)] for _ in range(filas)]
+
+
 def mostrar_butacas(sala: list[list[int]]) -> None:
     """Muestra el estado de las butacas del cine.
 
@@ -118,26 +142,41 @@ def butacas_contiguas(sala: List[List[int]]) -> Tuple[int, int]:
 
 def main() -> None:
     """Función principal del programa."""
-    filas = int(input("Ingrese el número de filas en la sala: "))
-    columnas = int(input("Ingrese el número de butacas por fila: "))
-    sala = [[0 for _ in range(columnas)] for _ in range(filas)]
-    porcentaje_reservas = int(
-        input("Ingrese el porcentaje de butacas reservadas al inicio: ")
+    filas = pedir_numero("Ingrese el número de filas en la sala: ")
+    columnas = pedir_numero("Ingrese el número de butacas por fila: ")
+    sala = crear_sala(filas, columnas)
+    porcentaje_reservas = pedir_numero(
+        "Ingrese el porcentaje de butacas reservadas al inicio: "
     )
     cargar_sala(sala, porcentaje_reservas)
     mostrar_butacas(sala)
     while True:
-        fila_reserva = (
-            int(input("Ingrese el número de fila para reservar (0 para salir): ")) - 1
-        )
-        if fila_reserva < 0:
-            break
-        columna_reserva = int(input("Ingrese el número de butaca para reservar: ")) - 1
-        if reservar(sala, fila_reserva, columna_reserva):
-            print("Reserva exitosa.")
-        else:
-            print("La butaca ya está reservada.")
-        mostrar_butacas(sala)
+        try:
+            fila_reserva = (
+                pedir_numero("Ingrese el número de fila para reservar (0 para salir): ")
+                - 1
+            )
+            if fila_reserva == -1:
+                break
+            if fila_reserva >= filas or fila_reserva < 0:
+                raise ValueError("La fila ingresada no existe. Reintentar.")
+            while True:
+                try:
+                    columna_reserva = (
+                        pedir_numero("Ingrese el número de butaca para reservar: ") - 1
+                    )
+                    if columna_reserva >= columnas or columna_reserva < 0:
+                        raise ValueError("La columna ingresada no existe. Reintentar.")
+                    if reservar(sala, fila_reserva, columna_reserva):
+                        print("Reserva exitosa.")
+                    else:
+                        print("La butaca ya está reservada.")
+                    mostrar_butacas(sala)
+                    break
+                except ValueError as e:
+                    print(e)
+        except ValueError as e:
+            print(e)
     total_libres = butacas_libres(sala)
     print(f"Total de butacas libres: {total_libres}")
     fila_contigua, columna_contigua = butacas_contiguas(sala)

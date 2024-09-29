@@ -57,9 +57,9 @@ def recibir_numeros() -> List[int]:
                 if es_positivo(num):
                     fecha.append(num)
                     break
-                print("El numero no es positivo. Reintentar.")
+                raise ValueError()
             except ValueError:
-                print("Ingrese un numero valido.")
+                print("Ingrese un numero positivo.")
     return fecha
 
 

@@ -62,9 +62,9 @@ def pedir_fecha(msj: str) -> List[int]:
                                 print("Dia invalido, reintentar.")
                                 continue
                     break
-                print("El numero ingresado debe ser positivo.")
+                raise ValueError()
             except ValueError:
-                print("Debe ingresar un numero, reintentar.")
+                print("Debe ingresar un numero positivo, reintentar.")
     return fecha
 
 

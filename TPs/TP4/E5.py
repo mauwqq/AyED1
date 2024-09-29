@@ -34,9 +34,9 @@ def pedir_numero() -> int:
             n = int(input("Ingrese un numero positivo: "))
             if n > 0:
                 break
-            print("El número tiene que ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 

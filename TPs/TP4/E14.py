@@ -13,6 +13,17 @@ no distinguen mayúsculas ni minúsculas.
 import re
 
 
+def pedir_mail() -> str:
+    """Pide al usuario que ingrese un mail y lo devuelve.
+    
+    Pre: No recibe nada.
+    
+    Post: Devuelve un string.
+    
+    """
+    return input("Ingrese una dirección de correo electrónico (o presione Enter para finalizar): ")
+
+
 def es_email_valido(email: str) -> bool:
     """Verifica si una dirección de correo electrónico es válida.
     La condicion busca una cadena de caracteres mayúsculas o minúsculas y numeros
@@ -32,19 +43,19 @@ def main() -> None:
     """Función principal del programa."""
     correos = []
     while True:
-        email = input(
-            "Ingrese una dirección de correo electrónico (o presione Enter para finalizar): "
-        )
-        if email == "":
+        email = pedir_mail()
+        if not email:
             break
         if es_email_valido(email):
             correos.append(email.lower())
         else:
             print("Dirección de correo inválida. Intente nuevamente.")
-    dominios = sorted(set(email.split("@")[1] for email in correos))
-    print("\nDominios válidos (sin repetir):")
-    for dominio in dominios:
-        print(dominio)
+    if not correos:
+        print("No se encontraron correos validos.")
+    else:
+        dominios = sorted(set(email.split("@")[1] for email in correos))
+        print("\nDominios válidos (sin repetir):")
+        print("\n".join("".join(dominio) for dominio in dominios))
     return None
 
 

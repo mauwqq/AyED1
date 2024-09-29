@@ -31,9 +31,9 @@ def pedir_n_socio() -> int:
             n = int(input("Ingrese el número de socio (0 para salir: ): "))
             if ((n >= 0) and (len(str(n)) == 5)) or (n == 0):
                 return n
-            print("Debe ingresar un número entero positivo de cinco dígitos.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo de cinco dígitos.")
 
 
 def add_socios() -> None:

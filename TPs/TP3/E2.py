@@ -5,8 +5,8 @@ programa que las invoque e imprima por pantalla. El tamaño de las matrices debe
 establecerse como N x N, donde N se ingresa a través del teclado.
 """
 
-from tabulate import tabulate
 from typing import List
+from tabulate import tabulate
 
 
 def pedir_numero() -> int:
@@ -22,9 +22,9 @@ def pedir_numero() -> int:
             n = int(input("Ingrese el tamaño de la matriz: "))
             if n > 0:
                 break
-            print("El número tiene que ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 

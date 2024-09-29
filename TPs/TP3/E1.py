@@ -26,12 +26,30 @@ from typing import List
 from tabulate import tabulate
 
 
+def pedir_num(msj: str) -> int:
+    """Solicita un número entero positivo al usuario.
+
+    Pre: msj es un string.
+
+    Post: Retorna un número entero positivo ingresado por el usuario.
+
+    """
+    while True:
+        try:
+            n = int(input(msj))
+            if n > 0:
+                return n
+            raise ValueError()
+        except ValueError:
+            print("Debe ingresar un numero entero positivo.")
+
+
 def cargar_matriz(n: int) -> List[List[int]]:
-    """Carga números enteros en una matriz de N x N desde el teclado.
+    """Carga números enteros en una matriz de n x n desde el teclado.
 
     Pre: n es un número entero positivo que representa el tamaño de la matriz.
 
-    Post: Retorna una matriz de tamaño N x N llena de números enteros ingresados
+    Post: Retorna una matriz de tamaño n x n llena de números enteros ingresados
           por el usuario.
 
     """
@@ -46,20 +64,21 @@ def cargar_matriz(n: int) -> List[List[int]]:
             )
         )
         if len(fila) != n:
-            print("Error: Debe ingresar exactamente N elementos.")
+            print(f"Debe ingresar exactamente {n} elementos.")
             return cargar_matriz(n)
         matriz.append(fila)
     return matriz
 
 
-def imprimir_matriz(matriz: List[List[int]]) -> None:
-    """Imprime la matriz que se le de con tabulate.
+def imprimir_matriz(matriz: List[List[int]], msj: str) -> None:
+    """Imprime la matriz proporcionada en formato tabular.
 
-    Pre: matriz es una lista de listas con valores enteros, es decir, una matriz.
+    Pre: matriz es una lista de listas con valores enteros, representando una matriz.
 
-    Post: Imprime la matriz con tabulate y retorna None.
+    Post: Imprime la matriz con tabulate y no retorna valor.
 
     """
+    print(msj)
     print(tabulate(matriz, tablefmt="grid"))
     return None
 
@@ -77,31 +96,39 @@ def ordenar_filas(matriz: List[List[int]]) -> None:
     return None
 
 
-def intercambiar_filas(matriz: List[List[int]], f1: int, f2: int) -> None:
+def intercambiar_filas(matriz: List[List[int]], f1: int, f2: int) -> bool:
     """Intercambia dos filas de la matriz.
 
     Pre: matriz es una lista de listas que representa una matriz.
          f1 y f2 son índices válidos de filas.
 
-    Post: Las filas f1 y f2 han sido intercambiadas en la matriz.
+    Post: Retorna True si las filas f1 y f2 han sido intercambiadas, 
+          o False si los índices son inválidos.
 
     """
-    matriz[f1], matriz[f2] = matriz[f2], matriz[f1]
-    return None
+    try:
+        matriz[f1], matriz[f2] = matriz[f2], matriz[f1]
+        return True
+    except IndexError:
+        return False
 
 
-def intercambiar_columnas(matriz: List[List[int]], c1: int, c2: int) -> None:
+def intercambiar_columnas(matriz: List[List[int]], c1: int, c2: int) -> bool:
     """Intercambia dos columnas de la matriz.
 
     Pre: matriz es una lista de listas que representa una matriz.
          c1 y c2 son índices válidos de columnas.
 
-    Post: Las columnas c1 y c2 han sido intercambiadas en la matriz.
+    Post: Retorna True si las columnas c1 y c2 han sido intercambiadas,
+          o False si los índices son inválidos.
 
     """
-    for fila in matriz:
-        fila[c1], fila[c2] = fila[c2], fila[c1]
-    return None
+    try:
+        for fila in matriz:
+            fila[c1], fila[c2] = fila[c2], fila[c1]
+            return True
+    except IndexError:
+        return False
 
 
 def trasponer_matriz(matriz: List[List[int]]) -> None:
@@ -125,10 +152,14 @@ def promedio_fila(matriz: List[List[int]], fila: int) -> float:
     Pre: matriz es una lista de listas que representa una matriz.
          fila es un índice válido de la fila.
 
-    Post: Retorna el promedio de los elementos de la fila especificada.
+    Post: Retorna el promedio de los elementos de la fila especificada,
+          o -1.0 si la fila es inválida.
 
     """
-    return sum(matriz[fila]) / len(matriz[fila])
+    try:
+        return sum(matriz[fila]) / len(matriz[fila])
+    except IndexError:
+        return -1.0
 
 
 def porcentaje_impares_columna(matriz: List[List[int]], columna: int) -> float:
@@ -137,12 +168,16 @@ def porcentaje_impares_columna(matriz: List[List[int]], columna: int) -> float:
     Pre: matriz es una lista de listas que representa una matriz.
          columna es un índice válido de la columna.
 
-    Post: Retorna el porcentaje de elementos impares en la columna especificada.
+    Post: Retorna el porcentaje de elementos impares en la columna especificada,
+          o -1.0 si la columna es inválida.
 
     """
-    total_impares = sum(1 for fila in matriz if fila[columna] % 2 != 0)
-    total_elementos = len(matriz)
-    return (total_impares / total_elementos) * 100
+    try:
+        total_impares = sum(1 for fila in matriz if fila[columna] % 2 != 0)
+        total_elementos = len(matriz)
+        return (total_impares / total_elementos) * 100
+    except IndexError:
+        return -1.0
 
 
 def es_simetrica_diagonal_principal(matriz: List[List[int]]) -> bool:
@@ -151,7 +186,7 @@ def es_simetrica_diagonal_principal(matriz: List[List[int]]) -> bool:
     Pre: matriz es una lista de listas que representa una matriz cuadrada.
 
     Post: Retorna True si la matriz es simétrica respecto a su diagonal principal,
-          de lo contrario retorna False.
+          o False en caso contrario.
 
     """
     n = len(matriz)
@@ -168,15 +203,11 @@ def es_simetrica_diagonal_secundaria(matriz: List[List[int]]) -> bool:
     Pre: matriz es una lista de listas que representa una matriz cuadrada.
 
     Post: Retorna True si la matriz es simétrica respecto a su diagonal secundaria,
-          de lo contrario retorna False.
+          o False en caso contrario.
 
     """
     n = len(matriz)
-    for i in range(n):
-        for j in range(n):
-            if matriz[i][j] != matriz[n - j - 1][n - i - 1]:
-                return False
-    return True
+    return all(matriz[i][j] == matriz[n - j - 1][n - i - 1] for i in range(n) for j in range(n))
 
 
 def columnas_palindromas(matriz: List[List[int]]) -> List[int]:
@@ -198,50 +229,61 @@ def columnas_palindromas(matriz: List[List[int]]) -> List[int]:
 
 def main() -> None:
     """Función principal del programa."""
-    n = int(input("Ingrese el tamaño de la matriz (N): "))
+    n = pedir_num("Ingrese el tamaño de la matriz (n x n): ")
     matriz = cargar_matriz(n)
-    print("Matriz cargada:")
-    imprimir_matriz(matriz)
+    imprimir_matriz(matriz, "Matriz cargada:")
     ordenar_filas(matriz)
-    print("Matriz después de ordenar filas:")
-    imprimir_matriz(matriz)
-    f1, f2 = map(
-        int,
-        input("Ingrese dos números de fila para intercambiar: ").split(),
-    )
-    intercambiar_filas(matriz, f1, f2)
-    print("Matriz después de intercambiar filas:")
-    imprimir_matriz(matriz)
-    c1, c2 = map(
-        int,
-        input("Ingrese dos números de columna para intercambiar: ").split(),
-    )
-    intercambiar_columnas(matriz, c1, c2)
-    print("Matriz después de intercambiar columnas:")
-    imprimir_matriz(matriz)
+    imprimir_matriz(matriz, "Matriz después de ordenar filas:")
+    while True:
+        f1, f2 = pedir_num(
+            "Ingrese el primer numero de fila para intercambiar: "
+            ), pedir_num(
+                "Ingrese el segundo numero de fila para intercambiar: "
+                )
+        if not intercambiar_filas(matriz, f1-1, f2-1):
+            print("Indices de filas invalido, reintentar.")
+            continue
+        imprimir_matriz(matriz, "Matriz después de intercambiar filas:")
+        break
+    while True:
+        c1, c2 = pedir_num(
+            "Ingrese el primer numero de columna para intercambiar: "
+        ), pedir_num(
+            "Ingrese el segundo numero de columna para intercambiar: "
+            )
+        if not intercambiar_columnas(matriz, c1-1, c2-1):
+            print("Columna invalida, reintentar.")
+            continue
+        imprimir_matriz(matriz, "Matriz después de intercambiar columnas:")
+        break
     trasponer_matriz(matriz)
-    print("Matriz traspuesta:")
-    imprimir_matriz(matriz)
-    fila_promedio = int(input("Ingrese el número de fila para calcular su promedio: "))
-    promedio = promedio_fila(matriz, fila_promedio)
-    print(f"El promedio de la fila {fila_promedio} es: {promedio}")
-    columna_impares = int(
-        input("Ingrese el número de columna para calcular el porcentaje de impares: ")
-    )
-    porcentaje = porcentaje_impares_columna(matriz, columna_impares)
+    imprimir_matriz(matriz, "Matriz traspuesta:")
+    while True:
+        fila_promedio = pedir_num("Ingrese el número de fila para calcular su promedio: ")
+        promedio = promedio_fila(matriz, fila_promedio-1)
+        if promedio == -1.0:
+            print("La fila ingresada es invalida.")
+            continue
+        print(f"El promedio de la fila {fila_promedio} es: {promedio:.2f}%" if promedio != -1.0 else None)
+        break
+    while True:
+        columna_impares = pedir_num("Ingrese el número de columna para calcular el porcentaje de impares: ") -1
+        porcentaje = porcentaje_impares_columna(matriz, columna_impares)
+        if porcentaje == -1.0:
+            print("La columna ingresada es invalida.")
+            continue
+        print(
+            f"El porcentaje de elementos impares en la columna {columna_impares+1} es: {porcentaje:.2f}%" if porcentaje != -1.0 else "La columna ingresada es invalida."
+        )
+        break
     print(
-        f"El porcentaje de elementos impares en la columna {columna_impares} es: {porcentaje:.2f}%"
+        f"La matriz es simétrica respecto a su diagonal principal: {"Si" if es_simetrica_diagonal_principal(matriz) else "No"}"
     )
-    simetrica_principal = es_simetrica_diagonal_principal(matriz)
     print(
-        f"La matriz es simétrica respecto a su diagonal principal: {simetrica_principal}"
+        f"La matriz es simétrica respecto a su diagonal secundaria: {"Si" if es_simetrica_diagonal_secundaria(matriz) else "No"}"
     )
-    simetrica_secundaria = es_simetrica_diagonal_secundaria(matriz)
-    print(
-        f"La matriz es simétrica respecto a su diagonal secundaria: {simetrica_secundaria}"
-    )
-    columnas_pal = columnas_palindromas(matriz)
-    print(f"Las columnas palíndromas son: {columnas_pal}")
+    palindromas = columnas_palindromas(matriz)
+    print(f"Las columnas palíndromas son: {" ".join(map(str, palindromas)) if palindromas else "No hubo columnas palindromas."}")
     return None
 
 

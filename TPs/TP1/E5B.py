@@ -7,23 +7,24 @@ obtiene sumando 1+2+3+4.
 """
 
 
-def pedir_num() -> int:
-    """Solicita un número entero positivo al usuario y lo retorna.
+def pedir_numero(msj: str) -> int:
+    """Solicita al usuario la cantidad de caracteres que se desean extraer.
 
-    Pre: No recibe nada.
+    Pre: Recibe una cadena de caracteres de tipo string.
 
-    Post: Si el numero ingresado es un entero positivo devuelve el numero, de no
-          ser asi, se repite el bucle hasta que se cumpla la condicion.
+    Post: Retorna un número entero positivo que representa la cantidad de caracteres.
+          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
 
     """
     while True:
         try:
-            n = int(input("Ingrese el número a comprobar: "))
+            n = int(input(msj))
             if n > 0:
-                return n
-            print("El número debe ser positivo.")
+                break
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo.")
+    return n
 
 
 def es_triangular(n: int) -> bool:
@@ -46,7 +47,7 @@ def es_triangular(n: int) -> bool:
 
 def main() -> None:
     """Función principal del programa."""
-    n = pedir_num()
+    n = pedir_numero("Ingrese el numero a comprobar: ")
     if es_triangular(n):
         print("El número ingresado es triangular.")
     else:

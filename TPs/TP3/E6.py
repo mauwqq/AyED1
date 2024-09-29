@@ -23,6 +23,8 @@ ingresa por teclado. Mostrar todas las que correspondan.
 por apellido.
 """
 
+import re
+import os
 from typing import Dict, Set, Tuple
 
 PISOS = 10
@@ -44,6 +46,11 @@ meses = {
 }
 
 
+def clear() -> None:
+    """Limpia la consola (pantalla) del terminal."""
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 def pedir_dni(huespedes: Dict) -> int:
     """Solicita el DNI del huésped y lo valida.
 
@@ -59,9 +66,31 @@ def pedir_dni(huespedes: Dict) -> int:
                 return n
             if n in huespedes:
                 print("El DNI ya está registrado. Intente nuevamente.")
-            print("Ingrese un DNI valido (8 digitos)")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un numero.")
+            print("Ingrese un DNI valido (8 digitos sin puntos)")
+
+
+def pedir_apellido_nombre() -> Tuple[str, str]:
+    """Pide el nombre y apellido al usuario y lo devuelve si cumple las condiciones.
+
+    Pre: No recibe nada.
+
+    Post: Devuelve una tupla con el nombre y apellido, dos strings.
+
+    """
+    while True:
+        try:
+            nombre = input("Ingrese el nombre del huesped: ")
+            if not re.match(r"^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$", nombre):
+                raise ValueError("El nombre solo puede contener letras.")
+            apellido = input("Ingrese el apellido del huesped: ")
+            if not re.match(r"^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$", apellido):
+                raise ValueError("El apellido solo puede contener letras.")
+            break
+        except ValueError as e:
+            print(e)
+    return (nombre, apellido)
 
 
 def pedir_fecha(msj: str) -> int:
@@ -77,7 +106,7 @@ def pedir_fecha(msj: str) -> int:
             fecha = int(input(msj))
             if (fecha > 0) and validar_fecha(str(fecha)):
                 return fecha
-            print("Ingrese una fecha valida")
+            raise ValueError()
         except ValueError:
             print("La fecha debe ser ingresada en numeros (DDMMAAAA)")
 
@@ -96,9 +125,9 @@ def pedir_num(msj: str) -> int:
             n = int(input(msj))
             if n > 0:
                 return n
-            print("El numero debe ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un numero.")
+            print("Debe ingresar un numero entero positivo.")
 
 
 def registrar_huespedes(huespedes: Dict, habitaciones_ocupadas: Set) -> None:
@@ -115,11 +144,12 @@ def registrar_huespedes(huespedes: Dict, habitaciones_ocupadas: Set) -> None:
     while True:
         dni = pedir_dni(huespedes)
         if dni == -1:
+            clear()
             break
-        elif dni in huespedes:
+        if dni in huespedes:
             print("El DNI ya está registrado. Intente nuevamente.")
             continue
-        nombre = input("Ingrese el apellido y nombre del huesped: ")
+        nombre, apellido = pedir_apellido_nombre()
         while True:
             fecha_ingreso = pedir_fecha("Ingrese la fecha de ingreso (DDMMAAAA): ")
             fecha_egreso = pedir_fecha("Ingrese la fecha de egreso (DDMMAAAA): ")
@@ -135,6 +165,7 @@ def registrar_huespedes(huespedes: Dict, habitaciones_ocupadas: Set) -> None:
             break
         huespedes[dni] = {
             "nombre": nombre,
+            "apellido": apellido,
             "fecha_ingreso": fecha_ingreso,
             "fecha_egreso": fecha_egreso,
             "ocupantes": ocupantes,
@@ -293,6 +324,7 @@ def mostrar_huespedes(huespedes: Dict) -> None:
         print(
             f"DNI: {dni}\n",
             f"Nombre: {huesped['nombre']}\n",
+            f"Apellido: {huesped['apellido']}\n"
             f"Fecha Ingreso: {huesped['fecha_ingreso']}\n",
             f"Fecha Egreso: {huesped['fecha_egreso']}\n",
             f"Ocupantes: {huesped['ocupantes']}\n",
@@ -311,6 +343,7 @@ def main() -> None:
     print(f"Total de habitaciones vacías: {habitaciones_vacias}")
     mostrar_piso_mayor_personas(huespedes)
     fecha_actual = pedir_fecha("Ingrese la fecha actual (DDMMAAAA): ")
+    clear()
     mostrar_proxima_habitacion_desocuparse(huespedes, fecha_actual)
     mostrar_huespedes(huespedes)
     return None

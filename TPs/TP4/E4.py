@@ -37,9 +37,9 @@ def pedir_numero() -> int:
             n = int(input("Ingrese un numero entre 0 y 3999 para convertir: "))
             if n > 0 and n < 4000:
                 break
-            print("El número tiene que ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo entre 0 y 3999.")
     return n
 
 
@@ -62,9 +62,7 @@ def int_a_romano(numero: int) -> str:
 
 def main() -> None:
     """Función principal del programa."""
-    convertir = int(
-        input("Ingrese el número que desea convertir a número romano (maximo 3999): ")
-    )
+    convertir = pedir_numero()
     num_romano = int_a_romano(convertir)
     print(num_romano)
     return None

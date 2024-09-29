@@ -5,6 +5,17 @@ permita verificar su funcionamiento.
 """
 
 
+def pedir_cadena() -> str:
+    """Pide al usuario que inserte una cadena de caracteres.
+
+    Pre: No recibe nada.
+
+    Post: Devuelve la cadena que el usuario ingreso como string.
+
+    """
+    return input("Introduce una cadena de caracteres (0 para salir): ")
+
+
 def es_capicua(cadena: str) -> bool:
     """Determina si la cadena dada es capicúa.
 
@@ -26,8 +37,8 @@ def es_capicua(cadena: str) -> bool:
 def main() -> None:
     """Función principal del programa."""
     while True:
-        cadena = input("Introduce una cadena de caracteres (0 para salir): ")
-        if cadena.isdigit() and not int(cadena):
+        cadena = pedir_cadena()
+        if cadena == "0":
             break
         if es_capicua(cadena):
             print(f"La cadena '{cadena}' es capicúa.")

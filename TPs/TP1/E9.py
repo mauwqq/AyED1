@@ -18,22 +18,23 @@ import random as rn
 from typing import List, Tuple
 
 
-def pedir_numero() -> int:
-    """Solicita al usuario un número entero positivo y lo devuelve.
+def pedir_numero(msj: str) -> int:
+    """Solicita al usuario la cantidad de caracteres que se desean extraer.
 
-    Pre: No recibe nada.
+    Pre: Recibe una cadena de caracteres de tipo string.
 
-    Post: Retorna el valor ingresado si es un número entero positivo.
+    Post: Retorna un número entero positivo que representa la cantidad de caracteres.
+          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
 
     """
     while True:
         try:
-            n = int(input("Ingrese la cantidad de naranjas cosechadas: "))
+            n = int(input(msj))
             if n > 0:
                 break
-            print("Ingrese un número positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresarse un número.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 
@@ -119,7 +120,6 @@ def calc_camiones(peso_cajones: Tuple) -> Tuple[int, float]:
             camiones += 1
         else:
             resto = (porcentaje / 100) * capacidad_camion
-
     return camiones, resto
 
 
@@ -154,7 +154,7 @@ def imprimir_resultado(datos: Tuple) -> None:
 
 def main() -> None:
     """Función principal del programa."""
-    naranjas_cosechadas = pedir_numero()
+    naranjas_cosechadas = pedir_numero("Ingrese la cantidad de naranjas cosechadas: ")
     peso_naranjas = gen_peso_naranjas(naranjas_cosechadas)
     naranjas_jugo = calc_jugo(peso_naranjas)
     cajones, resto_cajones = calc_cajones(peso_naranjas)

@@ -94,21 +94,15 @@ def pedir_numero(msj: str, long: int) -> int:
     while True:
         try:
             n = int(input(msj))
-            match long:
-                case 1:  # Pedir número de urgencia
-                    if validar_urgencia(n):
-                        return n
-                    print("Ingrese una opción válida.")
-                case 2:  # Pedir opcion del menu
-                    if validar_menu(n):
-                        return n
-                    print("Ingrese una opción válida.")
-                case 3:  # pedir número de afiliado
-                    if validar_afiliado(n) or (n == -1):
-                        return n
-                    print("Ingrese un numero válido.")
-        except ValueError:
-            print("Debe ingresar un número.")
+            if long == 1 and validar_urgencia(n):
+                return n
+            if long == 2 and validar_menu(n):
+                return n
+            if long == 3 and (validar_afiliado(n) or n == -1):
+                return n
+            raise ValueError("Ingrese un número válido.")
+        except ValueError as e:
+            print(e)
 
 
 def pedir_paciente() -> None:
@@ -194,16 +188,15 @@ def menu() -> None:
     while True:
         opciones()
         op = pedir_numero("Ingrese una opción: ", 2)
-        match op:
-            case 1:
-                pedir_paciente()
-            case 2:
-                listado_pacientes()
-            case 3:
-                buscar_paciente()
-            case 0:
-                print("Saliendo...")
-                break
+        if op == 1:
+            pedir_paciente()
+        elif op == 2:
+            listado_pacientes()
+        elif op == 3:
+            buscar_paciente()
+        elif op == 0:
+            print("Saliendo...")
+            break
     return None
 
 

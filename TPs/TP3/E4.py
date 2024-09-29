@@ -36,9 +36,9 @@ def pedir_cantidad_fabricas() -> int:
             n = int(input("Ingrese la cantidad de fabricas: "))
             if n > 0:
                 return n
-            print("El numero debe ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un numero.")
+            print("Debe ingresar un numero entero positivo.")
 
 
 def gen_produccion() -> int:

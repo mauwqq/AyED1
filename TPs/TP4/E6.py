@@ -40,9 +40,9 @@ def pedir_pos_inicial() -> int:
             )
             if n > 0:
                 break
-            print("El número tiene que ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 
@@ -61,9 +61,9 @@ def pedir_cant_caracteres() -> int:
             n = int(input("Ingrese la cantidad de caracteres que se extraerán: "))
             if n > 0:
                 break
-            print("El número tiene que ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 

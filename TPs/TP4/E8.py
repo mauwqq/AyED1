@@ -15,12 +15,13 @@ def pedir_string() -> str:
     return input("Ingrese el texto: ")
 
 
-def pedir_num() -> int:
-    """Solicita al usuario un número entero positivo y lo devuelve.
+def pedir_numero() -> int:
+    """Solicita al usuario la cantidad de caracteres que se desean extraer.
 
     Pre: No recibe nada.
 
-    Post: Retorna el valor ingresado si es un número entero positivo.
+    Post: Retorna un número entero positivo que representa la cantidad de caracteres.
+          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
 
     """
     while True:
@@ -28,9 +29,9 @@ def pedir_num() -> int:
             n = int(input("Ingrese cuantos caracteres quiere ver de la cadena: "))
             if n > 0:
                 break
-            print("El número tiene que ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 
@@ -52,7 +53,7 @@ def ultimos_n_caracteres(cadena: str, n: int) -> str:
 def main() -> None:
     """Función principal del programa."""
     cadena = pedir_string()
-    n = pedir_num()
+    n = pedir_numero()
     print(ultimos_n_caracteres(cadena, n))
     return None
 

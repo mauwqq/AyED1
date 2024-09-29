@@ -30,17 +30,15 @@ def pedir() -> int:
 
 
 def validar(valor: str) -> int:
-    """Verifica si valor no es un número, es flotante o es negativo.
+    """Verifica si valor no es un número o es negativo.
 
     Pre: Recibe valor, un string.
 
     Post: Devuelve valor si es un número entero positivo, sino la excepcion.
 
     """
-    if "," in valor or "." in valor:
-        raise ValueError("Debe ingresar un número entero.")
     try:
-        valor = float(valor)
+        valor = int(valor)
     except ValueError as e:
         raise ValueError("Debe ingresar un número.") from e
     if valor <= 0:

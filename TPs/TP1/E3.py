@@ -11,12 +11,12 @@ from typing import Tuple
 
 
 def pedir_numero(msj: str) -> int:
-    """Solicita al usuario un número entero positivo y lo devuelve.
+    """Solicita al usuario la cantidad de caracteres que se desean extraer.
 
-    Pre: Recibe un string, el mensaje que va a mostrar el input para
-         recibir el número.
+    Pre: Recibe una cadena de caracteres de tipo string.
 
-    Post: Retorna el valor ingresado si es un número entero positivo.
+    Post: Retorna un número entero positivo que representa la cantidad de caracteres.
+          Si el usuario ingresa un valor no válido, vuelve a solicitarlo.
 
     """
     while True:
@@ -24,9 +24,9 @@ def pedir_numero(msj: str) -> int:
             n = int(input(msj))
             if n > 0:
                 break
-            print("El número tiene que ser positivo.")
+            raise ValueError()
         except ValueError:
-            print("Debe ingresar un número.")
+            print("Debe ingresar un número entero positivo.")
     return n
 
 
