@@ -88,6 +88,7 @@ def main() -> None:
                 print(f"El numero no pertenece a la lista, intento {contador}.")
             else:
                 print(f"El numero {n} esta en el indice {index} de la lista.")
+    return None
 
 
 if __name__ == "__main__":
