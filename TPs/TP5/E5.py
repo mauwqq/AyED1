@@ -29,12 +29,12 @@ def pedir_num() -> float:
 
 def get_sqrt(n: float) -> float:
     """Calcula la raiz cuadrada de un numero que se le da como parametro.
-    
+
     Pre: Recibe n un flotante.
-    
+
     Post: Devuelve la raiz de n.
           Si no se pudo realizar el calculo devuelve -1.
-    
+
     """
     try:
         return math.sqrt(n)
@@ -46,9 +46,13 @@ def main() -> None:
     """Función principal del programa."""
     n = pedir_num()
     resultado = get_sqrt(n)
-    print(f"La raiz cuadrada de {n} es: {resultado:.2f}" if resultado != -1 else f"La raiz de {n} no puede conseguirse porque es un numero negativo.")
+    print(
+        f"La raiz cuadrada de {n} es: {resultado:.2f}"
+        if resultado != -1
+        else f"La raiz de {n} no puede conseguirse porque es un numero negativo."
+    )
     return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
