@@ -66,6 +66,7 @@ def main() -> None:
         print(f"El mes {n} es {nombre}.")
     else:
         print("No hay ningun mes para ese numero.")
+    return None
 
 
 if __name__ == "__main__":

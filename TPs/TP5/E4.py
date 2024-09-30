@@ -33,6 +33,7 @@ def imprimir_numeros(ult: int = 1) -> None:
                     break
                 case _:
                     print("Opción no válida. Por favor, ingrese 'S' o 'N'.")
+    return None
 
 
 def main() -> None:

@@ -50,6 +50,7 @@ def main() -> None:
             print("Valores invalidos, reintentar.")
             continue
     print(suma(n1, n2))
+    return None
 
 
 if __name__ == "__main__":
