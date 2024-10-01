@@ -35,9 +35,12 @@ def eliminar_comentarios(archivo: str) -> str:
     
     """
     # La flag re.DOTALL permite que se seleccione varias lineas, para agarrar un bloque.
-    archivo = re.sub(r'""".*?"""', "", archivo, flags=re.DOTALL).strip()
+    # ^s* hace que coincida si antes de las """ o # hay solo espacios en blanco.
+    archivo = re.sub(
+        r'^\s*""".*?"""', "", archivo, flags=re.DOTALL | re.MULTILINE
+    ).strip()
     # La flag re.MULTILINE permite que se seleccione desde el '#' hasta el final de la linea con el patron especificado '$'
-    archivo = re.sub(r"#.*$", "", archivo, flags=re.MULTILINE).strip()
+    archivo = re.sub(r"^\s*#.*$", "", archivo, flags=re.MULTILINE).strip()
     return archivo
 
 

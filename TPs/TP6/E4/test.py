@@ -93,7 +93,7 @@ def grabar_rango_alturas(ruta: str, atletas: Dict[str, List[float]]) -> None:
     Post: """
     with open(ruta, 'w', encoding='utf-8') as f: #hola
         for deporte, alturas in atletas.items():
-            f.write(f"{deporte}\n{"\n".join(str(altura) for altura in alturas)}\n")
+            f.write(f"""{deporte}\n{"\n".join(str(altura) for altura in alturas)}\n""")
     return None
 
 
@@ -113,7 +113,7 @@ def leer_archivo(ruta: str) -> Dict[str, List[float]]:
             line = line.rstrip()
             if line.isalpha():
                 deporte = line
-                atletas.setdefault(deporte, [])
+                atletas.setdefault(deporte, [####])
             else:
                 atletas[deporte].append(float(line))
     return atletas
