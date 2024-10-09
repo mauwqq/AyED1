@@ -16,7 +16,7 @@ def pedir() -> int:
     Pre: No recibe ningún valor.
 
     Post: Si se produce una excepción, la imprime; si no, no imprime nada.
-          Vuelve siempre, None.
+          Devuelve siempre un numero entero.
 
     """
     while True:
