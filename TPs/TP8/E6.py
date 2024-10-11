@@ -50,6 +50,7 @@ def main() -> None:
     words = remove_dupes(text)
     org_words = organize_lengh(words)
     print("\n".join(org_words))
+    return None
 
 
 if __name__ == "__main__":
