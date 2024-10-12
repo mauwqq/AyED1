@@ -68,7 +68,7 @@ def main() -> None:
         except ValueError as e:
             print(e)
         except KeyError:
-            print(f"Error: El número {input_n} no está en el conjunto.")0
+            print(f"Error: El número {input_n} no está en el conjunto.")
     return None
 
 
