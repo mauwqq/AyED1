@@ -7,6 +7,18 @@ from typing import List
 
 
 def print_matrix(m: List[List[int]], start: int = 0) -> None:
+    """Recursively prints the matrix given.
+
+    Pre: m is a matrix, a list of lists with integers.
+         start is a non-negative integer, values 0 by default.
+
+    Post: None.
+
+    Raises: ValueError: if m is empty.
+
+    """
+    if not m:
+        raise ValueError("La matriz esta vacia.")
     if start == len(m):
         return None
     print(" ".join(str(n) for n in m[start]))
