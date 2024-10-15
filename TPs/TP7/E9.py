@@ -28,7 +28,10 @@ def print_matrix(m: List[List[int]], start: int = 0) -> None:
 def main() -> None:
     """Main function of program"""
     matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    print_matrix(matrix)
+    try:
+        print_matrix(matrix)
+    except ValueError as e:
+        print(e)
     return None
 
 
