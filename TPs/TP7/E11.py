@@ -5,7 +5,7 @@ Desarrollar una función que devuelva el mínimo elemento de una matriz de M x N
 from typing import List
 
 
-def min_m(m: List[List[int]], row: int = 0, col: int = 0, min_: int = None):
+def min_m(m: List[List[int]], row: int = 0, col: int = 0, min_: int = None) -> int:
     """Searches the smallest element in the matrix given. Recursively.
 
     Pre: m is a matrix.
