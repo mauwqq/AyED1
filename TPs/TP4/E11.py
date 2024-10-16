@@ -19,9 +19,9 @@ def input_string(msj: str) -> str:
 
 def count_subsequence(main_string, sub_string) -> int:
     """Counts the time a substring appears in a string.
-    
+
     Pre: main_string and sub_string are strings.
-    
+
     Post: Returns the occurrences found between the main and sub string, as an integer.
 
     Raises: ValueError: if main_string or sub_string are empty.
@@ -47,7 +47,9 @@ def main() -> None:
     except ValueError as e:
         print(e)
     else:
-        print(f"La subcadena '{sub_string}' se encuentra {quantity} veces en la cadena.")
+        print(
+            f"La subcadena '{sub_string}' se encuentra {quantity} veces en la cadena."
+        )
     return None
 
 
