@@ -21,10 +21,12 @@ def pedir_num() -> int:
     """
     while True:
         try:
-            n = int(input("Ingrese un numero entero entre 1 y 500 para adivinar: "))
+            n = input("Ingrese un numero entero entre 1 y 500 para adivinar: ").strip()
+            if not n.isdigit():
+                raise ValueError("Debe ingresar un numero.")
             break
-        except ValueError:
-            print("Debe ingresar un numero entero.")
+        except ValueError as e:
+            print(e)
     return n
 
 
@@ -53,16 +55,13 @@ def adivinar_numero(random: int) -> int:
     intentos = 0
     while True:
         n = pedir_num()
-        if n == -1:
-            intentos += 1
+        intentos += 1
+        if n == random:
+            break
+        if n > random:
+            print(f"{n} es mayor que el numero a adivinar.")
         else:
-            intentos += 1
-            if n == random:
-                break
-            if n > random:
-                print(f"{n} es mayor que el numero a adivinar.")
-            else:
-                print(f"{n} es menor que el numero a adivinar.")
+            print(f"{n} es menor que el numero a adivinar.")
     return intentos
 
 
