@@ -49,7 +49,7 @@ def check_leap(year: int) -> bool:
     Post: Returns True if the year fullfils the condition, otherwise False.
 
     """
-    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+    return not (year % 4) and (year % 100 != 0) or not(year % 400)
 
 
 def input_date(msj: str) -> Tuple[int]:
@@ -81,6 +81,8 @@ def input_days(msj: str) -> int:
     Pre: msj is a string.
 
     Post: Returns the user input if its a non-negative integer.
+
+    Raises: ValueError: if n is a negative number.
 
     """
     while True:
