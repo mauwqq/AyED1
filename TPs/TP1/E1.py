@@ -23,13 +23,16 @@ def numeros_input() -> List[int]:
     numeros = []
     while len(numeros) < 3:
         try:
-            numero = int(input(f"Ingrese el número {len(numeros)+1}: "))
+            numero = input(f"Ingrese el número {len(numeros)+1}: ")
+            if not numero.isdigit():
+                raise ValueError()
             if numero > 0:
                 numeros.append(numero)
             else:
                 raise ValueError()
         except ValueError:
             print("Valor inválido, reintentar.")
+            return []
     return numeros
 
 
@@ -72,3 +75,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+# End-of-file (EOF)

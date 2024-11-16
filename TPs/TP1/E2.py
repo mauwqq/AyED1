@@ -26,17 +26,6 @@ meses = {
 }
 
 
-def es_positivo(numero: int) -> bool:
-    """Recibe un número entero y devuelve si es positivo o no.
-
-    Pre: Recibe número, un entero.
-
-    Post:  Devuelve True si el número es positivo y False si no lo es.
-
-    """
-    return numero > 0
-
-
 def recibir_numeros() -> List[int]:
     """Pide tres números enteros positivos, los guarda en una lista y
     devuelve la lista.
@@ -50,17 +39,18 @@ def recibir_numeros() -> List[int]:
     fecha = []  # dia, mes, año
     texto = ["Dia", "Mes", "Año"]
     print("Ingrese la fecha en el formato indicado.")
-    for i in range(3):
-        while True:
-            try:
-                num = int(input(f"{texto[i]}: "))
-                if es_positivo(num):
-                    fecha.append(num)
-                    break
-                raise ValueError()
-            except ValueError:
-                print("Ingrese un numero positivo.")
-    return fecha
+    while len(fecha) < 3:
+        try:
+            num = input(f"{texto[len(fecha)]}: ").strip()
+            if not num.isdigit():
+                raise ValueError("Debe ser un numero.")
+            if int(num) > 0:
+                fecha.append(num)
+                continue
+            raise ValueError("Debe ser un numero positivo.")
+        except ValueError as e:
+            print(e)
+    return [int(i) for i in fecha]
 
 
 def es_bisiesto(anio: int) -> bool:
@@ -90,15 +80,29 @@ def validar_fecha(dia: int, mes: int, anio: int) -> bool:
     return (mes in meses) and (dia <= meses.get(mes))
 
 
-def main() -> None:
-    """Función principal del programa."""
-    dia, mes, anio = recibir_numeros()  # Desempaquetado.
+def imprimir_resultado(dia: int, mes: int, anio: int) -> None:
+    """Imprime el resultado de validar la fecha.
+
+    Pre: dia, mes y anio son variables enteras.
+
+    Post: No devuelve nada.
+
+    """
     if validar_fecha(dia, mes, anio):
         print("La fecha es valida.")
     else:
         print("La fecha no es valida.")
-        return None
+    return None
+
+
+def main() -> None:
+    """Función principal del programa."""
+    dia, mes, anio = recibir_numeros()  # Desempaquetado.
+    imprimir_resultado(dia, mes, anio)
+    return None
 
 
 if __name__ == "__main__":
     main()
+
+# End-of-file (EOF)
