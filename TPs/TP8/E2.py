@@ -11,10 +11,6 @@ cuenta. Escribir también un programa para ingresar los datos, invocar a la func
 mostrar el resultado.
 """
 
-import re
-from typing import List
-
-
 months = {
     1: (31, "Enero"),
     2: (28, "Febrero"),
