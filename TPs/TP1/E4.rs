@@ -14,6 +14,7 @@ debe contener 1 billete de $1000, 1 billete de $500, 1 billete de $200,
 
 use std::io;
 
+#[derive(Default)]
 struct Atm {
     b5000: u32,
     b1000: u32,
@@ -56,7 +57,7 @@ fn calculate_change(received: u32, total: u32, atm: &mut Atm) -> Vec<u32>{
     if received == total {
         return vec![0,0];
     }
-    let mut change: u32 = received - total;
+    let change: u32 = received - total;
     atm.b5000 = change / 5000;
     let mut rest: u32 = change % 5000;
     atm.b1000 = rest / 1000;
@@ -74,13 +75,35 @@ fn calculate_change(received: u32, total: u32, atm: &mut Atm) -> Vec<u32>{
     return vec![change, rest];
 }
 
-fn print_results(atm: &atm, total: i32, change: u32, rest: u32) {
-
+fn print_results(atm: &Atm, total: u32, change: u32, rest: u32, received: u32) {
+    if rest > 0 {
+        println!("El cambio no puede ser entregado debido a falta de billetes con denominacion adecuada.");
+    } else {
+        println!("La compra fue de: ${}.", total);
+        println!("El monto recibido fue de: ${}.", received);
+        if change == 0 {
+            println!("No hay vuelto.");
+        } else {
+            println!("El vuelto es de: ${}.", change);
+            if atm.b5000 > 0 { println!("Billetes de 5000: {}.", atm.b5000)};
+            if atm.b1000 > 0 { println!("Billetes de 1000: {}.", atm.b1000)};
+            if atm.b500 > 0 { println!("Billetes de 500: {}.", atm.b500)};
+            if atm.b200 > 0 { println!("Billetes de 200: {}.", atm.b200)};
+            if atm.b100 > 0 { println!("Billetes de 100: {}.", atm.b100)};
+            if atm.b50 > 0 { println!("Billetes de 50: {}.", atm.b50)};
+            if atm.b10 > 0 { println!("Billetes de 10: {}.", atm.b10)};
+        }
+    }
 }
 
 fn main() {
-    let mut atm = Atm {0,0,0,0,0,0,0};
+    let mut atm = Atm::default();
     let total: u32 = ask_input("Ingrese el monto total a pagar: ".to_string());
     let received: u32 = ask_input("Ingrese el dinero suministrado: ".to_string());
-    let mut change: Vec<u32> = calculate_change(received, total, &mut atm);
+    if !enough_money(total, received) {
+        println!("No hay suficiente dinero para pagar la compra.");
+    } else {
+        let change: Vec<u32> = calculate_change(received, total, &mut atm);
+        print_results(&atm, total, change[0], change[1], received);
+    }
 }
