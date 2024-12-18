@@ -12,7 +12,7 @@ vuelven True o False. No se permite utilizar ayudas externas a las mismas.
 */
 use std::io;
 
-fn ask_input(message: String) -> u64 {
+fn ask_input(message: &str) -> u64 {
     loop {
         let mut input: String = String::new();
         println!("{}", message);
@@ -45,14 +45,13 @@ fn f_triangular(x: u64) -> bool {
 }
 
 fn main() {
-    let n_oblongo: u64 = ask_input("Ingresa el numero para comprobar si es oblongo: ".to_string());
+    let n_oblongo: u64 = ask_input("Ingresa el numero para comprobar si es oblongo: ");
     if f_oblongo(n_oblongo) {
         println!("El numero {} es oblongo.", n_oblongo);
     } else {
         println!("El numero {} no es oblongo.", n_oblongo);
     }
-    let n_triangular: u64 =
-        ask_input("Ingresa el numero para comprobar si es triangular: ".to_string());
+    let n_triangular: u64 = ask_input("Ingresa el numero para comprobar si es triangular: ");
     if f_triangular(n_triangular) {
         println!("EL numero {} es triangular.", n_triangular);
     } else {

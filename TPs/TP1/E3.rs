@@ -12,7 +12,7 @@ grama para verificar el comportamiento de la función.
 */
 use std::io;
 
-fn user_input(message: String) -> u8 {
+fn user_input(message: &str) -> u8 {
     loop {
         let mut n = String::new();
         println!("{}", message);
@@ -44,6 +44,6 @@ fn calculate(n: u8) {
 }
 
 fn main() {
-    let n: u8 = user_input("Ingrese cuantos viajes realizo este mes: ".to_string());
+    let n: u8 = user_input("Ingrese cuantos viajes realizo este mes: ");
     calculate(n);
 }

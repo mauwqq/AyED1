@@ -7,7 +7,7 @@ el máximo hallado, o un mensaje informativo si éste no existe.
 */
 use std::io;
 
-fn input_number(message: String) -> Vec<u8> {
+fn input_number(message: &str) -> Vec<u8> {
     let mut data = Vec::new();
     while data.len() < 3 {
         let n: u8;
@@ -42,7 +42,7 @@ fn greater(data: Vec<u8>) -> Result<u8, bool> {
 }
 
 fn main() {
-    let data: Vec<u8> = input_number("Ingrese el numero".to_string());
+    let data: Vec<u8> = input_number("Ingrese el numero");
     match greater(data) {
         Ok(n) => println!("El numero mayor estricto es: {}.", n),
         Err(_) => println!("No hubo numero mayor estricto."),

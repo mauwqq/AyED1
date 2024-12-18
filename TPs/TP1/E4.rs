@@ -25,7 +25,7 @@ struct Atm {
     b10: u32,
 }
 
-fn ask_input(message: String) -> u32 {
+fn ask_input(message: &str) -> u32 {
     loop {
         let mut input: String = String::new();
         println!("{}", message);
