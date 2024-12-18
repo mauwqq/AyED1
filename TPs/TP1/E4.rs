@@ -114,8 +114,8 @@ fn print_results(atm: &Atm, total: u32, change: u32, rest: u32, received: u32) {
 
 fn main() {
     let mut atm = Atm::default();
-    let total: u32 = ask_input("Ingrese el monto total a pagar: ".to_string());
-    let received: u32 = ask_input("Ingrese el dinero suministrado: ".to_string());
+    let total: u32 = ask_input("Ingrese el monto total a pagar: ");
+    let received: u32 = ask_input("Ingrese el dinero suministrado: ");
     if !enough_money(total, received) {
         println!("No hay suficiente dinero para pagar la compra.");
     } else {
