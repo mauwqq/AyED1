@@ -12,12 +12,13 @@ vuelven True o False. No se permite utilizar ayudas externas a las mismas.
 */
 use std::io;
 
-
 fn ask_input(message: String) -> u64 {
     loop {
         let mut input: String = String::new();
         println!("{}", message);
-        io::stdin().read_line(&mut input).expect("No se pudo leer el input.");
+        io::stdin()
+            .read_line(&mut input)
+            .expect("No se pudo leer el input.");
         match input.trim().parse::<u64>() {
             Ok(num) => {
                 if num > 0 {
@@ -25,7 +26,7 @@ fn ask_input(message: String) -> u64 {
                 } else {
                     println!("Debe ingresar un numero positivo.");
                 }
-            },
+            }
             Err(_) => {
                 println!("Debe ingresar un numero.");
             }
@@ -33,23 +34,26 @@ fn ask_input(message: String) -> u64 {
     }
 }
 
+fn f_oblongo(x: u64) -> bool {
+    let oblongo = |x: u64| (1..=(x as f64).sqrt() as u64 + 1).any(|n| x == n * (n + 1));
+    return oblongo(x);
+}
+
+fn f_triangular(x: u64) -> bool {
+    let triangular = |x: u64| (1..=((2 * x) as f64).sqrt() as u64).any(|n| n * (n + 1) / 2 == x);
+    return triangular(x);
+}
+
 fn main() {
-    let oblongo = |x: u64| {
-        (1..=(x as f64).sqrt() as u64 + 1)
-            .any(|n| x == n * (n + 1))
-    };
-    let triangular = |x: u64| {
-        (1..=((2 * x) as f64).sqrt() as u64)
-            .any(|n| n * (n + 1) / 2 == x)
-    };
     let n_oblongo: u64 = ask_input("Ingresa el numero para comprobar si es oblongo: ".to_string());
-    if oblongo(n_oblongo) {
+    if f_oblongo(n_oblongo) {
         println!("El numero {} es oblongo.", n_oblongo);
     } else {
         println!("El numero {} no es oblongo.", n_oblongo);
     }
-    let n_triangular: u64 = ask_input("Ingresa el numero para comprobar si es triangular: ".to_string());
-    if triangular(n_triangular) {
+    let n_triangular: u64 =
+        ask_input("Ingresa el numero para comprobar si es triangular: ".to_string());
+    if f_triangular(n_triangular) {
         println!("EL numero {} es triangular.", n_triangular);
     } else {
         println!("El numero {} no es triangular", n_triangular);

@@ -16,7 +16,9 @@ fn user_input(message: String) -> u8 {
     loop {
         let mut n = String::new();
         println!("{}", message);
-        io::stdin().read_line(&mut n).expect("No se pudo leer el input.");
+        io::stdin()
+            .read_line(&mut n)
+            .expect("No se pudo leer el input.");
         match n.trim().parse() {
             Ok(value) => {
                 if value > 0 {
@@ -24,7 +26,7 @@ fn user_input(message: String) -> u8 {
                 } else {
                     println!("Debe ingresar un numero positivo.");
                 }
-            },
+            }
             Err(_) => {
                 println!("Valor invalido, vuelva a intentarlo.");
             }

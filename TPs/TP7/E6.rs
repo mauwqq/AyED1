@@ -7,8 +7,7 @@ Imprimir un cuadro con los valores que adopta la función para valores de
 m entre 0 y 3 y de n entre 0 y 7.
 */
 
-
-fn ackermann(m: i64, n: i64) -> i64{
+fn ackermann(m: i64, n: i64) -> i64 {
     /* */
     if m < 0 || n < 0 {
         println!("The numbers must be positive.");

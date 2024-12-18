@@ -13,13 +13,15 @@ struct Date(u16, u16, u16);
 fn input_number(message: &str) -> u16 {
     let mut input = String::new();
     println!("{}: ", message);
-    io::stdin().read_line(&mut input).expect("No se pudo leer la entrada.");
+    io::stdin()
+        .read_line(&mut input)
+        .expect("No se pudo leer la entrada.");
     let input: u16 = match input.trim().parse() {
         Ok(num) => num,
         Err(_) => {
             println!("Entrada no valida, se usará 0 por defecto");
             0
-        },
+        }
     };
     input
 }

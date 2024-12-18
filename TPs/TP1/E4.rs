@@ -29,7 +29,9 @@ fn ask_input(message: String) -> u32 {
     loop {
         let mut input: String = String::new();
         println!("{}", message);
-        io::stdin().read_line(&mut input).expect("Error al leer el input.");
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Error al leer el input.");
         match input.trim().parse() {
             Ok(num) => {
                 if num > 0 {
@@ -37,7 +39,7 @@ fn ask_input(message: String) -> u32 {
                 } else {
                     println!("Debe ingresar un numero positivo.");
                 }
-            },
+            }
             Err(_) => {
                 println!("Ingrese un numero valido.");
             }
@@ -53,9 +55,9 @@ fn enough_money(total: u32, money_received: u32) -> bool {
     }
 }
 
-fn calculate_change(received: u32, total: u32, atm: &mut Atm) -> Vec<u32>{
+fn calculate_change(received: u32, total: u32, atm: &mut Atm) -> Vec<u32> {
     if received == total {
-        return vec![0,0];
+        return vec![0, 0];
     }
     let change: u32 = received - total;
     atm.b5000 = change / 5000;
@@ -85,13 +87,27 @@ fn print_results(atm: &Atm, total: u32, change: u32, rest: u32, received: u32) {
             println!("No hay vuelto.");
         } else {
             println!("El vuelto es de: ${}.", change);
-            if atm.b5000 > 0 { println!("Billetes de 5000: {}.", atm.b5000)};
-            if atm.b1000 > 0 { println!("Billetes de 1000: {}.", atm.b1000)};
-            if atm.b500 > 0 { println!("Billetes de 500: {}.", atm.b500)};
-            if atm.b200 > 0 { println!("Billetes de 200: {}.", atm.b200)};
-            if atm.b100 > 0 { println!("Billetes de 100: {}.", atm.b100)};
-            if atm.b50 > 0 { println!("Billetes de 50: {}.", atm.b50)};
-            if atm.b10 > 0 { println!("Billetes de 10: {}.", atm.b10)};
+            if atm.b5000 > 0 {
+                println!("Billetes de 5000: {}.", atm.b5000)
+            };
+            if atm.b1000 > 0 {
+                println!("Billetes de 1000: {}.", atm.b1000)
+            };
+            if atm.b500 > 0 {
+                println!("Billetes de 500: {}.", atm.b500)
+            };
+            if atm.b200 > 0 {
+                println!("Billetes de 200: {}.", atm.b200)
+            };
+            if atm.b100 > 0 {
+                println!("Billetes de 100: {}.", atm.b100)
+            };
+            if atm.b50 > 0 {
+                println!("Billetes de 50: {}.", atm.b50)
+            };
+            if atm.b10 > 0 {
+                println!("Billetes de 10: {}.", atm.b10)
+            };
         }
     }
 }

@@ -12,8 +12,10 @@ fn input_number(message: String) -> Vec<u8> {
     while data.len() < 3 {
         let n: u8;
         let mut str = String::new();
-        println!("{} {}:", message, data.len()+1);
-        io::stdin().read_line(&mut str).expect("No se pudo leer el input.");
+        println!("{} {}:", message, data.len() + 1);
+        io::stdin()
+            .read_line(&mut str)
+            .expect("No se pudo leer el input.");
         match str.trim().parse::<u8>() {
             Ok(value) => {
                 n = value;

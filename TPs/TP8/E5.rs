@@ -11,7 +11,6 @@ de verdad indicando si son ortogonales o no. Desarrollar también un programa qu
 permita verificar el comportamiento de la función.
 */
 
-
 fn is_orthogonal(a: (i8, i8), b: (i8, i8)) -> bool {
     if (a.0 * b.0) + (a.1 * b.1) == 0 {
         true
@@ -21,8 +20,8 @@ fn is_orthogonal(a: (i8, i8), b: (i8, i8)) -> bool {
 }
 
 fn main() {
-    let a:(i8, i8) = (2,3);
-    let b:(i8, i8) = (-3,2);
+    let a: (i8, i8) = (2, 3);
+    let b: (i8, i8) = (-3, 2);
     match is_orthogonal(a, b) {
         true => println!("Son ortogonales."),
         false => println!("No son ortogonales."),
